@@ -1189,8 +1189,16 @@
       "definition": "Eine Technik zur Bewertung und Verfeinerung von Prompts, bei der die Ausgaben eines LLM systematisch auf wiederkehrende Fehler oder Ungenauigkeiten untersucht werden."
     },
     {
+      "term": "Autonomer Agent",
+      "definition": "Ein LLM-Agent, der mit minimalem menschlichen Eingriff arbeitet, um maximale Effizienz zu erreichen."
+    },
+    {
       "term": "Benutzer-Prompt",
       "definition": "Die konkrete Eingabe oder Anfrage eines Nutzers an ein LLM, die sich üblicherweise mit jeder Interaktion ändert."
+    },
+    {
+      "term": "Communities of Practice",
+      "definition": "Regelmäßige Formate zum Wissensaustausch innerhalb eines Teams, in denen Best Practices und Herausforderungen bei der GenAI-Nutzung diskutiert werden."
     },
     {
       "term": "Daten-Pipelinetest",
@@ -1229,8 +1237,16 @@
       "definition": "Eine Art von Wartungstest, die bewertet, inwieweit Datendrift, Konzeptdrift oder beide auftreten."
     },
     {
+      "term": "DSGVO",
+      "definition": "Datenschutz-Grundverordnung: die europäische Rechtsvorschrift, die die Erhebung, Verarbeitung und Speicherung personenbezogener Daten einschränkt."
+    },
+    {
       "term": "Eingabedatentest",
       "definition": "Eine Teststufe, die sich auf die Qualität der für das Training eines ML-Modells verwendeten Daten konzentriert."
+    },
+    {
+      "term": "Embedding",
+      "definition": "Eine numerische Vektordarstellung von Bedeutung und Kontext eines Tokens; semantisch ähnliche Tokens liegen im Vektorraum nah beieinander."
     },
     {
       "term": "Erklärbarkeit",
@@ -1293,6 +1309,10 @@
       "definition": "Eine standardisierte Syntax (Gherkin-Syntax) zur Formulierung von Testfällen in Szenarioform, bestehend aus Vorbedingung (Given), Aktion (When) und erwartetem Ergebnis (Then)."
     },
     {
+      "term": "GPT",
+      "definition": "Generative Pretrained Transformer: eine Familie von LLM-Architekturen, die Text sequenziell (Token für Token) generiert."
+    },
+    {
       "term": "Halluzination",
       "definition": "Wenn ein LLM falsche oder erfundene Informationen als wahr präsentiert."
     },
@@ -1323,6 +1343,10 @@
     {
       "term": "LLM",
       "definition": "Large Language Model - ein großes sprachliches Modell mit Millionen oder Milliarden von Parametern."
+    },
+    {
+      "term": "LLM-Agent",
+      "definition": "Eine halbautonome oder autonome Komponente, die auf Basis eines LLM Aufgaben eigenständig ausführt, statt nur auf Anfragen zu antworten."
     },
     {
       "term": "LLMOps",
@@ -1357,6 +1381,10 @@
       "definition": "Eine Testart zur Bestimmung, ob die Vorhersagegenauigkeit, das konsistente Verhalten und die Betriebseffizienz eines für die Bereitstellung konvertierten ML-Modells akzeptabel bleiben."
     },
     {
+      "term": "Multi-Agenten-Architektur",
+      "definition": "Eine Architektur, bei der mehrere spezialisierte LLM-Agenten koordiniert zusammenarbeiten (Orchestrierung)."
+    },
+    {
       "term": "Multimodales LLM",
       "definition": "Ein LLM, das in der Lage ist, unterschiedliche Eingabearten wie Text, Bilder oder Audio zu verarbeiten."
     },
@@ -1365,12 +1393,24 @@
       "definition": "Ein Rahmenwerk zur Steuerung von KI-Risiken mit Fokus auf Fairness, Transparenz und Sicherheit."
     },
     {
+      "term": "One-Shot-Prompting",
+      "definition": "Eine Prompting-Technik, bei der dem LLM genau ein Beispiel zur Orientierung gegeben wird, etwa für eine einfache Formatvorgabe."
+    },
+    {
       "term": "Orchestrierung",
       "definition": "Die koordinierte Zusammenarbeit mehrerer LLM-gestützter Agenten, um komplexe Aufgaben effizienter zu lösen."
     },
     {
+      "term": "Post-Processing",
+      "definition": "Die Komponente einer LLM-gestützten Testinfrastruktur, die die Ausgabe des LLM verfeinert, bevor sie an das Frontend weitergegeben wird."
+    },
+    {
       "term": "Prompt Engineering",
       "definition": "Die Kunst, effektive Eingabeaufforderungen zu formulieren, um optimale Ergebnisse von LLMs zu erhalten."
+    },
+    {
+      "term": "Prompt-Musterbibliothek",
+      "definition": "Eine Sammlung wiederverwendbarer Prompt-Vorlagen, die in einem Testteam für konsistente LLM-Ausgaben genutzt wird."
     },
     {
       "term": "Prompt-Verkettung",
@@ -1393,8 +1433,20 @@
       "definition": "Ein LLM, das speziell darauf ausgelegt ist, mehrschichtige Schlussfolgerungen und Problemlösungen nach einem menschenähnlichen Denkprozess durchzuführen."
     },
     {
+      "term": "Relationale Datenbank",
+      "definition": "Eine Datenbank für strukturierte, tabellenbasierte Daten, z. B. historische Testfälle, die in einer LLM-gestützten Testinfrastruktur genutzt wird."
+    },
+    {
       "term": "Schatten-KI",
       "definition": "Die Nutzung von KI-Tools innerhalb einer Organisation ohne offizielle Genehmigung oder Kontrolle, was Risiken für Datenschutz, Sicherheit und geistiges Eigentum birgt."
+    },
+    {
+      "term": "Semiautonomer Agent",
+      "definition": "Ein LLM-Agent, der bei kritischen Schritten menschliche Aufsicht einbindet, um die Qualität der Ergebnisse sicherzustellen."
+    },
+    {
+      "term": "SLM",
+      "definition": "Small Language Model: ein kleineres, ressourceneffizienteres Sprachmodell, das ebenfalls für Feintuning genutzt werden kann."
     },
     {
       "term": "Strukturierter Prompt",
@@ -1413,6 +1465,10 @@
       "definition": "Eine Testart zur Aufdeckung von Verzerrungen in Eingabedaten, einem KI-Modell oder einem KI-basierten System."
     },
     {
+      "term": "Testorakel",
+      "definition": "Eine Informationsquelle, aus der das erwartete Ergebnis eines Tests abgeleitet wird — im Gegensatz zu Testdaten, die die Eingabewerte liefern."
+    },
+    {
       "term": "Testorakelproblem",
       "definition": "Eine Situation, in der für ein Testobjekt kein eindeutiges erwartetes Ergebnis bestimmt werden kann, was die Testfallerstellung erschwert."
     },
@@ -1421,12 +1477,20 @@
       "definition": "Kleinste Einheit der Textverarbeitung in LLMs, kann ein Wort, Wortteile oder sogar einzelne Zeichen darstellen."
     },
     {
+      "term": "Transformer",
+      "definition": "Die neuronale Netzwerkarchitektur, die modernen LLMs zugrunde liegt."
+    },
+    {
       "term": "Transparenz",
       "definition": "Der Grad, zu dem angemessene Information über ein KI-basiertes System an die relevanten Stakeholder kommuniziert wird."
     },
     {
       "term": "Trefferquote (Recall)",
       "definition": "Eine Metrik, die bewertet, wie vollständig eine generative KI ein bestimmtes Ziel oder eine Anforderung in ihrer Ausgabe abgedeckt hat."
+    },
+    {
+      "term": "Vektordatenbank",
+      "definition": "Eine Datenbank, die Embeddings speichert und den semantischen Ähnlichkeitsabruf ermöglicht, z. B. für API-Spezifikationen oder Anforderungen."
     },
     {
       "term": "Verzerrung (Bias)",
