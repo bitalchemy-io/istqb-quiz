@@ -1181,92 +1181,28 @@
   ],
   "glossary": [
     {
-      "term": "Generative KI",
-      "definition": "KI-Systeme, die fähig sind, neue Inhalte wie Text, Bilder oder Code zu erstellen basierend auf Trainingsdaten."
+      "term": "A/B-Test von Prompts",
+      "definition": "Eine Technik, bei der zwei Prompt-Varianten verglichen werden, um festzustellen, welche bessere Ergebnisse liefert."
     },
     {
-      "term": "LLM",
-      "definition": "Large Language Model - ein großes sprachliches Modell mit Millionen oder Milliarden von Parametern."
+      "term": "Ausgabeanalyse",
+      "definition": "Eine Technik zur Bewertung und Verfeinerung von Prompts, bei der die Ausgaben eines LLM systematisch auf wiederkehrende Fehler oder Ungenauigkeiten untersucht werden."
     },
     {
-      "term": "Prompt Engineering",
-      "definition": "Die Kunst, effektive Eingabeaufforderungen zu formulieren, um optimale Ergebnisse von LLMs zu erhalten."
+      "term": "Benutzer-Prompt",
+      "definition": "Die konkrete Eingabe oder Anfrage eines Nutzers an ein LLM, die sich üblicherweise mit jeder Interaktion ändert."
     },
     {
-      "term": "Token",
-      "definition": "Kleinste Einheit der Textverarbeitung in LLMs, kann ein Wort, Wortteile oder sogar einzelne Zeichen darstellen."
-    },
-    {
-      "term": "Halluzination",
-      "definition": "Wenn ein LLM falsche oder erfundene Informationen als wahr präsentiert."
-    },
-    {
-      "term": "Maschinelles Lernen",
-      "definition": "Der Prozess, bei dem mithilfe von Berechnungstechniken Systeme in die Lage versetzt werden, aus Daten oder Erfahrungen zu lernen."
-    },
-    {
-      "term": "ML-Modell",
-      "definition": "Eine Implementierung des maschinellen Lernens, die auf der Grundlage von Eingabedaten eine Vorhersage, Klassifizierung oder Empfehlung erstellt."
-    },
-    {
-      "term": "ML-Modelltest",
-      "definition": "Eine Teststufe, die auf die Fähigkeit eines ML-Modells fokussiert, die geforderten funktionalen Leistungskriterien von ML und nicht-funktionalen Kriterien zu erfüllen."
-    },
-    {
-      "term": "funktionale Leistung von ML",
-      "definition": "Der Grad, zu dem ein ML-Modell funktionale Leistungskriterien von ML erfüllt."
-    },
-    {
-      "term": "funktionale Leistungskriterien von ML",
-      "definition": "Kriterien auf der Grundlage funktionaler Leistungsmetriken von ML, die zur Modellbewertung, -abstimmung und -prüfung dienen."
-    },
-    {
-      "term": "funktionale Leistungsmetriken von ML",
-      "definition": "Ein Maß, das sich auf die funktionale Korrektheit eines ML-Modells bezieht."
+      "term": "Daten-Pipelinetest",
+      "definition": "Eine Testart, die die Trainings- und Produktionsdatenpipelines eines Systems für maschinelles Lernen überdeckt."
     },
     {
       "term": "Datendrift",
       "definition": "Eine im Laufe der Zeit eintretende Veränderung der Verteilung der Eingabedaten, die sich negativ auf die funktionale Leistung eines im Einsatz befindlichen ML-Modells auswirkt."
     },
     {
-      "term": "Konzeptdrift",
-      "definition": "Eine im Laufe der Zeit eintretende Veränderung der Benutzererwartungen, des Benutzerverhaltens oder des Betriebsumfelds, die sich negativ auf die funktionale Leistung eines im Einsatz befindlichen ML-Modells auswirkt."
-    },
-    {
-      "term": "Drift-Test",
-      "definition": "Eine Art von Wartungstest, die bewertet, inwieweit Datendrift, Konzeptdrift oder beide auftreten."
-    },
-    {
-      "term": "gegnerisches Beispiel",
-      "definition": "Eine Eingabe für ein ML-Modell, die durch geringfügige Störungen eines funktionierenden Beispiels erzeugt wird und dazu führt, dass das Modell mit hoher Wahrscheinlichkeit ein falsches Ergebnis ausgibt."
-    },
-    {
-      "term": "gegnerischer Test",
-      "definition": "Ein Testverfahren, bei dem Tests auf der Grundlage von gegnerischen Beispielen entworfen werden."
-    },
-    {
-      "term": "Erklärbarkeit",
-      "definition": "Der Grad, zu dem Ergebnisse eines KI-basierten Systems erklärt werden können."
-    },
-    {
-      "term": "Transparenz",
-      "definition": "Der Grad, zu dem angemessene Information über ein KI-basiertes System an die relevanten Stakeholder kommuniziert wird."
-    },
-    {
-      "term": "Testen auf Verzerrung (Bias)",
-      "definition": "Eine Testart zur Aufdeckung von Verzerrungen in Eingabedaten, einem KI-Modell oder einem KI-basierten System."
-    },
-    {
-      "term": "Minderung gesellschaftlicher und ethischer Risiken",
-      "definition": "Der Grad, zu dem ein KI-basiertes System potenzielle Risiken für die Gesellschaft mindert."
-    },
-    {
-      "term": "Ethischer Systemtest",
-      "definition": "Eine Testart, die den Entwurf, die Schnittstellen sowie die potenziellen gesellschaftlichen und rechtlichen Auswirkungen eines Systems anhand anerkannter ethischer Grundsätze bewertet."
-    },
-    {
-      "term": "Eingabedatentest",
-      "definition": "Eine Teststufe, die sich auf die Qualität der für das Training eines ML-Modells verwendeten Daten konzentriert."
+      "term": "Datenexfiltration",
+      "definition": "Ein Angriffsvektor, bei dem Anfragen gezielt genutzt werden, um vertrauliche Trainings- oder Systemdaten aus einem LLM zu extrahieren."
     },
     {
       "term": "Datenprovenienztest",
@@ -1281,20 +1217,236 @@
       "definition": "Eine Art statischer Test zur Bestimmung, ob ein Datensatz logische oder festgelegte Einschränkungen einhält."
     },
     {
-      "term": "Daten-Pipelinetest",
-      "definition": "Eine Testart, die die Trainings- und Produktionsdatenpipelines eines Systems für maschinelles Lernen überdeckt."
+      "term": "Datenverunreinigung",
+      "definition": "Ein Angriffsvektor (Data Poisoning), bei dem Trainingsdaten eines LLM absichtlich manipuliert werden, um dessen Verhalten oder Genauigkeit zu beeinträchtigen."
+    },
+    {
+      "term": "Diversität",
+      "definition": "Eine Metrik, die die Vielfalt der von einer generativen KI erzeugten Ausgaben (z. B. Testfälle oder Testdaten) hinsichtlich unterschiedlicher Szenarien und Randfälle bewertet."
+    },
+    {
+      "term": "Drift-Test",
+      "definition": "Eine Art von Wartungstest, die bewertet, inwieweit Datendrift, Konzeptdrift oder beide auftreten."
+    },
+    {
+      "term": "Eingabedatentest",
+      "definition": "Eine Teststufe, die sich auf die Qualität der für das Training eines ML-Modells verwendeten Daten konzentriert."
+    },
+    {
+      "term": "Erklärbarkeit",
+      "definition": "Der Grad, zu dem Ergebnisse eines KI-basierten Systems erklärt werden können."
+    },
+    {
+      "term": "Ethischer Systemtest",
+      "definition": "Eine Testart, die den Entwurf, die Schnittstellen sowie die potenziellen gesellschaftlichen und rechtlichen Auswirkungen eines Systems anhand anerkannter ethischer Grundsätze bewertet."
+    },
+    {
+      "term": "EU AI Act",
+      "definition": "Ein Gesetz der Europäischen Union, das rechtliche Anforderungen an KI-Systeme regelt und Anwendungen nach Risikostufen klassifiziert."
+    },
+    {
+      "term": "Feintuning",
+      "definition": "Die Anpassung eines vortrainierten Modells anhand eines gezielten, aufgabenspezifischen Datensatzes, um seine Leistung für einen bestimmten Bereich zu verbessern."
+    },
+    {
+      "term": "Few-Shot-Prompting",
+      "definition": "Eine Prompting-Technik, bei der dem LLM anhand konkreter Beispiele gezeigt wird, wie es eine Aufgabe lösen soll."
+    },
+    {
+      "term": "Foundation-LLM",
+      "definition": "Ein LLM, das auf einem breiten, allgemeinen Datensatz vortrainiert wurde und als Grundlage für nachgelagerte Anpassungen dient."
+    },
+    {
+      "term": "funktionale Leistung von ML",
+      "definition": "Der Grad, zu dem ein ML-Modell funktionale Leistungskriterien von ML erfüllt."
+    },
+    {
+      "term": "funktionale Leistungskriterien von ML",
+      "definition": "Kriterien auf der Grundlage funktionaler Leistungsmetriken von ML, die zur Modellbewertung, -abstimmung und -prüfung dienen."
+    },
+    {
+      "term": "funktionale Leistungsmetriken von ML",
+      "definition": "Ein Maß, das sich auf die funktionale Korrektheit eines ML-Modells bezieht."
+    },
+    {
+      "term": "gegnerischer Test",
+      "definition": "Ein Testverfahren, bei dem Tests auf der Grundlage von gegnerischen Beispielen entworfen werden."
+    },
+    {
+      "term": "gegnerisches Beispiel",
+      "definition": "Eine Eingabe für ein ML-Modell, die durch geringfügige Störungen eines funktionierenden Beispiels erzeugt wird und dazu führt, dass das Modell mit hoher Wahrscheinlichkeit ein falsches Ergebnis ausgibt."
+    },
+    {
+      "term": "Genauigkeit (Accuracy)",
+      "definition": "Eine Metrik, die bewertet, wie korrekt eine von generativer KI erzeugte Ausgabe im Vergleich zum erwarteten Ergebnis ist."
+    },
+    {
+      "term": "Generative KI",
+      "definition": "KI-Systeme, die fähig sind, neue Inhalte wie Text, Bilder oder Code zu erstellen basierend auf Trainingsdaten."
+    },
+    {
+      "term": "Generierung von bösartigem Code",
+      "definition": "Ein Angriffsvektor, bei dem ein LLM dazu gebracht wird, schädlichen Code oder versteckte Sicherheitslücken zu erzeugen."
+    },
+    {
+      "term": "Given-When-Then",
+      "definition": "Eine standardisierte Syntax (Gherkin-Syntax) zur Formulierung von Testfällen in Szenarioform, bestehend aus Vorbedingung (Given), Aktion (When) und erwartetem Ergebnis (Then)."
+    },
+    {
+      "term": "Halluzination",
+      "definition": "Wenn ein LLM falsche oder erfundene Informationen als wahr präsentiert."
+    },
+    {
+      "term": "Instruction-Tuned LLM",
+      "definition": "Ein LLM, das zusätzlich darauf trainiert wurde, Anweisungen präzise zu befolgen und vorgegebene Formate und Syntaxregeln einzuhalten."
+    },
+    {
+      "term": "ISO/IEC 23053",
+      "definition": "Ein internationaler Standard, der einen Rahmen für Datenqualität, Transparenz und Fehlertoleranz bei KI-Systemen liefert."
+    },
+    {
+      "term": "ISO/IEC 42001",
+      "definition": "Ein internationaler Standard, der Anforderungen an das Management von KI-basierten Systemen in Organisationen definiert."
     },
     {
       "term": "Kennzeichen-Korrektheitstest",
       "definition": "Eine Testart zur Bestimmung der Richtigkeit und Konsistenz der Kennzeichen, die den Beispielen in einem Datensatz zugewiesen wurden."
     },
     {
+      "term": "Kontextfenster",
+      "definition": "Die maximale Menge an Text (Token), die ein LLM bei der Verarbeitung einer Eingabe gleichzeitig berücksichtigen kann."
+    },
+    {
+      "term": "Konzeptdrift",
+      "definition": "Eine im Laufe der Zeit eintretende Veränderung der Benutzererwartungen, des Benutzerverhaltens oder des Betriebsumfelds, die sich negativ auf die funktionale Leistung eines im Einsatz befindlichen ML-Modells auswirkt."
+    },
+    {
+      "term": "LLM",
+      "definition": "Large Language Model - ein großes sprachliches Modell mit Millionen oder Milliarden von Parametern."
+    },
+    {
+      "term": "LLMOps",
+      "definition": "Der Prozess der effizienten Verwaltung, Überwachung und Optimierung von LLMs über ihren gesamten Lebenszyklus, einschließlich Datenschutz-, Sicherheits- und Kostenaspekten."
+    },
+    {
+      "term": "Manipulation von Anfragen",
+      "definition": "Ein Angriffsvektor (Request Manipulation), bei dem Eingaben zur Laufzeit gezielt verändert werden, um die Ausgabe eines LLM zu stören oder zu manipulieren."
+    },
+    {
+      "term": "Maschinelles Lernen",
+      "definition": "Der Prozess, bei dem mithilfe von Berechnungstechniken Systeme in die Lage versetzt werden, aus Daten oder Erfahrungen zu lernen."
+    },
+    {
+      "term": "Meta-Prompting",
+      "definition": "Eine Prompting-Technik, bei der das LLM genutzt wird, um eigene Prompts iterativ zu generieren und zu verfeinern."
+    },
+    {
+      "term": "Minderung gesellschaftlicher und ethischer Risiken",
+      "definition": "Der Grad, zu dem ein KI-basiertes System potenzielle Risiken für die Gesellschaft mindert."
+    },
+    {
+      "term": "ML-Modell",
+      "definition": "Eine Implementierung des maschinellen Lernens, die auf der Grundlage von Eingabedaten eine Vorhersage, Klassifizierung oder Empfehlung erstellt."
+    },
+    {
+      "term": "ML-Modelltest",
+      "definition": "Eine Teststufe, die auf die Fähigkeit eines ML-Modells fokussiert, die geforderten funktionalen Leistungskriterien von ML und nicht-funktionalen Kriterien zu erfüllen."
+    },
+    {
       "term": "Modellkonvertierungstest",
       "definition": "Eine Testart zur Bestimmung, ob die Vorhersagegenauigkeit, das konsistente Verhalten und die Betriebseffizienz eines für die Bereitstellung konvertierten ML-Modells akzeptabel bleiben."
     },
     {
+      "term": "Multimodales LLM",
+      "definition": "Ein LLM, das in der Lage ist, unterschiedliche Eingabearten wie Text, Bilder oder Audio zu verarbeiten."
+    },
+    {
+      "term": "NIST AI Risk Management Framework",
+      "definition": "Ein Rahmenwerk zur Steuerung von KI-Risiken mit Fokus auf Fairness, Transparenz und Sicherheit."
+    },
+    {
+      "term": "Orchestrierung",
+      "definition": "Die koordinierte Zusammenarbeit mehrerer LLM-gestützter Agenten, um komplexe Aufgaben effizienter zu lösen."
+    },
+    {
+      "term": "Prompt Engineering",
+      "definition": "Die Kunst, effektive Eingabeaufforderungen zu formulieren, um optimale Ergebnisse von LLMs zu erhalten."
+    },
+    {
+      "term": "Prompt-Verkettung",
+      "definition": "Eine Prompting-Technik (Prompt Chaining), bei der eine komplexe Aufgabe in mehrere aufeinanderfolgende Prompts zerlegt wird, wobei jeder Schritt auf den Ergebnissen des vorherigen aufbaut."
+    },
+    {
+      "term": "RAG",
+      "definition": "Retrieval-Augmented Generation: ein Ansatz, bei dem ein LLM relevante Informationen aus einer externen Datenquelle abruft (Retrieval) und diese zur Generierung einer Antwort nutzt (Generation)."
+    },
+    {
+      "term": "Random Seed",
+      "definition": "Ein Zufallsstartwert für den Zufallszahlengenerator eines LLM, der bei gleichbleibender Einstellung dieselbe Pseudozufallssequenz und damit reproduzierbarere Ausgaben erzeugt."
+    },
+    {
+      "term": "Reasoning-Fehler",
+      "definition": "Eine LLM-Ausgabe (Schlussfolgerungsfehler), die auf einer Fehlinterpretation logischer Strukturen oder eines mehrstufigen Denkprozesses beruht."
+    },
+    {
+      "term": "Reasoning-LLM",
+      "definition": "Ein LLM, das speziell darauf ausgelegt ist, mehrschichtige Schlussfolgerungen und Problemlösungen nach einem menschenähnlichen Denkprozess durchzuführen."
+    },
+    {
+      "term": "Schatten-KI",
+      "definition": "Die Nutzung von KI-Tools innerhalb einer Organisation ohne offizielle Genehmigung oder Kontrolle, was Risiken für Datenschutz, Sicherheit und geistiges Eigentum birgt."
+    },
+    {
+      "term": "Strukturierter Prompt",
+      "definition": "Ein Prompt, der in klar definierte Komponenten gegliedert ist: Rolle, Kontext, Instruktion, Eingabedaten, Einschränkungen und Ausgabeformat."
+    },
+    {
+      "term": "System-Prompt",
+      "definition": "Ein Prompt, der den Rahmen für das Verhalten, den Ton und die Regeln eines LLM über eine gesamte Konversation hinweg setzt und für Nutzer meist nicht sichtbar ist."
+    },
+    {
+      "term": "Temperatur",
+      "definition": "Ein Parameter, der die Zufälligkeit einer LLM-Ausgabe steuert, indem er die Wahrscheinlichkeitsverteilung bei der Antwortgenerierung beeinflusst; niedrigere Werte erzeugen konsistentere Ausgaben."
+    },
+    {
+      "term": "Testen auf Verzerrung (Bias)",
+      "definition": "Eine Testart zur Aufdeckung von Verzerrungen in Eingabedaten, einem KI-Modell oder einem KI-basierten System."
+    },
+    {
+      "term": "Testorakelproblem",
+      "definition": "Eine Situation, in der für ein Testobjekt kein eindeutiges erwartetes Ergebnis bestimmt werden kann, was die Testfallerstellung erschwert."
+    },
+    {
+      "term": "Token",
+      "definition": "Kleinste Einheit der Textverarbeitung in LLMs, kann ein Wort, Wortteile oder sogar einzelne Zeichen darstellen."
+    },
+    {
+      "term": "Transparenz",
+      "definition": "Der Grad, zu dem angemessene Information über ein KI-basiertes System an die relevanten Stakeholder kommuniziert wird."
+    },
+    {
+      "term": "Trefferquote (Recall)",
+      "definition": "Eine Metrik, die bewertet, wie vollständig eine generative KI ein bestimmtes Ziel oder eine Anforderung in ihrer Ausgabe abgedeckt hat."
+    },
+    {
+      "term": "Verzerrung (Bias)",
+      "definition": "Eine LLM-Ausgabe, die bestimmte Informationen, Perspektiven oder Annahmen bevorzugt, meist als Folge unausgewogener Trainingsdaten."
+    },
+    {
       "term": "Vibe-Test",
       "definition": "Ein Testansatz, bei dem die KI eine Komponente oder ein System auf Basis von natürlichsprachlicher Beschreibungen gewünschter Benutzererfahrungen testet."
+    },
+    {
+      "term": "Vision-Language-Modell",
+      "definition": "Eine Untergruppe multimodaler LLMs, die speziell visuelle und textuelle Daten gemeinsam verarbeitet."
+    },
+    {
+      "term": "Zero-Shot-Prompting",
+      "definition": "Eine Prompting-Technik, bei der das LLM eine Aufgabe ohne vorherige Beispiele löst, allein anhand der Anweisung."
+    },
+    {
+      "term": "Überanpassung",
+      "definition": "Ein Zustand (Overfitting), bei dem ein Modell durch Feintuning zu spezifisch auf die Trainingsdaten angepasst wurde und dadurch bei neuen, unbekannten Daten ungenau oder unbrauchbar wird."
     }
   ]
 }
