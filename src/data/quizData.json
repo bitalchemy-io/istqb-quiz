@@ -617,6 +617,566 @@
       ],
       "correct": 0,
       "explanation": "Tester entwickeln sich zu Spezialisten für KI-gestützte Tests, die Prompts verfeinern und KI-generierte Testartefakte anleiten und überprüfen; die operative Überwachung KI-basierter Prozesse bleibt beim Testmanagement."
+    },
+    {
+      "id": 41,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welche der folgenden Methoden verwendet Deep-Learning-Techniken, um neue Inhalte zu erstellen?",
+      "options": [
+        "Symbolische KI",
+        "Klassisches maschinelles Lernen",
+        "Deep Learning",
+        "Generative KI"
+      ],
+      "correct": 3,
+      "explanation": "Generative KI nutzt Deep-Learning-Techniken, um durch Lernen und Nachahmen von Mustern aus den Trainingsdaten neue Inhalte zu erzeugen."
+    },
+    {
+      "id": 42,
+      "chapter": 1,
+      "points": 1,
+      "question": "Du hast denselben Prompt mehrfach verwendet, aber unterschiedliche Antworten vom LLM erhalten. Warum passiert das?",
+      "options": [
+        "Weil der Prompt falsch ist",
+        "Weil LLMs nicht-deterministisches Verhalten aufweisen",
+        "Weil die Trainingsdaten fehlerhaft waren",
+        "Weil LLMs darauf trainiert sind, die Antwort immer zu variieren"
+      ],
+      "correct": 1,
+      "explanation": "LLMs zeigen aufgrund der probabilistischen Natur ihrer Inferenzmechanismen nicht-deterministisches Verhalten."
+    },
+    {
+      "id": 43,
+      "chapter": 1,
+      "points": 1,
+      "question": "Wie hängt Tokenisierung mit Embeddings zusammen?",
+      "options": [
+        "Token sind eine numerische Darstellung davon, wie ein bestimmtes Wort in das Modell eingebettet wird.",
+        "Token repräsentieren Zeichen, Unterwörter oder Wörter, und Embeddings erfassen die semantische, syntaktische und kontextuelle Beziehung der Token.",
+        "Embeddings beschreiben die Textkomponente so, dass sie für die Nutzung im Modell tokenisiert werden kann.",
+        "Embeddings identifizieren das nicht-deterministische Verhalten einer Wortkomponente, das dann genutzt wird, um die Position ihres Tokens mittels eines Vektors zu bestimmen."
+      ],
+      "correct": 1,
+      "explanation": "Token sind die zerlegten Bausteine des Textes (Zeichen, Unterwörter, Wörter), während Embeddings deren semantische, syntaktische und kontextuelle Beziehungen zueinander erfassen."
+    },
+    {
+      "id": 44,
+      "chapter": 1,
+      "points": 1,
+      "question": "Du brauchst ein LLM, das bei der Entscheidungsfindung nach einem Prozess ähnlich der menschlichen Logik unterstützt. Welche Art von LLM solltest du verwenden?",
+      "options": [
+        "Foundation LLM",
+        "Instruktionsoptimiertes LLM",
+        "Reasoning LLM",
+        "Ad-hoc LLM"
+      ],
+      "correct": 2,
+      "explanation": "Ein Reasoning LLM ist speziell darauf trainiert, menschenähnliche Schlussfolgerungsprozesse nachzubilden."
+    },
+    {
+      "id": 45,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welcher der folgenden Punkte ist ein Vorteil eines LLM, das mit Vision-Language-Modellen zur Entwicklung von Testfällen ergänzt wird?",
+      "options": [
+        "Es gibt keinen Vorteil, da dieses Modell hauptsächlich für militärische Anwendungen genutzt wird.",
+        "Es kann Testfälle erstellen, die Text und visuelle Hinweise enthalten.",
+        "Es kann Bilder viel schneller und genauer bearbeiten als ein Mensch.",
+        "Es kann ausführbaren Code aus Wireframes und Screenshots generieren."
+      ],
+      "correct": 1,
+      "explanation": "Es kann Testfälle erstellen, die sowohl textuelle Daten als auch visuelle Hinweise enthalten, was die gesamte Testüberdeckung erhöht."
+    },
+    {
+      "id": 46,
+      "chapter": 2,
+      "points": 1,
+      "question": "Du hast eine Testautomatisierung erstellt, die zum Testen von Führerschein-Anwendungen verwendet wird. Für diese Tests gibt es eine riesige Menge an Daten, aber es würde zu lange dauern, mit all diesen Daten zu testen. Wie kann ein LLM bei diesem Problem helfen?",
+      "options": [
+        "Es kann neue synthetische Daten erzeugen, die private Informationen schützen.",
+        "Es kann bestehende Daten nehmen und diese um fehlende Daten gemäß den Datenregeln ergänzen.",
+        "Es kann die vorhandenen Daten nehmen und in kleinere Mengen mit interessanten Abweichungen aufteilen.",
+        "Es kann duplizierte Daten löschen und durch neue ersetzen."
+      ],
+      "correct": 2,
+      "explanation": "Es kann die vorhandenen Daten analysieren und in kleinere, repräsentative Teilmengen mit interessanten Abweichungen aufteilen."
+    },
+    {
+      "id": 47,
+      "chapter": 2,
+      "points": 1,
+      "question": "Deine Organisation entwickelt ein Testmanagement-Tool, das KI nutzt, um Testfälle basierend auf Anforderungen, allgemeinem Testwissen und früher gefundenen Problemen zu generieren, zu klassifizieren und zu speichern. Welches der folgenden Interaktionsmodelle wäre am besten geeignet?",
+      "options": [
+        "Chatbots, die mit dem LLM sprechen.",
+        "Chatbots, die mit anderen Chatbots sprechen, die auf eurem System trainiert wurden.",
+        "APIs des LLM, die es erlauben, Testaufgabeninformationen in das LLM hinein- und wieder herauszuleiten.",
+        "APIs des LLM, um die Testfallinformationen zur Speicherung in das LLM zu übertragen."
+      ],
+      "correct": 2,
+      "explanation": "Die Nutzung der APIs des LLM ermöglicht die maximale Ausnutzung des Modells, indem die nötigen Daten hinein- und herausgeleitet werden; Testfälle gehören ins Testmanagementsystem, nicht ins LLM, und Chatbots wären weder effizient noch flexibel genug."
+    },
+    {
+      "id": 48,
+      "chapter": 2,
+      "points": 1,
+      "question": "Welche der folgenden sind die sechs Komponenten eines effektiven Prompts?",
+      "options": [
+        "Prompt-Kette, Persona, Anweisung, Annahmen, Einschränkungen, Ausgabeformat",
+        "Rolle, Bias, Kontext, Anweisung, Eingabedaten, Einschränkungen, Ausgabedaten",
+        "Persona, Hintergrund, Anweisung, Eingabedaten, Ausgabedaten, Annahmen",
+        "Rolle, Kontext, Anweisung, Eingabedaten, Einschränkungen, Ausgabeformat"
+      ],
+      "correct": 3,
+      "explanation": "Die sechs Komponenten eines strukturierten Prompts sind Rolle, Kontext, Anweisung (Instruktion), Eingabedaten, Einschränkungen und Ausgabeformat."
+    },
+    {
+      "id": 49,
+      "chapter": 2,
+      "points": 1,
+      "question": "Du hast einem GenAI-Modell einen strukturierten Prompt zur Erstellung von Testfällen gegeben. Du hast festgelegt, dass die Testfälle im folgenden Format zurückgegeben werden sollen: Beschreibung des Tests, Referenz zur Quelle, Durchzuführende Schritte, Erwartetes Ergebnis. Welcher Komponente eines strukturierten Prompts entspricht das?",
+      "options": [
+        "Rolle",
+        "Kontext",
+        "Anweisung",
+        "Ausgabeformat"
+      ],
+      "correct": 3,
+      "explanation": "Die Festlegung, in welcher Form die Ergebnisse zurückgegeben werden sollen, entspricht der Komponente Ausgabeformat."
+    },
+    {
+      "id": 50,
+      "chapter": 2,
+      "points": 1,
+      "question": "Wenn du einen Testprozess mit komplexen Aufgaben hast und Zwischenergebnisse prüfen musst, bevor du fortfährst, welche Prompting-Technik ist am besten geeignet?",
+      "options": [
+        "Prompt-Verkettung",
+        "Few-Shot-Prompting",
+        "Zero-Shot-Prompting",
+        "Meta-Prompting"
+      ],
+      "correct": 0,
+      "explanation": "Prompt-Verkettung erlaubt es, den nächsten Prompt basierend auf den Ergebnissen des vorherigen Schritts anzupassen."
+    },
+    {
+      "id": 51,
+      "chapter": 2,
+      "points": 1,
+      "question": "Was trifft auf einen Benutzer-Prompt (User-Prompt) für ein LLM zu?",
+      "options": [
+        "Er wird einmal zu Beginn der Konversation festgelegt.",
+        "Er wird üblicherweise vom Entwickler festgelegt.",
+        "Er ändert sich üblicherweise mit jeder Interaktion.",
+        "Er ist benutzerunabhängig, sodass die Antwort unabhängig davon konsistent bleibt, wie der Benutzer den Prompt formuliert."
+      ],
+      "correct": 2,
+      "explanation": "Der Benutzer-Prompt ist die eigentliche Interaktion mit dem System und ändert sich üblicherweise mit jeder Eingabe; a) und b) beschreiben stattdessen den System-Prompt."
+    },
+    {
+      "id": 52,
+      "chapter": 2,
+      "points": 2,
+      "question": "Du arbeitest an der Ablösung eines E-Commerce-Systems. Du hast eine große Menge an Testbedingungen erhalten, die getestet werden sollen. Es gibt nicht genug Zeit, um alle Bedingungen zu testen. Du hast ein auf Testen trainiertes LLM zur Verfügung. Wie kannst du es in dieser Situation am besten einsetzen?",
+      "options": [
+        "Das LLM kann anhand ähnlicher Testbedingungen eine Schätzung erstellen, wie lange das Testen dauern wird. Dieser Zeitplan kann dann in den Gesamtprojektplan integriert werden, um genügend Zeit fürs Testen einzuplanen.",
+        "Das LLM kann mit Informationen zu früheren Fehlern, Endnutzeranforderungen und Zahlungsvorschriften gefüttert werden, damit es das relative Risiko aller Testbedingungen bestimmt. Das kann dann zur Priorisierung der Tests genutzt werden.",
+        "Das LLM kann alle Testfälle basierend auf den Testbedingungen generieren und ausführen, was erhebliche Zeit spart.",
+        "Das LLM kann Testdaten generieren, die jedes mögliche Kaufszenario abdecken. Das stellt sicher, dass beim Testen keine Randfälle übersehen werden, und hilft dem Zeitplan, indem Testlücken vermieden werden."
+      ],
+      "correct": 1,
+      "explanation": "Da nicht genug Zeit vorhanden ist, müssen die Tests priorisiert und in Prioritätsreihenfolge ausgeführt werden; das LLM kann anhand früherer Fehler, Anforderungen und Vorschriften das relative Risiko bestimmen. Ein Zeitplan (a) hilft nicht, da schon feststeht, dass zu wenig Zeit da ist; automatische Ausführung (c) scheitert daran, dass das LLM Tests nicht selbst ausführen kann; und vollständige Datenabdeckung (d) würde das Testen eher verlängern."
+    },
+    {
+      "id": 53,
+      "chapter": 2,
+      "points": 2,
+      "question": "Du hast Anforderungen in Form von GUI-Wireframes und User-Storys erhalten. Du möchtest diese nutzen, um Testbedingungen für eine Reihe von Tests zu erstellen. Wie solltest du Prompts einsetzen, um die Eingaben auszuwerten und die Testbedingungen zu erstellen?",
+      "options": [
+        "Multimodale Prompts anwenden.",
+        "Klar definierte Systemparameter festlegen, um die zu verwendende Grafik zu bestimmen.",
+        "Prompt-Verkettung anwenden.",
+        "Meta-Prompting nutzen, damit die Prompts fortlaufend verfeinert werden können."
+      ],
+      "correct": 0,
+      "explanation": "Da sowohl Grafiken als auch Text als Eingabe vorliegen, sind multimodale Prompts erforderlich; Systemparameter sind hierfür nicht vorgesehen, Prompt-Verkettung wäre erst sinnvoll, nachdem die Informationen multimodal erfasst wurden, und Meta-Prompting betrifft nicht die Erzeugung zusätzlicher Prompts."
+    },
+    {
+      "id": 54,
+      "chapter": 2,
+      "points": 2,
+      "question": "Du testest seit mehreren Jahren Versionen derselben Software. Statt sich zu verbessern, bleibt die Qualität etwa gleich, mit derselben hohen Anzahl an Fehlern, die bei jedem Release während des Testens gefunden werden. Wie könnte KI bei diesem Problem helfen?",
+      "options": [
+        "Sie könnte Testfehlschläge analysieren und die Tests priorisieren, die beim letzten Mal fehlgeschlagen sind, damit sie bei jedem neuen Release zuerst ausgeführt werden.",
+        "Sie könnte Meta-Prompting nutzen, um jeden Testfall zu überprüfen und festzustellen, ob er effektiv ist. Ineffektive Tests könnten dann aus der gesamten Testsuite entfernt werden.",
+        "Sie könnte große Mengen an Testdaten erzeugen, die über mehrere Releases hinweg verwendet werden, um sicherzustellen, dass Datenabweichungen nicht die Ursache der wiederholten Fehlschläge sind.",
+        "Sie könnte eine Ursachenanalyse über alle in den Releases gefundenen Fehler hinweg durchführen, um gemeinsame Ursachen zu bestimmen. Diese Information könnte dann genutzt werden, um Entwicklungs- und Analyseprozesse zu verbessern."
+      ],
+      "correct": 3,
+      "explanation": "Da die eigentliche Ursache der wiederkehrenden Fehler unbekannt ist, hilft nur eine Ursachenanalyse über alle gefundenen Defekte hinweg, die zugrunde liegenden Probleme zu identifizieren und die vorgelagerten Prozesse zu verbessern."
+    },
+    {
+      "id": 55,
+      "chapter": 2,
+      "points": 2,
+      "question": "Du arbeitest an einem kritischen Projekt, das unter genauer Beobachtung des Senior-Managements steht. Deshalb ist eine einfache und klare Berichterstattung über den Testfortschritt entscheidend. Du nutzt die Testberichtsfunktionen deines Testmanagementsystems, aber jede Analyse von Problemen und Trends musst du manuell durchführen. Wie könnte KI in dieser Situation helfen?",
+      "options": [
+        "KI könnte alle offenen Fehler analysieren und anhand von Schlüsselwörtern im Fehlerbericht prüfen, ob die Priorisierung korrekt ist.",
+        "KI könnte verfolgen, welche Testfälle die meisten Fehler finden, damit du diese in deinen Berichten hervorheben kannst.",
+        "KI könnte die Fehler- und Testausführungsinformationen analysieren und Trendinformationen sowie eine den Anwendungsfällen der Software zugeordnete Ursachenanalyse liefern.",
+        "KI würde automatisch die bestehenden Dashboards an die zuständigen Führungskräfte per E-Mail versenden, damit sie stets die aktuellsten Informationen haben."
+      ],
+      "correct": 2,
+      "explanation": "KI kann die große Menge an Informationen analysieren, um Trends und Ursachenanalysen herauszuarbeiten und diese den Anwendungsfällen zuzuordnen, wodurch die Bedeutung der Fehlschläge leichter einzuschätzen ist; die anderen Optionen liefern nur Teilaspekte oder sind schlicht unpraktisch."
+    },
+    {
+      "id": 56,
+      "chapter": 2,
+      "points": 2,
+      "question": "Du testest ein neues System. Die Anforderungen sind sehr allgemein gehalten und wenig detailliert. Welche Prompting-Technik solltest du nutzen, um erste Ideen für den Einstieg in die Testfallgenerierung zu erhalten?",
+      "options": [
+        "Prompt-Verkettung",
+        "Few-Shot-Prompting",
+        "Meta-Prompting",
+        "Zero-Shot-Prompting"
+      ],
+      "correct": 2,
+      "explanation": "Meta-Prompting eignet sich hier als Einstiegspunkt: Mit der allgemeinen Beschreibung dessen, was die Software leisten und ein Testfall erreichen soll, kann die KI antworten, und gemeinsam lassen sich daraus weitere Testfälle entwickeln."
+    },
+    {
+      "id": 57,
+      "chapter": 2,
+      "points": 1,
+      "question": "Du nutzt GenAI, um Testfälle für eine stark regelbasierte Anwendung zu erstellen. Du hast angefordert, dass Entscheidungstabellen zur Erstellung der Testfälle verwendet werden. Welche Metrik eignet sich am besten, um zu beurteilen, wie gut diese Anforderung umgesetzt wurde?",
+      "options": [
+        "Genauigkeit (Accuracy)",
+        "Trefferquote (Recall)",
+        "Vielfalt (Diversity)",
+        "Zeiteffizienz"
+      ],
+      "correct": 1,
+      "explanation": "Die Trefferquote (Recall) bewertet die Vollständigkeit der generierten Ausgabe in Bezug auf ein bestimmtes Ziel, hier die Nutzung von Entscheidungstabellen."
+    },
+    {
+      "id": 58,
+      "chapter": 2,
+      "points": 1,
+      "question": "Du verfeinerst deinen Prompt zur GenAI-Testfallerstellung iterativ. Trotz ständiger Verfeinerung und zusätzlicher Informationen treten immer noch dieselben Probleme in der Ausgabe auf. Welche Technik kannst du nutzen, um diese Probleme zur besseren Bewertung und Verfeinerung der Prompts zu nutzen?",
+      "options": [
+        "Iterative Prompt-Anpassung",
+        "A/B-Test von Prompts",
+        "Ausgabeanalyse",
+        "Anpassung der Prompt-Spezifität"
+      ],
+      "correct": 2,
+      "explanation": "An diesem Punkt ist eine Ausgabeanalyse nötig, um zu bestimmen, warum dieselben Probleme wiederholt auftreten."
+    },
+    {
+      "id": 59,
+      "chapter": 3,
+      "points": 1,
+      "question": "Was ist ein Ergebnis eines Reasoning-Fehlers (Schlussfolgerungsfehlers)?",
+      "options": [
+        "Eine Ausgabe, die bestimmte Arten von Informationen, Ansätzen oder Annahmen bevorzugt.",
+        "Eine Ausgabe, die auf Fehlinterpretationen logischer Strukturen basiert.",
+        "Eine Ausgabe, die plausibel erscheint, aber sachlich falsch oder irrelevant ist.",
+        "Eine Ausgabe, die nur teilweise vollständig ist."
+      ],
+      "correct": 1,
+      "explanation": "Ein Reasoning-Fehler entsteht durch Fehlinterpretationen logischer Strukturen; a) beschreibt Bias, c) Halluzination."
+    },
+    {
+      "id": 60,
+      "chapter": 3,
+      "points": 2,
+      "question": "Du nutzt GenAI zur Entwicklung eines Testplans. Du hast dem Modell Anforderungen, groben Projektplan, Zeitpläne und Tester-Profile bereitgestellt. Trotz deiner Anweisungen erstellt es beim Erzeugen des Testzeitplans ein neues Teammitglied und plant dieses ein, damit der Testaufwand in den Projektzeitplan passt. Was ist das Problem, und was solltest du dagegen tun?",
+      "options": [
+        "Das ist wahrscheinlich ein Bias-Problem. Du solltest ihm eine größere Vielfalt an Anforderungen ähnlicher Systeme geben, damit es einen größeren Testumfang generiert.",
+        "Das ist wahrscheinlich eine Halluzination. Du solltest dem KI-Modell mitteilen, dass das falsch ist, damit es daraus lernt.",
+        "Das ist wahrscheinlich ein Reasoning-Fehler. Du solltest die Testfälle gegen die Testobjekte ausführen, um zu prüfen, ob die erwarteten Ergebnisse gültig sind.",
+        "Das ist wahrscheinlich ein Temperatur-Problem. Du solltest die Temperatur senken, um einen spezifischeren Fokus zu ermöglichen."
+      ],
+      "correct": 1,
+      "explanation": "Das Modell hat ein fiktives Teammitglied erfunden — eine klassische Halluzination; das Modell muss darauf hingewiesen werden, dass diese Information falsch ist."
+    },
+    {
+      "id": 61,
+      "chapter": 3,
+      "points": 1,
+      "question": "Inwiefern hilft der Vergleich von Ergebnissen mehrerer verschiedener Modelle, Halluzinationen, Reasoning-Fehler und Verzerrungen (Bias) zu reduzieren?",
+      "options": [
+        "Man kann die Ergebnisse zu einer Obermenge an Daten kombinieren, was die Fehler in den Daten reduziert.",
+        "Man kann die Daten auswählen, die am häufigsten auftreten, und wissen, dass diese am genauesten sind.",
+        "Man kann unterschiedliche Ausgaben derselben Prompts vergleichen, um Ausgabefehler und Zuverlässigkeit zu erkennen.",
+        "Man erhält die Ergebnisse schneller, indem mehrere Modelle gleichzeitig genutzt werden."
+      ],
+      "correct": 2,
+      "explanation": "Durch den Vergleich der Ergebnisse verschiedener Modelle bei denselben Prompts lassen sich Prompts abstimmen, Ausgaben vergleichen und die zuverlässigsten Ergebnisse auswählen."
+    },
+    {
+      "id": 62,
+      "chapter": 3,
+      "points": 1,
+      "question": "Wie hilft das Setzen eines Zufallsstartwerts (Random Seed), die Reproduzierbarkeit von LLM-Ausgaben zu verbessern?",
+      "options": [
+        "Durch einen niedrigeren Seed-Wert wird die Temperatur automatisch erhöht, was die Wahrscheinlichkeitsverteilung einengt.",
+        "Durch einen höheren Seed-Wert werden mehr Seeds zugelassen, was größere Ausgabemengen des LLM fördert, aus denen konsistente Daten extrahiert werden können.",
+        "Durch einen variablen Seed-Wert werden die Zufallssequenzwerte erhöht, was zu einer größeren Datenmenge führt, die leichter reproduzierbar ist.",
+        "Durch einen festen Seed-Wert hat der Zufallszahlengenerator denselben Startpunkt, wodurch dieselbe Pseudozufallssequenz verwendet wird, was die Reproduzierbarkeit verbessert."
+      ],
+      "correct": 3,
+      "explanation": "Der Seed-Wert bestimmt den Startpunkt des Zufallszahlengenerators; bleibt er gleich, wird mit hoher Wahrscheinlichkeit dieselbe Pseudozufallssequenz erzeugt, was die Reproduzierbarkeit der Ausgaben verbessert."
+    },
+    {
+      "id": 63,
+      "chapter": 3,
+      "points": 1,
+      "question": "Wenn du ein GenAI-Tool hast, das sensible Kundendaten verarbeitet, was musst du sicherstellen?",
+      "options": [
+        "Es darf die Daten nicht unverschlüsselt speichern, da sie sonst für jeden lesbar wären.",
+        "Es darf die Daten nicht an einem Ort speichern, auf den ein unbefugter Benutzer zugreifen könnte, einschließlich eines anderen GenAI-Tools.",
+        "Es darf die Daten nicht verändern und dann wiederherstellen, da sie sonst inkorrekt wären und andere Nutzer in die Irre führen könnten.",
+        "Es darf auf keinerlei sensible Daten zugreifen, für keinen Zweck."
+      ],
+      "correct": 1,
+      "explanation": "Zwar greift das Tool berechtigterweise auf die Daten zu, das Risiko besteht aber darin, dass es sie an einem Ort speichern könnte, auf den ein unbefugter Nutzer oder ein anderes GenAI-Tool zugreifen kann."
+    },
+    {
+      "id": 64,
+      "chapter": 3,
+      "points": 1,
+      "question": "Du arbeitest an einer Anwendung, die Urlaubsanträge von Mitarbeitenden verarbeitet. Die verwendeten Daten enthalten das Geburtsdatum der Mitarbeitenden, das du jedoch durch ein Standarddatum (1.1.89) ersetzt hast. Du nutzt GenAI innerhalb der Unternehmensdatenbanken, um neue Testdaten zu erzeugen. Du stellst nun fest, dass die Testdaten wieder Geburtsdaten enthalten — und zwar die echten. Um welche Art von Datenschutzproblem handelt es sich?",
+      "options": [
+        "Mangelnde Kontrolle über die Datennutzung",
+        "Anfälligkeit für Sicherheitsangriffe",
+        "Hinweis auf eine böswillige Einschleusung falscher Daten",
+        "Unbeabsichtigte Offenlegung von Daten"
+      ],
+      "correct": 3,
+      "explanation": "Es handelt sich um eine unbeabsichtigte Offenlegung privater Daten (der echten Geburtsdaten); es gibt keinen Hinweis auf böswillige Absicht, und die Kontrolle liegt weiterhin beim Unternehmen, das aber offensichtlich Zugriff auf HR-Daten hat."
+    },
+    {
+      "id": 65,
+      "chapter": 3,
+      "points": 1,
+      "question": "Um welche Art von Angriffsvektor handelt es sich, wenn die Ergebnisse KI-generierter Daten absichtlich falsch bewertet werden?",
+      "options": [
+        "Datenexfiltration",
+        "Manipulation von Anfragen",
+        "Datenverunreinigung (Data Poisoning)",
+        "Generierung von bösartigem Code"
+      ],
+      "correct": 2,
+      "explanation": "Die absichtliche Falschbewertung von KI-generierten Ergebnissen ist ein Beispiel für Datenverunreinigung (Data Poisoning)."
+    },
+    {
+      "id": 66,
+      "chapter": 3,
+      "points": 1,
+      "question": "Was ist der Zweck der Datenanonymisierung?",
+      "options": [
+        "Nur die gesetzlich zulässigen Daten in der geringstmöglichen Menge zu nutzen und zu verarbeiten.",
+        "Private Informationen durch nicht identifizierbare Daten zu maskieren oder zu ersetzen.",
+        "Starke Verschlüsselung zu implementieren und den Datenzugriff streng zu kontrollieren.",
+        "Sicherzustellen, dass jeder im richtigen Umgang mit Daten geschult ist und der Zugriff minimiert wird."
+      ],
+      "correct": 1,
+      "explanation": "Datenanonymisierung maskiert oder ersetzt private Informationen durch nicht identifizierbare Daten."
+    },
+    {
+      "id": 67,
+      "chapter": 3,
+      "points": 1,
+      "question": "Welche der folgenden GenAI-Aktivitäten verbraucht etwa so viel Energie wie das Aufladen eines Smartphones?",
+      "options": [
+        "Einen Brief an deine Bank generieren",
+        "\"Geschäftliche\" Pinguinbilder für eine Präsentation erstellen",
+        "Nur ein einziges Pinguinbild erstellen",
+        "Einen Jahresfinanzbericht generieren"
+      ],
+      "correct": 2,
+      "explanation": "Die Erzeugung eines einzigen Bildes verbraucht etwa so viel Energie wie das Aufladen eines Mobiltelefons."
+    },
+    {
+      "id": 68,
+      "chapter": 3,
+      "points": 1,
+      "question": "Welches der folgenden schafft einen rechtlichen Rahmen für den Umgang mit KI-Risiken und die Klassifizierung von Anwendungen nach Risikostufe?",
+      "options": [
+        "ISO/IEC 42001:2023",
+        "ISO/IEC 23053:2022",
+        "EU AI Act",
+        "NIST AI Risk Management Framework"
+      ],
+      "correct": 2,
+      "explanation": "Der EU AI Act ist der rechtliche Rahmen, der KI-Risiken adressiert und Anwendungen nach Risikostufen klassifiziert; das NIST-Framework konzentriert sich dagegen auf Risikomanagement (Fairness, Transparenz, Sicherheit), ist aber kein Gesetz."
+    },
+    {
+      "id": 69,
+      "chapter": 4,
+      "points": 1,
+      "question": "Welcher Teil der Architektur einer LLM-gestützten Testinfrastruktur ist für die Integration mehrerer Datenquellen verantwortlich?",
+      "options": [
+        "Das Frontend",
+        "Das LLM selbst",
+        "Das Backend",
+        "Der Datencontroller"
+      ],
+      "correct": 2,
+      "explanation": "Das Backend ist dafür verantwortlich, mehrere Datenquellen zu integrieren."
+    },
+    {
+      "id": 70,
+      "chapter": 4,
+      "points": 1,
+      "question": "Was sind die zwei Schritte der RAG-Verarbeitung?",
+      "options": [
+        "Eingabe / Retrieval",
+        "Verarbeitung / Ausgabe",
+        "Zugriff / Verarbeitung",
+        "Retrieval / Generierung"
+      ],
+      "correct": 3,
+      "explanation": "RAG (Retrieval-Augmented Generation) besteht aus den zwei Schritten Retrieval (Abruf relevanter Daten) und Generierung (Erzeugung der Antwort durch das LLM)."
+    },
+    {
+      "id": 71,
+      "chapter": 4,
+      "points": 1,
+      "question": "Was bedeutet \"Orchestrierung\" im Zusammenhang mit LLM-gestützten Agenten?",
+      "options": [
+        "Es ist, wenn mehrere Agenten koordiniert zusammenarbeiten, um komplexe Probleme effizienter zu lösen.",
+        "Es ist, wenn mehr als drei LLM-gestützte Agenten unabhängig voneinander Ausgaben erzeugen, die dann von einem weiteren Agenten auf Genauigkeit und Nachbearbeitung geprüft werden.",
+        "Es ist, wenn RAG ein integraler Bestandteil einer LLM-gestützten Testinfrastruktur ist.",
+        "Es ist ein Begriff für Hintergrundverarbeitung, die eine Kombination aus autonomen und semi-autonomen Agenten nutzt."
+      ],
+      "correct": 0,
+      "explanation": "Orchestrierung bezeichnet die koordinierte Zusammenarbeit mehrerer Agenten, um komplexe Probleme effizienter zu lösen; die anderen Optionen sind frei erfunden."
+    },
+    {
+      "id": 72,
+      "chapter": 4,
+      "points": 1,
+      "question": "Wie kann Überanpassung (Overfitting) dein Modell beim Feintuning beeinträchtigen?",
+      "options": [
+        "Es kann das LLM zu allgemein machen, sodass es nicht mehr anwendbar und effizient ist.",
+        "Es kann Halluzinationen und Verzerrungen (Bias) einführen.",
+        "Es kann das Modell unfähig oder ungenau machen, wenn es Daten verarbeitet, die ihm neu sind.",
+        "Es kann zu mangelnder Transparenz bei der Entscheidungsfindung des LLM führen."
+      ],
+      "correct": 2,
+      "explanation": "Überanpassung bedeutet, dass das Modell zu spezifisch geworden ist und nicht mehr mit Daten umgehen kann, die außerhalb seines bereits Gelernten liegen."
+    },
+    {
+      "id": 73,
+      "chapter": 4,
+      "points": 1,
+      "question": "Welche der folgenden LLM-Einsatzarten ist am stärksten von Datenschutz betroffen?",
+      "options": [
+        "Chatbots",
+        "Kommerzielle Testwerkzeuge mit KI-Komponenten",
+        "Intern entwickelte kommerzielle Testwerkzeuge mit KI-Komponenten",
+        "Datenschutz ist bei allen diesen Einsatzarten ein kritisches Anliegen"
+      ],
+      "correct": 3,
+      "explanation": "Der Datenschutz hängt stärker von den verarbeiteten Daten als vom jeweiligen Prozess ab, daher kann potenziell jede dieser Einsatzarten am kritischsten sein."
+    },
+    {
+      "id": 74,
+      "chapter": 5,
+      "points": 1,
+      "question": "Wie wird das Risiko der Nutzung urheberrechtlich geschützter Daten ohne ordnungsgemäße Genehmigung bei der Verwendung von Schatten-KI kategorisiert?",
+      "options": [
+        "Schwäche der Informationssicherheit",
+        "Schwäche des Datenschutzes",
+        "Compliance-Probleme",
+        "Unklares geistiges Eigentum"
+      ],
+      "correct": 3,
+      "explanation": "Das ist ein Problem unklaren geistigen Eigentums, da solche Tools oft unklare Lizenzvereinbarungen haben und urheberrechtlich geschützte Daten ohne ordnungsgemäße Genehmigung nutzen könnten."
+    },
+    {
+      "id": 75,
+      "chapter": 5,
+      "points": 1,
+      "question": "Warum sind qualitativ hochwertige Eingabedaten wichtig, wenn ein LLM-gestützter Testansatz implementiert wird?",
+      "options": [
+        "Es wird mit guten Daten schneller gehen, da weniger Fehler entstehen.",
+        "Es wird zuverlässige Ergebnisse liefern.",
+        "Es erlaubt den Aufbau des größtmöglichen Datensatzes.",
+        "Es stellt sicher, dass der Zugriff geschützt und auf die richtigen Benutzer beschränkt ist."
+      ],
+      "correct": 1,
+      "explanation": "Hochwertige Eingabedaten sind vor allem deshalb wichtig, weil sie zuverlässige Ergebnisse liefern."
+    },
+    {
+      "id": 76,
+      "chapter": 5,
+      "points": 1,
+      "question": "Du versuchst, deinen Manager davon zu überzeugen, dass ein GenAI-Tool bei der Erstellung von Testberichten hilfreich wäre. Eines seiner Bedenken ist, dass er stattdessen Praktikanten einstellen könnte, die die Berichte schreiben, was schneller wäre als ein neues Tool einzuführen. Du bist überzeugt, dass das Tool die Berichte schneller und genauer schreiben und damit kritische Testzeit freisetzen wird. Welche wichtige Fähigkeit des LLM solltest du bewerten, um sicherzustellen, dass du recht behältst?",
+      "options": [
+        "Modellleistung",
+        "Feintuning-Potenzial",
+        "Direkte Kosten",
+        "Community und Support"
+      ],
+      "correct": 0,
+      "explanation": "Du musst sicherstellen, dass das Modell bei der Berichtserstellung effizient und präzise arbeitet — also seine Modellleistung bewerten."
+    },
+    {
+      "id": 77,
+      "chapter": 5,
+      "points": 1,
+      "question": "Was ist die erste wichtige Phase bei der Einführung von GenAI in eine Testorganisation?",
+      "options": [
+        "Erkundung (Discovery)",
+        "Einführung und Schulung",
+        "Definition der Nutzung",
+        "Nutzung und Iteration"
+      ],
+      "correct": 0,
+      "explanation": "Die Erkundungsphase (Discovery) steht am Anfang der Einführung von GenAI in eine Testorganisation."
+    },
+    {
+      "id": 78,
+      "chapter": 5,
+      "points": 1,
+      "question": "Warum muss ein Tester \"Prompt Engineering\" verstehen, um effektiv mit GenAI arbeiten zu können?",
+      "options": [
+        "Weil er dadurch die internen Schichten des neuronalen Netzwerks besser versteht.",
+        "Weil er verstehen muss, welche Benutzer-Prompts getestet werden müssen und wie hoch deren relatives Risiko ist.",
+        "Weil er aufgefordert wird, neue Benutzer-Prompts basierend auf der KI-entworfenen Benutzeroberfläche zu generieren.",
+        "Weil er die Eingabeaufforderungen entwerfen und verfeinern muss, um das LLM zu leiten."
+      ],
+      "correct": 3,
+      "explanation": "Tester müssen die Eingabeaufforderungen (Prompts) selbst entwerfen und verfeinern, um das LLM zielgerichtet zu leiten."
+    },
+    {
+      "id": 79,
+      "chapter": 5,
+      "points": 1,
+      "question": "Was ist beim Durchführen von GenAI-Schulungssitzungen mit dem Testteam eine wichtige Lernmethode?",
+      "options": [
+        "Diskussion von Herausforderungen und deren Lösungen",
+        "Hervorheben fehlerhafter Prompts, die im Team verwendet wurden",
+        "Verarbeitung von KI-Ergebnissen, um manuelle Testlücken besser zu analysieren",
+        "Förderung der Nutzung von KI-Methoden und Nominierung eines \"KI-Champions der Woche\""
+      ],
+      "correct": 0,
+      "explanation": "Eine der im Lehrplan hervorgehobenen Schlüsselmethoden ist die gemeinsame Diskussion von Herausforderungen und deren Lösungen im Team."
+    },
+    {
+      "id": 80,
+      "chapter": 5,
+      "points": 1,
+      "question": "Wer ist üblicherweise dafür verantwortlich, dass Testteams sowohl traditionelle Testkompetenzen als auch KI-Kompetenz beibehalten?",
+      "options": [
+        "Jeder Tester",
+        "Die erfahrenen Tester",
+        "Der Testmanager",
+        "Der KI-Meister"
+      ],
+      "correct": 2,
+      "explanation": "Üblicherweise ist der Testmanager dafür verantwortlich sicherzustellen, dass das Team als Ganzes über diese Fähigkeiten verfügt, während Einzelne für ihre eigene Weiterentwicklung zuständig sind."
     }
   ],
   "glossary": [
