@@ -2,9 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { BookOpen, BarChart3, Search, ChevronRight, RotateCcw, Lock, Star, FileText } from 'lucide-react';
 import { marked } from 'marked';
 import QUIZ_DATA from './data/quizData.json';
-import SUMMARY_MD from './data/summary.md?raw';
+import THEORY_1_MD from './data/theory-1.md?raw';
+import THEORY_2_MD from './data/theory-2.md?raw';
+import THEORY_3_MD from './data/theory-3.md?raw';
+import THEORY_4_MD from './data/theory-4.md?raw';
+import THEORY_5_MD from './data/theory-5.md?raw';
 
-const SUMMARY_HTML = marked.parse(SUMMARY_MD);
+const THEORY_HTML = {
+  1: marked.parse(THEORY_1_MD),
+  2: marked.parse(THEORY_2_MD),
+  3: marked.parse(THEORY_3_MD),
+  4: marked.parse(THEORY_4_MD),
+  5: marked.parse(THEORY_5_MD),
+};
 
 export default function ISTQBQuizApp() {
   const [view, setView] = useState('home');
@@ -102,6 +112,11 @@ export default function ISTQBQuizApp() {
     setView('quiz');
   };
 
+  const handleOpenTheory = (chapId) => {
+    setCurrentChapter(chapId);
+    setView('theory');
+  };
+
   // Filter Glossar
   const filteredGlossary = QUIZ_DATA.glossary.filter(item =>
     item.term.toLowerCase().includes(searchGlossary.toLowerCase()) ||
@@ -150,15 +165,7 @@ export default function ISTQBQuizApp() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <button
-              onClick={() => setView('summary')}
-              className="bg-white rounded-lg shadow p-8 hover:shadow-lg transition text-left"
-            >
-              <FileText className="w-8 h-8 text-indigo-600 mb-3" />
-              <h3 className="text-xl font-bold mb-2">Zusammenfassung</h3>
-              <p className="text-gray-600">Kompakter Lernstoff aller Kapitel</p>
-            </button>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <button
               onClick={() => setView('glossary')}
               className="bg-white rounded-lg shadow p-8 hover:shadow-lg transition text-left"
@@ -208,17 +215,27 @@ export default function ISTQBQuizApp() {
                       </div>
                     </div>
 
-                    <button
-                      onClick={() => handleStartChapter(chap.id)}
-                      disabled={(isPremium && !chap.free) || chapQuiz.length === 0}
-                      className={`w-full py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition ${
-                        (isPremium && !chap.free) || chapQuiz.length === 0
-                          ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                          : 'bg-indigo-600 text-white hover:bg-indigo-700'
-                      }`}
-                    >
-                      Quiz starten <ChevronRight className="w-4 h-4" />
-                    </button>
+                    <div className="flex gap-2">
+                      {THEORY_HTML[chap.id] && (
+                        <button
+                          onClick={() => handleOpenTheory(chap.id)}
+                          className="flex-1 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition bg-indigo-50 text-indigo-700 hover:bg-indigo-100"
+                        >
+                          <FileText className="w-4 h-4" /> Theorie
+                        </button>
+                      )}
+                      <button
+                        onClick={() => handleStartChapter(chap.id)}
+                        disabled={(isPremium && !chap.free) || chapQuiz.length === 0}
+                        className={`flex-1 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition ${
+                          (isPremium && !chap.free) || chapQuiz.length === 0
+                            ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                            : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                        }`}
+                      >
+                        Quiz starten <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 );
               })}
@@ -330,8 +347,9 @@ export default function ISTQBQuizApp() {
     );
   }
 
-  // SUMMARY VIEW
-  if (view === 'summary') {
+  // THEORY VIEW
+  if (view === 'theory' && THEORY_HTML[currentChapter]) {
+    const chapQuiz = QUIZ_DATA.questions.filter(q => q.chapter === currentChapter);
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
         <div className="max-w-3xl mx-auto">
@@ -342,12 +360,21 @@ export default function ISTQBQuizApp() {
             ← Zurück
           </button>
 
-          <div className="bg-white rounded-lg shadow-lg p-8">
+          <div className="bg-white rounded-lg shadow-lg p-8 mb-6">
             <div
               className="summary-content"
-              dangerouslySetInnerHTML={{ __html: SUMMARY_HTML }}
+              dangerouslySetInnerHTML={{ __html: THEORY_HTML[currentChapter] }}
             />
           </div>
+
+          {chapQuiz.length > 0 && (
+            <button
+              onClick={() => handleStartChapter(currentChapter)}
+              className="w-full py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition flex items-center justify-center gap-2"
+            >
+              Jetzt Fragen üben <ChevronRight className="w-4 h-4" />
+            </button>
+          )}
         </div>
       </div>
     );
