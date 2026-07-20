@@ -3,3 +3,90 @@
 body {
   margin: 0;
 }
+
+.summary-content {
+  text-align: left;
+  color: #374151;
+}
+
+.summary-content h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 1rem;
+}
+
+.summary-content h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 2rem 0 0.75rem;
+}
+
+.summary-content h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.summary-content p {
+  margin: 0.5rem 0;
+}
+
+.summary-content ul {
+  margin: 0.5rem 0;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.summary-content li {
+  margin: 0.25rem 0;
+}
+
+.summary-content strong {
+  color: #111827;
+}
+
+.summary-content hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 1.5rem 0;
+}
+
+.summary-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+  font-size: 0.9rem;
+}
+
+.summary-content th,
+.summary-content td {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.summary-content th {
+  background: #eef2ff;
+  color: #3730a3;
+  font-weight: 600;
+}
+
+.summary-content blockquote {
+  background: #fefce8;
+  border-left: 4px solid #eab308;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  border-radius: 0.25rem;
+  color: #713f12;
+}
+
+.summary-content code {
+  background: #f3f4f6;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}

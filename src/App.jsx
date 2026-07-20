@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, BarChart3, Search, ChevronRight, RotateCcw, Lock, Star } from 'lucide-react';
+import { BookOpen, BarChart3, Search, ChevronRight, RotateCcw, Lock, Star, FileText } from 'lucide-react';
+import { marked } from 'marked';
 import QUIZ_DATA from './data/quizData.json';
+import SUMMARY_MD from './data/summary.md?raw';
+
+const SUMMARY_HTML = marked.parse(SUMMARY_MD);
 
 export default function ISTQBQuizApp() {
   const [view, setView] = useState('home');
@@ -146,7 +150,15 @@ export default function ISTQBQuizApp() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <button
+              onClick={() => setView('summary')}
+              className="bg-white rounded-lg shadow p-8 hover:shadow-lg transition text-left"
+            >
+              <FileText className="w-8 h-8 text-indigo-600 mb-3" />
+              <h3 className="text-xl font-bold mb-2">Zusammenfassung</h3>
+              <p className="text-gray-600">Kompakter Lernstoff aller Kapitel</p>
+            </button>
             <button
               onClick={() => setView('glossary')}
               className="bg-white rounded-lg shadow p-8 hover:shadow-lg transition text-left"
@@ -312,6 +324,29 @@ export default function ISTQBQuizApp() {
                 </button>
               )}
             </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // SUMMARY VIEW
+  if (view === 'summary') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+        <div className="max-w-3xl mx-auto">
+          <button
+            onClick={() => setView('home')}
+            className="mb-6 px-4 py-2 bg-white rounded-lg shadow hover:shadow-md text-gray-700"
+          >
+            ← Zurück
+          </button>
+
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            <div
+              className="summary-content"
+              dangerouslySetInnerHTML={{ __html: SUMMARY_HTML }}
+            />
           </div>
         </div>
       </div>
