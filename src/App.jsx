@@ -254,7 +254,7 @@ export default function ISTQBQuizApp() {
                   style={{ width: `${((currentQuestionIdx + 1) / chapQuestions.length) * 100}%` }}
                 />
               </div>
-              <h2 className="text-2xl font-bold mb-4 text-gray-900 whitespace-pre-line text-left">{currentQuestion.question}</h2>
+              <h2 className="text-lg sm:text-xl font-bold mb-4 text-gray-900 whitespace-pre-line text-left">{currentQuestion.question}</h2>
               <p className="text-sm text-gray-500">
                 {currentQuestion.points} Punkt(e)
                 {currentQuestion.multiSelect && ` · Wählen Sie ${currentQuestion.correct.length} Optionen!`}
