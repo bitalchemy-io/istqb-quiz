@@ -27,6 +27,13 @@ function shuffle(array) {
   return copy;
 }
 
+function optionStateClasses(selected, submitted, correct) {
+  if (submitted && correct) return 'border-emerald-500 bg-emerald-500/15';
+  if (submitted && selected && !correct) return 'border-red-500 bg-red-500/15';
+  if (selected) return 'border-indigo-500 bg-indigo-500/10';
+  return 'border-slate-700 hover:border-indigo-500/50';
+}
+
 function buildGlossaryQuiz() {
   const terms = shuffle(QUIZ_DATA.glossary).slice(0, Math.min(GLOSSARY_QUIZ_LENGTH, QUIZ_DATA.glossary.length));
   return terms.map((item) => {
@@ -41,6 +48,11 @@ function buildGlossaryQuiz() {
     };
   });
 }
+
+const PAGE_BG = 'bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950';
+const CARD = 'bg-slate-800/60 border border-slate-700/60 backdrop-blur-sm';
+const CARD_HOVER = 'hover:border-indigo-500/50 hover:bg-slate-800';
+const BACK_BTN = 'px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg shadow hover:bg-slate-700 text-slate-300 transition';
 
 export default function ISTQBQuizApp() {
   const [view, setView] = useState('home');
@@ -112,7 +124,7 @@ export default function ISTQBQuizApp() {
       points: isCorrect ? prev.points + q.points : prev.points,
       maxPoints: prev.maxPoints + q.points
     }));
-    
+
     setSubmitted(true);
   };
 
@@ -190,17 +202,17 @@ export default function ISTQBQuizApp() {
   // HOME VIEW
   if (view === 'home') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-        <header className="bg-white shadow">
+      <div className={`min-h-screen ${PAGE_BG}`}>
+        <header className="bg-slate-900/80 backdrop-blur border-b border-slate-800">
           <div className="max-w-6xl mx-auto px-4 py-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <BookOpen className="w-8 h-8 text-indigo-600" />
-                <h1 className="text-3xl font-bold text-gray-900">ISTQB CT-GenAI</h1>
+                <BookOpen className="w-8 h-8 text-indigo-400" />
+                <h1 className="text-3xl font-bold text-white tracking-tight">ISTQB CT-GenAI</h1>
               </div>
               <button
                 onClick={() => setView('stats')}
-                className="flex items-center gap-2 px-4 py-2 bg-indigo-100 text-indigo-700 rounded-lg hover:bg-indigo-200"
+                className="flex items-center gap-2 px-4 py-2 bg-indigo-500/10 text-indigo-300 border border-indigo-500/30 rounded-lg hover:bg-indigo-500/20 transition"
               >
                 <BarChart3 className="w-5 h-5" />
                 Statistik
@@ -211,41 +223,41 @@ export default function ISTQBQuizApp() {
 
         <main className="max-w-6xl mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="text-sm text-gray-600">Fragen beantwortet</div>
-              <div className="text-4xl font-bold text-indigo-600">{stats.total}</div>
+            <div className={`${CARD} rounded-lg p-6`}>
+              <div className="text-sm text-slate-400">Fragen beantwortet</div>
+              <div className="text-4xl font-bold text-indigo-400">{stats.total}</div>
             </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="text-sm text-gray-600">Richtige Antworten</div>
-              <div className="text-4xl font-bold text-green-600">{stats.correct}</div>
+            <div className={`${CARD} rounded-lg p-6`}>
+              <div className="text-sm text-slate-400">Richtige Antworten</div>
+              <div className="text-4xl font-bold text-emerald-400">{stats.correct}</div>
             </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="text-sm text-gray-600">Punkte</div>
-              <div className="text-4xl font-bold text-indigo-600">{stats.points}/{stats.maxPoints}</div>
+            <div className={`${CARD} rounded-lg p-6`}>
+              <div className="text-sm text-slate-400">Punkte</div>
+              <div className="text-4xl font-bold text-indigo-400">{stats.points}/{stats.maxPoints}</div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <button
               onClick={() => setView('glossary')}
-              className="bg-white rounded-lg shadow p-8 hover:shadow-lg transition text-left"
+              className={`${CARD} ${CARD_HOVER} rounded-lg p-8 transition text-left`}
             >
-              <BookOpen className="w-8 h-8 text-indigo-600 mb-3" />
-              <h3 className="text-xl font-bold mb-2">Glossar</h3>
-              <p className="text-gray-600">{QUIZ_DATA.glossary.length} Begriffe durchsuchen</p>
+              <BookOpen className="w-8 h-8 text-indigo-400 mb-3" />
+              <h3 className="text-xl font-bold mb-2 text-white">Glossar</h3>
+              <p className="text-slate-400">{QUIZ_DATA.glossary.length} Begriffe durchsuchen</p>
             </button>
             <button
               onClick={resetProgress}
-              className="bg-white rounded-lg shadow p-8 hover:shadow-lg transition text-left"
+              className={`${CARD} ${CARD_HOVER} rounded-lg p-8 transition text-left`}
             >
-              <RotateCcw className="w-8 h-8 text-red-600 mb-3" />
-              <h3 className="text-xl font-bold mb-2">Fortschritt zurücksetzen</h3>
-              <p className="text-gray-600">Alle Antworten löschen</p>
+              <RotateCcw className="w-8 h-8 text-red-400 mb-3" />
+              <h3 className="text-xl font-bold mb-2 text-white">Fortschritt zurücksetzen</h3>
+              <p className="text-slate-400">Alle Antworten löschen</p>
             </button>
           </div>
 
           <section>
-            <h2 className="text-2xl font-bold mb-6">Kapitel</h2>
+            <h2 className="text-2xl font-bold mb-6 text-white">Kapitel</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {QUIZ_DATA.chapters.map((chap) => {
                 const chapQuiz = QUIZ_DATA.questions.filter(q => q.chapter === chap.id);
@@ -253,23 +265,23 @@ export default function ISTQBQuizApp() {
                 const progress = chapQuiz.length > 0 ? Math.round((chapAnswered / chapQuiz.length) * 100) : 0;
 
                 return (
-                  <div key={chap.id} className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+                  <div key={chap.id} className={`${CARD} rounded-lg p-6 hover:border-slate-600 transition`}>
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
-                        <h3 className="text-lg font-bold">{chap.title}</h3>
-                        <p className="text-sm text-gray-600">{chapQuiz.length} Fragen · {chap.duration}</p>
+                        <h3 className="text-lg font-bold text-white">{chap.title}</h3>
+                        <p className="text-sm text-slate-400">{chapQuiz.length} Fragen · {chap.duration}</p>
                       </div>
-                      {chap.free ? <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" /> : <Lock className="w-5 h-5 text-gray-400" />}
+                      {chap.free ? <Star className="w-5 h-5 text-amber-400 fill-amber-400" /> : <Lock className="w-5 h-5 text-slate-500" />}
                     </div>
 
                     <div className="mb-4">
-                      <div className="flex justify-between text-xs text-gray-600 mb-2">
+                      <div className="flex justify-between text-xs text-slate-400 mb-2">
                         <span>Fortschritt</span>
                         <span>{chapAnswered}/{chapQuiz.length}</span>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="w-full bg-slate-700 rounded-full h-2">
                         <div
-                          className="bg-indigo-600 h-2 rounded-full transition-all"
+                          className="bg-indigo-500 h-2 rounded-full transition-all"
                           style={{ width: `${progress}%` }}
                         />
                       </div>
@@ -279,7 +291,7 @@ export default function ISTQBQuizApp() {
                       {THEORY_HTML[chap.id] && (
                         <button
                           onClick={() => handleOpenTheory(chap.id)}
-                          className="flex-1 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition bg-indigo-50 text-indigo-700 hover:bg-indigo-100"
+                          className="flex-1 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition bg-indigo-500/10 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-500/20"
                         >
                           <FileText className="w-4 h-4" /> Theorie
                         </button>
@@ -289,8 +301,8 @@ export default function ISTQBQuizApp() {
                         disabled={(isPremium && !chap.free) || chapQuiz.length === 0}
                         className={`flex-1 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition ${
                           (isPremium && !chap.free) || chapQuiz.length === 0
-                            ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                            : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                            ? 'bg-slate-700 text-slate-500 cursor-not-allowed'
+                            : 'bg-indigo-500 text-white hover:bg-indigo-400'
                         }`}
                       >
                         Quiz starten <ChevronRight className="w-4 h-4" />
@@ -321,30 +333,27 @@ export default function ISTQBQuizApp() {
     const wasCorrect = submitted && isAnswerCorrect(currentQuestion, userAnswer);
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+      <div className={`min-h-screen ${PAGE_BG} p-4`}>
         <div className="max-w-2xl mx-auto">
           <div className="mb-6 flex items-center justify-between">
-            <button
-              onClick={() => setView('home')}
-              className="px-4 py-2 bg-white rounded-lg shadow hover:shadow-md text-gray-700"
-            >
+            <button onClick={() => setView('home')} className={BACK_BTN}>
               ← Zurück
             </button>
-            <div className="text-sm font-semibold text-gray-700">
+            <div className="text-sm font-semibold text-slate-300">
               Frage {currentQuestionIdx + 1} von {chapQuestions.length}
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-lg p-8">
+          <div className={`${CARD} rounded-lg shadow-xl p-8`}>
             <div className="mb-6">
-              <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+              <div className="w-full bg-slate-700 rounded-full h-2 mb-4">
                 <div
-                  className="bg-indigo-600 h-2 rounded-full transition-all"
+                  className="bg-indigo-500 h-2 rounded-full transition-all"
                   style={{ width: `${((currentQuestionIdx + 1) / chapQuestions.length) * 100}%` }}
                 />
               </div>
-              <h2 className="text-lg sm:text-xl font-bold mb-4 text-gray-900 whitespace-pre-line text-left">{currentQuestion.question}</h2>
-              <p className="text-sm text-gray-500">
+              <h2 className="text-lg sm:text-xl font-bold mb-4 text-white whitespace-pre-line text-left">{currentQuestion.question}</h2>
+              <p className="text-sm text-slate-400">
                 {currentQuestion.points} Punkt(e)
                 {currentQuestion.multiSelect && ` · Wählen Sie ${currentQuestion.correct.length} Optionen!`}
               </p>
@@ -357,29 +366,23 @@ export default function ISTQBQuizApp() {
                   onClick={() => handleAnswer(currentQuestion, idx)}
                   disabled={submitted}
                   className={`w-full p-4 text-left rounded-lg border-2 transition ${
-                    isSelected(idx)
-                      ? 'border-indigo-600 bg-indigo-50'
-                      : 'border-gray-200 hover:border-indigo-300'
-                  } ${submitted && isCorrectOption(idx) ? 'bg-green-50 border-green-600' : ''} ${
-                    submitted && isSelected(idx) && !isCorrectOption(idx)
-                      ? 'bg-red-50 border-red-600'
-                      : ''
+                    optionStateClasses(isSelected(idx), submitted, isCorrectOption(idx))
                   }`}
                 >
-                  <div className="font-semibold text-gray-900">
+                  <div className="font-semibold text-white">
                     {currentQuestion.multiSelect ? '☐' : ''} {String.fromCharCode(97 + idx)})
                   </div>
-                  <div className="text-gray-700 mt-1">{option}</div>
+                  <div className="text-slate-300 mt-1">{option}</div>
                 </button>
               ))}
             </div>
 
             {submitted && (
-              <div className={`p-4 rounded-lg mb-6 ${wasCorrect ? 'bg-green-100' : 'bg-red-100'}`}>
-                <p className={`font-semibold mb-2 ${wasCorrect ? 'text-green-800' : 'text-red-800'}`}>
+              <div className={`p-4 rounded-lg mb-6 border ${wasCorrect ? 'bg-emerald-500/15 border-emerald-500/30' : 'bg-red-500/15 border-red-500/30'}`}>
+                <p className={`font-semibold mb-2 ${wasCorrect ? 'text-emerald-300' : 'text-red-300'}`}>
                   {wasCorrect ? '✓ Richtig!' : '✗ Leider falsch.'}
                 </p>
-                <p className="text-gray-800">{currentQuestion.explanation}</p>
+                <p className="text-slate-300">{currentQuestion.explanation}</p>
               </div>
             )}
 
@@ -388,14 +391,14 @@ export default function ISTQBQuizApp() {
                 <button
                   onClick={handleSubmitQuestion}
                   disabled={!isAnswered}
-                  className="flex-1 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+                  className="flex-1 py-3 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400 disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed transition"
                 >
                   Antwort überprüfen
                 </button>
               ) : (
                 <button
                   onClick={handleNextQuestion}
-                  className="flex-1 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition"
+                  className="flex-1 py-3 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400 transition"
                 >
                   {currentQuestionIdx === chapQuestions.length - 1 ? 'Kapitel beenden' : 'Nächste Frage'}
                 </button>
@@ -411,16 +414,13 @@ export default function ISTQBQuizApp() {
   if (view === 'theory' && THEORY_HTML[currentChapter]) {
     const chapQuiz = QUIZ_DATA.questions.filter(q => q.chapter === currentChapter);
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+      <div className={`min-h-screen ${PAGE_BG} p-4`}>
         <div className="max-w-3xl mx-auto">
-          <button
-            onClick={() => setView('home')}
-            className="mb-6 px-4 py-2 bg-white rounded-lg shadow hover:shadow-md text-gray-700"
-          >
+          <button onClick={() => setView('home')} className={`mb-6 ${BACK_BTN}`}>
             ← Zurück
           </button>
 
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-6">
+          <div className={`${CARD} rounded-lg shadow-xl p-8 mb-6`}>
             <div
               className="summary-content"
               dangerouslySetInnerHTML={{ __html: THEORY_HTML[currentChapter] }}
@@ -430,7 +430,7 @@ export default function ISTQBQuizApp() {
           {chapQuiz.length > 0 && (
             <button
               onClick={() => handleStartChapter(currentChapter)}
-              className="w-full py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition flex items-center justify-center gap-2"
+              className="w-full py-3 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400 transition flex items-center justify-center gap-2"
             >
               Jetzt Fragen üben <ChevronRight className="w-4 h-4" />
             </button>
@@ -443,47 +443,44 @@ export default function ISTQBQuizApp() {
   // GLOSSARY VIEW
   if (view === 'glossary') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+      <div className={`min-h-screen ${PAGE_BG} p-4`}>
         <div className="max-w-2xl mx-auto">
-          <button
-            onClick={() => setView('home')}
-            className="mb-6 px-4 py-2 bg-white rounded-lg shadow hover:shadow-md text-gray-700"
-          >
+          <button onClick={() => setView('home')} className={`mb-6 ${BACK_BTN}`}>
             ← Zurück
           </button>
 
-          <div className="bg-white rounded-lg shadow-lg p-8">
+          <div className={`${CARD} rounded-lg shadow-xl p-8`}>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold">Glossar</h2>
+              <h2 className="text-2xl font-bold text-white">Glossar</h2>
               <button
                 onClick={startGlossaryQuiz}
-                className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition text-sm"
+                className="px-4 py-2 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400 transition text-sm"
               >
                 Begriffe quizzen
               </button>
             </div>
 
             <div className="relative mb-6">
-              <Search className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+              <Search className="absolute left-3 top-3 w-5 h-5 text-slate-500" />
               <input
                 type="text"
                 placeholder="Begriff suchen..."
                 value={searchGlossary}
                 onChange={(e) => setSearchGlossary(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:border-indigo-600 focus:outline-none"
+                className="w-full pl-10 pr-4 py-3 bg-slate-900/50 border-2 border-slate-700 rounded-lg text-white placeholder-slate-500 focus:border-indigo-500 focus:outline-none"
               />
             </div>
 
             <div className="space-y-4">
               {filteredGlossary.length > 0 ? (
                 filteredGlossary.map((item, idx) => (
-                  <div key={idx} className="border-l-4 border-indigo-600 pl-4 py-2">
-                    <h3 className="font-bold text-gray-900">{item.term}</h3>
-                    <p className="text-gray-700 text-sm mt-1">{item.definition}</p>
+                  <div key={idx} className="border-l-4 border-indigo-500 pl-4 py-2">
+                    <h3 className="font-bold text-white">{item.term}</h3>
+                    <p className="text-slate-300 text-sm mt-1">{item.definition}</p>
                   </div>
                 ))
               ) : (
-                <p className="text-gray-500 text-center py-8">Keine Begriffe gefunden.</p>
+                <p className="text-slate-500 text-center py-8">Keine Begriffe gefunden.</p>
               )}
             </div>
           </div>
@@ -496,23 +493,23 @@ export default function ISTQBQuizApp() {
   if (view === 'glossaryQuiz') {
     if (glossaryQuizIdx >= glossaryQuiz.length) {
       return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg shadow-lg p-8 text-center max-w-md w-full">
-            <h2 className="text-2xl font-bold mb-4">Runde beendet!</h2>
-            <p className="text-4xl font-bold text-indigo-600 mb-2">
+        <div className={`min-h-screen ${PAGE_BG} flex items-center justify-center p-4`}>
+          <div className={`${CARD} rounded-lg shadow-xl p-8 text-center max-w-md w-full`}>
+            <h2 className="text-2xl font-bold mb-4 text-white">Runde beendet!</h2>
+            <p className="text-4xl font-bold text-indigo-400 mb-2">
               {glossaryScore.correct}/{glossaryScore.total}
             </p>
-            <p className="text-gray-600 mb-8">richtig beantwortet</p>
+            <p className="text-slate-400 mb-8">richtig beantwortet</p>
             <div className="flex gap-3">
               <button
                 onClick={() => setView('glossary')}
-                className="flex-1 py-3 bg-white border-2 border-gray-200 text-gray-700 rounded-lg font-semibold hover:border-indigo-300 transition"
+                className="flex-1 py-3 bg-slate-800 border-2 border-slate-700 text-slate-300 rounded-lg font-semibold hover:border-indigo-500/50 transition"
               >
                 Zurück
               </button>
               <button
                 onClick={startGlossaryQuiz}
-                className="flex-1 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition"
+                className="flex-1 py-3 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400 transition"
               >
                 Neue Runde
               </button>
@@ -525,30 +522,27 @@ export default function ISTQBQuizApp() {
     const gq = glossaryQuiz[glossaryQuizIdx];
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+      <div className={`min-h-screen ${PAGE_BG} p-4`}>
         <div className="max-w-2xl mx-auto">
           <div className="mb-6 flex items-center justify-between">
-            <button
-              onClick={() => setView('glossary')}
-              className="px-4 py-2 bg-white rounded-lg shadow hover:shadow-md text-gray-700"
-            >
+            <button onClick={() => setView('glossary')} className={BACK_BTN}>
               ← Zurück
             </button>
-            <div className="text-sm font-semibold text-gray-700">
+            <div className="text-sm font-semibold text-slate-300">
               Frage {glossaryQuizIdx + 1} von {glossaryQuiz.length}
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-lg p-8">
+          <div className={`${CARD} rounded-lg shadow-xl p-8`}>
             <div className="mb-6">
-              <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+              <div className="w-full bg-slate-700 rounded-full h-2 mb-4">
                 <div
-                  className="bg-indigo-600 h-2 rounded-full transition-all"
+                  className="bg-indigo-500 h-2 rounded-full transition-all"
                   style={{ width: `${((glossaryQuizIdx + 1) / glossaryQuiz.length) * 100}%` }}
                 />
               </div>
-              <p className="text-sm text-gray-500 mb-2">Was bedeutet dieser Begriff?</p>
-              <h2 className="text-xl font-bold text-gray-900">{gq.term}</h2>
+              <p className="text-sm text-slate-400 mb-2">Was bedeutet dieser Begriff?</p>
+              <h2 className="text-xl font-bold text-white">{gq.term}</h2>
             </div>
 
             <div className="space-y-3 mb-8">
@@ -558,23 +552,17 @@ export default function ISTQBQuizApp() {
                   onClick={() => handleGlossaryAnswer(idx)}
                   disabled={glossarySubmitted}
                   className={`w-full p-4 text-left rounded-lg border-2 transition ${
-                    glossaryAnswer === idx
-                      ? 'border-indigo-600 bg-indigo-50'
-                      : 'border-gray-200 hover:border-indigo-300'
-                  } ${glossarySubmitted && idx === gq.correct ? 'bg-green-50 border-green-600' : ''} ${
-                    glossarySubmitted && glossaryAnswer === idx && idx !== gq.correct
-                      ? 'bg-red-50 border-red-600'
-                      : ''
+                    optionStateClasses(glossaryAnswer === idx, glossarySubmitted, idx === gq.correct)
                   }`}
                 >
-                  <div className="text-gray-700">{option}</div>
+                  <div className="text-slate-300">{option}</div>
                 </button>
               ))}
             </div>
 
             {glossarySubmitted && (
-              <div className={`p-4 rounded-lg mb-6 ${glossaryAnswer === gq.correct ? 'bg-green-100' : 'bg-red-100'}`}>
-                <p className={`font-semibold ${glossaryAnswer === gq.correct ? 'text-green-800' : 'text-red-800'}`}>
+              <div className={`p-4 rounded-lg mb-6 border ${glossaryAnswer === gq.correct ? 'bg-emerald-500/15 border-emerald-500/30' : 'bg-red-500/15 border-red-500/30'}`}>
+                <p className={`font-semibold ${glossaryAnswer === gq.correct ? 'text-emerald-300' : 'text-red-300'}`}>
                   {glossaryAnswer === gq.correct ? '✓ Richtig!' : '✗ Leider falsch.'}
                 </p>
               </div>
@@ -585,14 +573,14 @@ export default function ISTQBQuizApp() {
                 <button
                   onClick={handleGlossarySubmit}
                   disabled={glossaryAnswer === null}
-                  className="flex-1 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+                  className="flex-1 py-3 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400 disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed transition"
                 >
                   Antwort überprüfen
                 </button>
               ) : (
                 <button
                   onClick={handleGlossaryNext}
-                  className="flex-1 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition"
+                  className="flex-1 py-3 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400 transition"
                 >
                   {glossaryQuizIdx === glossaryQuiz.length - 1 ? 'Ergebnis anzeigen' : 'Nächste Frage'}
                 </button>
@@ -610,56 +598,53 @@ export default function ISTQBQuizApp() {
     const passingScore = 65;
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+      <div className={`min-h-screen ${PAGE_BG} p-4`}>
         <div className="max-w-2xl mx-auto">
-          <button
-            onClick={() => setView('home')}
-            className="mb-6 px-4 py-2 bg-white rounded-lg shadow hover:shadow-md text-gray-700"
-          >
+          <button onClick={() => setView('home')} className={`mb-6 ${BACK_BTN}`}>
             ← Zurück
           </button>
 
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-2xl font-bold mb-8">Deine Statistik</h2>
+          <div className={`${CARD} rounded-lg shadow-xl p-8`}>
+            <h2 className="text-2xl font-bold mb-8 text-white">Deine Statistik</h2>
 
             <div className="grid grid-cols-2 gap-4 mb-8">
-              <div className="bg-indigo-50 rounded-lg p-6">
-                <div className="text-sm text-gray-600 mb-2">Beantwortete Fragen</div>
-                <div className="text-4xl font-bold text-indigo-600">{stats.total}</div>
+              <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-6">
+                <div className="text-sm text-slate-400 mb-2">Beantwortete Fragen</div>
+                <div className="text-4xl font-bold text-indigo-400">{stats.total}</div>
               </div>
-              <div className="bg-green-50 rounded-lg p-6">
-                <div className="text-sm text-gray-600 mb-2">Richtige Antworten</div>
-                <div className="text-4xl font-bold text-green-600">
+              <div className="bg-emerald-500/15 border border-emerald-500/20 rounded-lg p-6">
+                <div className="text-sm text-slate-400 mb-2">Richtige Antworten</div>
+                <div className="text-4xl font-bold text-emerald-400">
                   {stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0}%
                 </div>
               </div>
-              <div className="bg-blue-50 rounded-lg p-6">
-                <div className="text-sm text-gray-600 mb-2">Punkte</div>
-                <div className="text-4xl font-bold text-blue-600">{stats.points}</div>
+              <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-6">
+                <div className="text-sm text-slate-400 mb-2">Punkte</div>
+                <div className="text-4xl font-bold text-blue-400">{stats.points}</div>
               </div>
-              <div className={`${passPercentage >= passingScore ? 'bg-green-50' : 'bg-yellow-50'} rounded-lg p-6`}>
-                <div className="text-sm text-gray-600 mb-2">Erfolgsquote</div>
-                <div className={`text-4xl font-bold ${passPercentage >= passingScore ? 'text-green-600' : 'text-yellow-600'}`}>
+              <div className={`${passPercentage >= passingScore ? 'bg-emerald-500/15 border-emerald-500/20' : 'bg-amber-500/10 border-amber-500/20'} border rounded-lg p-6`}>
+                <div className="text-sm text-slate-400 mb-2">Erfolgsquote</div>
+                <div className={`text-4xl font-bold ${passPercentage >= passingScore ? 'text-emerald-400' : 'text-amber-400'}`}>
                   {passPercentage}%
                 </div>
               </div>
             </div>
 
             {stats.maxPoints > 0 && (
-              <div className="bg-gray-50 rounded-lg p-6">
+              <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-6">
                 <div className="flex justify-between mb-2">
-                  <span className="font-semibold text-gray-700">Bestandene Prüfung</span>
-                  <span className={passPercentage >= passingScore ? 'text-green-600 font-bold' : 'text-yellow-600 font-bold'}>
+                  <span className="font-semibold text-slate-300">Bestandene Prüfung</span>
+                  <span className={passPercentage >= passingScore ? 'text-emerald-400 font-bold' : 'text-amber-400 font-bold'}>
                     {passPercentage >= passingScore ? '✓ JA' : `${passingScore - passPercentage}% fehlen`}
                   </span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-3">
+                <div className="w-full bg-slate-700 rounded-full h-3">
                   <div
-                    className={`h-3 rounded-full transition-all ${passPercentage >= passingScore ? 'bg-green-600' : 'bg-yellow-600'}`}
+                    className={`h-3 rounded-full transition-all ${passPercentage >= passingScore ? 'bg-emerald-500' : 'bg-amber-500'}`}
                     style={{ width: `${Math.min(passPercentage, 100)}%` }}
                   />
                 </div>
-                <p className="text-xs text-gray-600 mt-2">Mindestens {passingScore}% erforderlich</p>
+                <p className="text-xs text-slate-400 mt-2">Mindestens {passingScore}% erforderlich</p>
               </div>
             )}
           </div>
@@ -670,12 +655,12 @@ export default function ISTQBQuizApp() {
 
   // FALLBACK (e.g. chapter with no questions selected)
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-lg p-8 text-center">
-        <p className="text-gray-700 mb-4">Für dieses Kapitel gibt es noch keine Fragen.</p>
+    <div className={`min-h-screen ${PAGE_BG} flex items-center justify-center p-4`}>
+      <div className={`${CARD} rounded-lg shadow-xl p-8 text-center`}>
+        <p className="text-slate-300 mb-4">Für dieses Kapitel gibt es noch keine Fragen.</p>
         <button
           onClick={() => setView('home')}
-          className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700"
+          className="px-4 py-2 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400"
         >
           Zurück zur Übersicht
         </button>
