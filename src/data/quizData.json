@@ -22,19 +22,19 @@
       "id": 3,
       "title": "Risikomanagement",
       "duration": "160 min",
-      "free": false
+      "free": true
     },
     {
       "id": 4,
       "title": "LLM-Infrastruktur",
       "duration": "110 min",
-      "free": false
+      "free": true
     },
     {
       "id": 5,
       "title": "Organisatorische Integration",
       "duration": "80 min",
-      "free": false
+      "free": true
     }
   ],
   "questions": [
