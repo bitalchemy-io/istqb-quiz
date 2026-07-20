@@ -16,6 +16,32 @@ const THEORY_HTML = {
   5: marked.parse(THEORY_5_MD),
 };
 
+const GLOSSARY_QUIZ_LENGTH = 15;
+
+function shuffle(array) {
+  const copy = [...array];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function buildGlossaryQuiz() {
+  const terms = shuffle(QUIZ_DATA.glossary).slice(0, Math.min(GLOSSARY_QUIZ_LENGTH, QUIZ_DATA.glossary.length));
+  return terms.map((item) => {
+    const distractors = shuffle(
+      QUIZ_DATA.glossary.filter((g) => g.term !== item.term)
+    ).slice(0, 3).map((g) => g.definition);
+    const options = shuffle([item.definition, ...distractors]);
+    return {
+      term: item.term,
+      options,
+      correct: options.indexOf(item.definition),
+    };
+  });
+}
+
 export default function ISTQBQuizApp() {
   const [view, setView] = useState('home');
   const [currentChapter, setCurrentChapter] = useState(null);
@@ -24,6 +50,11 @@ export default function ISTQBQuizApp() {
   const [submitted, setSubmitted] = useState(false);
   const [searchGlossary, setSearchGlossary] = useState('');
   const [stats, setStats] = useState({ total: 0, correct: 0, points: 0, maxPoints: 0 });
+  const [glossaryQuiz, setGlossaryQuiz] = useState([]);
+  const [glossaryQuizIdx, setGlossaryQuizIdx] = useState(0);
+  const [glossaryAnswer, setGlossaryAnswer] = useState(null);
+  const [glossarySubmitted, setGlossarySubmitted] = useState(false);
+  const [glossaryScore, setGlossaryScore] = useState({ correct: 0, total: 0 });
 
   // Daten aus localStorage laden
   useEffect(() => {
@@ -115,6 +146,35 @@ export default function ISTQBQuizApp() {
   const handleOpenTheory = (chapId) => {
     setCurrentChapter(chapId);
     setView('theory');
+  };
+
+  const startGlossaryQuiz = () => {
+    setGlossaryQuiz(buildGlossaryQuiz());
+    setGlossaryQuizIdx(0);
+    setGlossaryAnswer(null);
+    setGlossarySubmitted(false);
+    setGlossaryScore({ correct: 0, total: 0 });
+    setView('glossaryQuiz');
+  };
+
+  const handleGlossaryAnswer = (idx) => {
+    if (!glossarySubmitted) setGlossaryAnswer(idx);
+  };
+
+  const handleGlossarySubmit = () => {
+    const q = glossaryQuiz[glossaryQuizIdx];
+    const isCorrect = glossaryAnswer === q.correct;
+    setGlossaryScore(prev => ({
+      correct: isCorrect ? prev.correct + 1 : prev.correct,
+      total: prev.total + 1
+    }));
+    setGlossarySubmitted(true);
+  };
+
+  const handleGlossaryNext = () => {
+    setGlossaryQuizIdx(prev => prev + 1);
+    setGlossaryAnswer(null);
+    setGlossarySubmitted(false);
   };
 
   // Filter Glossar
@@ -393,7 +453,15 @@ export default function ISTQBQuizApp() {
           </button>
 
           <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-2xl font-bold mb-6">Glossar</h2>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold">Glossar</h2>
+              <button
+                onClick={startGlossaryQuiz}
+                className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition text-sm"
+              >
+                Begriffe quizzen
+              </button>
+            </div>
 
             <div className="relative mb-6">
               <Search className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
@@ -416,6 +484,118 @@ export default function ISTQBQuizApp() {
                 ))
               ) : (
                 <p className="text-gray-500 text-center py-8">Keine Begriffe gefunden.</p>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // GLOSSARY QUIZ VIEW
+  if (view === 'glossaryQuiz') {
+    if (glossaryQuizIdx >= glossaryQuiz.length) {
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-lg p-8 text-center max-w-md w-full">
+            <h2 className="text-2xl font-bold mb-4">Runde beendet!</h2>
+            <p className="text-4xl font-bold text-indigo-600 mb-2">
+              {glossaryScore.correct}/{glossaryScore.total}
+            </p>
+            <p className="text-gray-600 mb-8">richtig beantwortet</p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setView('glossary')}
+                className="flex-1 py-3 bg-white border-2 border-gray-200 text-gray-700 rounded-lg font-semibold hover:border-indigo-300 transition"
+              >
+                Zurück
+              </button>
+              <button
+                onClick={startGlossaryQuiz}
+                className="flex-1 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition"
+              >
+                Neue Runde
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const gq = glossaryQuiz[glossaryQuizIdx];
+
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="mb-6 flex items-center justify-between">
+            <button
+              onClick={() => setView('glossary')}
+              className="px-4 py-2 bg-white rounded-lg shadow hover:shadow-md text-gray-700"
+            >
+              ← Zurück
+            </button>
+            <div className="text-sm font-semibold text-gray-700">
+              Frage {glossaryQuizIdx + 1} von {glossaryQuiz.length}
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            <div className="mb-6">
+              <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+                <div
+                  className="bg-indigo-600 h-2 rounded-full transition-all"
+                  style={{ width: `${((glossaryQuizIdx + 1) / glossaryQuiz.length) * 100}%` }}
+                />
+              </div>
+              <p className="text-sm text-gray-500 mb-2">Was bedeutet dieser Begriff?</p>
+              <h2 className="text-xl font-bold text-gray-900">{gq.term}</h2>
+            </div>
+
+            <div className="space-y-3 mb-8">
+              {gq.options.map((option, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleGlossaryAnswer(idx)}
+                  disabled={glossarySubmitted}
+                  className={`w-full p-4 text-left rounded-lg border-2 transition ${
+                    glossaryAnswer === idx
+                      ? 'border-indigo-600 bg-indigo-50'
+                      : 'border-gray-200 hover:border-indigo-300'
+                  } ${glossarySubmitted && idx === gq.correct ? 'bg-green-50 border-green-600' : ''} ${
+                    glossarySubmitted && glossaryAnswer === idx && idx !== gq.correct
+                      ? 'bg-red-50 border-red-600'
+                      : ''
+                  }`}
+                >
+                  <div className="text-gray-700">{option}</div>
+                </button>
+              ))}
+            </div>
+
+            {glossarySubmitted && (
+              <div className={`p-4 rounded-lg mb-6 ${glossaryAnswer === gq.correct ? 'bg-green-100' : 'bg-red-100'}`}>
+                <p className={`font-semibold ${glossaryAnswer === gq.correct ? 'text-green-800' : 'text-red-800'}`}>
+                  {glossaryAnswer === gq.correct ? '✓ Richtig!' : '✗ Leider falsch.'}
+                </p>
+              </div>
+            )}
+
+            <div className="flex gap-4">
+              {!glossarySubmitted ? (
+                <button
+                  onClick={handleGlossarySubmit}
+                  disabled={glossaryAnswer === null}
+                  className="flex-1 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+                >
+                  Antwort überprüfen
+                </button>
+              ) : (
+                <button
+                  onClick={handleGlossaryNext}
+                  className="flex-1 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition"
+                >
+                  {glossaryQuizIdx === glossaryQuiz.length - 1 ? 'Ergebnis anzeigen' : 'Nächste Frage'}
+                </button>
               )}
             </div>
           </div>
