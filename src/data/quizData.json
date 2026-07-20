@@ -1,0 +1,624 @@
+{
+  "chapters": [
+    {
+      "id": 0,
+      "title": "Einführung",
+      "duration": "8 min",
+      "free": true
+    },
+    {
+      "id": 1,
+      "title": "Generative KI Grundlagen",
+      "duration": "100 min",
+      "free": true
+    },
+    {
+      "id": 2,
+      "title": "Prompt Engineering",
+      "duration": "365 min",
+      "free": true
+    },
+    {
+      "id": 3,
+      "title": "Risikomanagement",
+      "duration": "160 min",
+      "free": false
+    },
+    {
+      "id": 4,
+      "title": "LLM-Infrastruktur",
+      "duration": "110 min",
+      "free": false
+    },
+    {
+      "id": 5,
+      "title": "Organisatorische Integration",
+      "duration": "80 min",
+      "free": false
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welche der folgenden Methoden verwendet Deep-Learning-Techniken, um neue Inhalte zu erstellen?",
+      "options": [
+        "Symbolische KI",
+        "Klassisches maschinelles Lernen",
+        "Deep Learning",
+        "Generative KI"
+      ],
+      "correct": 3,
+      "explanation": "Richtige Antwort: D"
+    },
+    {
+      "id": 2,
+      "chapter": 1,
+      "points": 1,
+      "question": "Du hast denselben Prompt mehrfach verwendet, aber unterschiedliche Antworten für das LLM erhalten. Warum passiert das?",
+      "options": [
+        "Weil der Prompt falsch ist",
+        "Weil LLMs nicht-deterministisches Verhalten aufweisen",
+        "Weil die Trainingsdaten fehlerhaft waren",
+        "Weil LLMs darauf trainiert sind, die Antwort immer zu variieren"
+      ],
+      "correct": 2,
+      "explanation": "Richtige Antwort: C"
+    },
+    {
+      "id": 3,
+      "chapter": 1,
+      "points": 1,
+      "question": "Wie hängt Tokenisierung mit Embeddings zusammen?",
+      "options": [
+        "Token sind eine numerische Darstellung dafür, wie ein gegebenes Wort in das Modell eingebettet ist",
+        "Tokens repräsentieren Zeichen, Unterwörter oder Wörter, und Einbettungen erfassen die semantische, syntaktische und kontextuelle Beziehung der Tokens",
+        "Einbettungen beschreiben die Textkomponente so, dass sie für die Nutzung innerhalb des Modells tokenisiert werden kann",
+        "Einbettungen identifizieren das nichtdeterministische Verhalten einer Wortkomponente"
+      ],
+      "correct": 1,
+      "explanation": "Richtige Antwort: B"
+    },
+    {
+      "id": 4,
+      "chapter": 1,
+      "points": 1,
+      "question": "Du brauchst einen LLM, der bei der Entscheidungsfindung auf Basis eines ähnlichen Prozesses der menschlichen Logik hilft. Welche Art von LLM solltest du verwenden?",
+      "options": [
+        "Foundation LLM",
+        "Instruktionsoptimiertes LLM",
+        "Begründung LLM",
+        "Ad-hoc LLM"
+      ],
+      "correct": 3,
+      "explanation": "Richtige Antwort: D"
+    },
+    {
+      "id": 5,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welcher der folgenden Vorteile ist der Vorteil eines LLM, das mit Vision-Language-Modellen zur Entwicklung von Testfällen ergänzt wird?",
+      "options": [
+        "Es gibt keinen Vorteil, da dieses Modell hauptsächlich für militärische Anwendungen verwendet wird",
+        "Es kann Testfälle erstellen, die Text und visuelle Hinweise enthalten",
+        "Es kann Bilder viel schneller und genauer bearbeiten als ein Mensch",
+        "Es kann ausführbaren Code aus Wireframes und Screenshots generieren"
+      ],
+      "correct": 1,
+      "explanation": "Richtige Antwort: B"
+    },
+    {
+      "id": 6,
+      "chapter": 2,
+      "points": 1,
+      "question": "Frage 6 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "id": 7,
+      "chapter": 2,
+      "points": 1,
+      "question": "Frage 7 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "id": 8,
+      "chapter": 2,
+      "points": 1,
+      "question": "Frage 8 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 9,
+      "chapter": 2,
+      "points": 1,
+      "question": "Frage 9 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 10,
+      "chapter": 2,
+      "points": 1,
+      "question": "Frage 10 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 11,
+      "chapter": 2,
+      "points": 1,
+      "question": "Frage 11 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "id": 12,
+      "chapter": 2,
+      "points": 2,
+      "question": "Frage 12 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "id": 13,
+      "chapter": 2,
+      "points": 2,
+      "question": "Frage 13 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 14,
+      "chapter": 2,
+      "points": 2,
+      "question": "Frage 14 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 15,
+      "chapter": 2,
+      "points": 2,
+      "question": "Frage 15 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 16,
+      "chapter": 2,
+      "points": 2,
+      "question": "Frage 16 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "id": 17,
+      "chapter": 2,
+      "points": 1,
+      "question": "Frage 17 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "id": 18,
+      "chapter": 2,
+      "points": 1,
+      "question": "Frage 18 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "id": 19,
+      "chapter": 3,
+      "points": 1,
+      "question": "Frage 19 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 20,
+      "chapter": 3,
+      "points": 2,
+      "question": "Frage 20 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "id": 21,
+      "chapter": 3,
+      "points": 1,
+      "question": "Frage 21 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 22,
+      "chapter": 3,
+      "points": 1,
+      "question": "Frage 22 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 23,
+      "chapter": 3,
+      "points": 1,
+      "question": "Frage 23 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "id": 24,
+      "chapter": 3,
+      "points": 1,
+      "question": "Frage 24 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "id": 25,
+      "chapter": 3,
+      "points": 1,
+      "question": "Frage 25 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "id": 26,
+      "chapter": 3,
+      "points": 1,
+      "question": "Frage 26 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 27,
+      "chapter": 3,
+      "points": 1,
+      "question": "Frage 27 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 28,
+      "chapter": 3,
+      "points": 1,
+      "question": "Frage 28 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 29,
+      "chapter": 4,
+      "points": 1,
+      "question": "Frage 29 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "id": 30,
+      "chapter": 4,
+      "points": 1,
+      "question": "Frage 30 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "id": 31,
+      "chapter": 4,
+      "points": 1,
+      "question": "Frage 31 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 32,
+      "chapter": 4,
+      "points": 1,
+      "question": "Frage 32 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 33,
+      "chapter": 4,
+      "points": 1,
+      "question": "Frage 33 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 34,
+      "chapter": 5,
+      "points": 1,
+      "question": "Frage 34 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "id": 35,
+      "chapter": 5,
+      "points": 1,
+      "question": "Frage 35 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 36,
+      "chapter": 5,
+      "points": 1,
+      "question": "Frage 36 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 37,
+      "chapter": 5,
+      "points": 1,
+      "question": "Frage 37 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "id": 38,
+      "chapter": 5,
+      "points": 1,
+      "question": "Frage 38 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 39,
+      "chapter": 5,
+      "points": 1,
+      "question": "Frage 39 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 40,
+      "chapter": 5,
+      "points": 1,
+      "question": "Frage 40 - [noch zu importieren]",
+      "options": [
+        "a) ...",
+        "b) ...",
+        "c) ...",
+        "d) ..."
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Generative KI",
+      "definition": "KI-Systeme, die fähig sind, neue Inhalte wie Text, Bilder oder Code zu erstellen basierend auf Trainingsdaten."
+    },
+    {
+      "term": "LLM",
+      "definition": "Large Language Model - ein großes sprachliches Modell mit Millionen oder Milliarden von Parametern."
+    },
+    {
+      "term": "Prompt Engineering",
+      "definition": "Die Kunst, effektive Eingabeaufforderungen zu formulieren, um optimale Ergebnisse von LLMs zu erhalten."
+    },
+    {
+      "term": "Token",
+      "definition": "Kleinste Einheit der Textverarbeitung in LLMs, kann ein Wort, Wortteile oder sogar einzelne Zeichen darstellen."
+    },
+    {
+      "term": "Halluzination",
+      "definition": "Wenn ein LLM falsche oder erfundene Informationen als wahr präsentiert."
+    }
+  ]
+}
