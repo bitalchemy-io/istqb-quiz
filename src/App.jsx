@@ -198,9 +198,9 @@ export default function ISTQBQuizApp() {
 
                     <button
                       onClick={() => handleStartChapter(chap.id)}
-                      disabled={isPremium && !chap.free}
+                      disabled={(isPremium && !chap.free) || chapQuiz.length === 0}
                       className={`w-full py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition ${
-                        isPremium && !chap.free
+                        (isPremium && !chap.free) || chapQuiz.length === 0
                           ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
                           : 'bg-indigo-600 text-white hover:bg-indigo-700'
                       }`}
@@ -425,4 +425,19 @@ export default function ISTQBQuizApp() {
       </div>
     );
   }
+
+  // FALLBACK (e.g. chapter with no questions selected)
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+      <div className="bg-white rounded-lg shadow-lg p-8 text-center">
+        <p className="text-gray-700 mb-4">Für dieses Kapitel gibt es noch keine Fragen.</p>
+        <button
+          onClick={() => setView('home')}
+          className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700"
+        >
+          Zurück zur Übersicht
+        </button>
+      </div>
+    </div>
+  );
 }
