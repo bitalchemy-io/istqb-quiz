@@ -619,6 +619,102 @@
     {
       "term": "Halluzination",
       "definition": "Wenn ein LLM falsche oder erfundene Informationen als wahr präsentiert."
+    },
+    {
+      "term": "Maschinelles Lernen",
+      "definition": "Der Prozess, bei dem mithilfe von Berechnungstechniken Systeme in die Lage versetzt werden, aus Daten oder Erfahrungen zu lernen."
+    },
+    {
+      "term": "ML-Modell",
+      "definition": "Eine Implementierung des maschinellen Lernens, die auf der Grundlage von Eingabedaten eine Vorhersage, Klassifizierung oder Empfehlung erstellt."
+    },
+    {
+      "term": "ML-Modelltest",
+      "definition": "Eine Teststufe, die auf die Fähigkeit eines ML-Modells fokussiert, die geforderten funktionalen Leistungskriterien von ML und nicht-funktionalen Kriterien zu erfüllen."
+    },
+    {
+      "term": "funktionale Leistung von ML",
+      "definition": "Der Grad, zu dem ein ML-Modell funktionale Leistungskriterien von ML erfüllt."
+    },
+    {
+      "term": "funktionale Leistungskriterien von ML",
+      "definition": "Kriterien auf der Grundlage funktionaler Leistungsmetriken von ML, die zur Modellbewertung, -abstimmung und -prüfung dienen."
+    },
+    {
+      "term": "funktionale Leistungsmetriken von ML",
+      "definition": "Ein Maß, das sich auf die funktionale Korrektheit eines ML-Modells bezieht."
+    },
+    {
+      "term": "Datendrift",
+      "definition": "Eine im Laufe der Zeit eintretende Veränderung der Verteilung der Eingabedaten, die sich negativ auf die funktionale Leistung eines im Einsatz befindlichen ML-Modells auswirkt."
+    },
+    {
+      "term": "Konzeptdrift",
+      "definition": "Eine im Laufe der Zeit eintretende Veränderung der Benutzererwartungen, des Benutzerverhaltens oder des Betriebsumfelds, die sich negativ auf die funktionale Leistung eines im Einsatz befindlichen ML-Modells auswirkt."
+    },
+    {
+      "term": "Drift-Test",
+      "definition": "Eine Art von Wartungstest, die bewertet, inwieweit Datendrift, Konzeptdrift oder beide auftreten."
+    },
+    {
+      "term": "gegnerisches Beispiel",
+      "definition": "Eine Eingabe für ein ML-Modell, die durch geringfügige Störungen eines funktionierenden Beispiels erzeugt wird und dazu führt, dass das Modell mit hoher Wahrscheinlichkeit ein falsches Ergebnis ausgibt."
+    },
+    {
+      "term": "gegnerischer Test",
+      "definition": "Ein Testverfahren, bei dem Tests auf der Grundlage von gegnerischen Beispielen entworfen werden."
+    },
+    {
+      "term": "Erklärbarkeit",
+      "definition": "Der Grad, zu dem Ergebnisse eines KI-basierten Systems erklärt werden können."
+    },
+    {
+      "term": "Transparenz",
+      "definition": "Der Grad, zu dem angemessene Information über ein KI-basiertes System an die relevanten Stakeholder kommuniziert wird."
+    },
+    {
+      "term": "Testen auf Verzerrung (Bias)",
+      "definition": "Eine Testart zur Aufdeckung von Verzerrungen in Eingabedaten, einem KI-Modell oder einem KI-basierten System."
+    },
+    {
+      "term": "Minderung gesellschaftlicher und ethischer Risiken",
+      "definition": "Der Grad, zu dem ein KI-basiertes System potenzielle Risiken für die Gesellschaft mindert."
+    },
+    {
+      "term": "Ethischer Systemtest",
+      "definition": "Eine Testart, die den Entwurf, die Schnittstellen sowie die potenziellen gesellschaftlichen und rechtlichen Auswirkungen eines Systems anhand anerkannter ethischer Grundsätze bewertet."
+    },
+    {
+      "term": "Eingabedatentest",
+      "definition": "Eine Teststufe, die sich auf die Qualität der für das Training eines ML-Modells verwendeten Daten konzentriert."
+    },
+    {
+      "term": "Datenprovenienztest",
+      "definition": "Eine Testart zur Bestimmung, ob Daten gemäß den Richtlinien, Standards und gesetzlichen Verpflichtungen einer Organisation beschafft, verwaltet, geschützt und genutzt werden."
+    },
+    {
+      "term": "Datenrepräsentativitätstest",
+      "definition": "Eine Testart zur Bestimmung, ob die für das Training eines KI-Modells verwendeten Datensätze eine angemessene Repräsentation der Daten darstellen, auf die das Modell im Betrieb voraussichtlich treffen wird."
+    },
+    {
+      "term": "Datensatzeinschränkungstest",
+      "definition": "Eine Art statischer Test zur Bestimmung, ob ein Datensatz logische oder festgelegte Einschränkungen einhält."
+    },
+    {
+      "term": "Daten-Pipelinetest",
+      "definition": "Eine Testart, die die Trainings- und Produktionsdatenpipelines eines Systems für maschinelles Lernen überdeckt."
+    },
+    {
+      "term": "Kennzeichen-Korrektheitstest",
+      "definition": "Eine Testart zur Bestimmung der Richtigkeit und Konsistenz der Kennzeichen, die den Beispielen in einem Datensatz zugewiesen wurden."
+    },
+    {
+      "term": "Modellkonvertierungstest",
+      "definition": "Eine Testart zur Bestimmung, ob die Vorhersagegenauigkeit, das konsistente Verhalten und die Betriebseffizienz eines für die Bereitstellung konvertierten ML-Modells akzeptabel bleiben."
+    },
+    {
+      "term": "Vibe-Test",
+      "definition": "Ein Testansatz, bei dem die KI eine Komponente oder ein System auf Basis von natürlichsprachlicher Beschreibungen gewünschter Benutzererfahrungen testet."
     }
   ]
 }
