@@ -42,561 +42,581 @@
       "id": 1,
       "chapter": 1,
       "points": 1,
-      "question": "Welche der folgenden Methoden verwendet Deep-Learning-Techniken, um neue Inhalte zu erstellen?",
+      "question": "Ordnen Sie den folgenden Arten von KI-Technologien (1–4) die passende Beschreibung (A-D) zu:\n\nKI-Technologie:\n1. Symbolische KI\n2. Klassisches maschinelles Lernen\n3. Deep Learning\n4. Generative KI\n\nBeschreibung:\nA. Verwendet neuronale Netze, um Merkmale automatisch aus Daten zu lernen.\nB. Verwendet regelbasierte Systeme, um menschliche Entscheidungen nachzuahmen.\nC. Verwendet Deep Learning, um neue Inhalte zu erstellen, basierend auf den gelernten Trainingsdaten.\nD. Verwendet einen datengesteuerten Ansatz, der in der Regel (manuelle) Merkmalauswahl erfordert.",
       "options": [
-        "Symbolische KI",
-        "Klassisches maschinelles Lernen",
-        "Deep Learning",
-        "Generative KI"
+        "1D, 2B, 3A, 4C",
+        "1D, 2C, 3B, 4A",
+        "1C, 2B, 3D, 4A",
+        "1B, 2D, 3A, 4C"
       ],
       "correct": 3,
-      "explanation": "Richtige Antwort: D"
+      "explanation": "Symbolische KI nutzt regelbasierte Systeme (1B), klassisches maschinelles Lernen erfordert Merkmalauswahl (2D), Deep Learning lernt Merkmale automatisch über neuronale Netze (3A), und generative KI nutzt Deep Learning zur Erzeugung neuer Inhalte (4C)."
     },
     {
       "id": 2,
       "chapter": 1,
       "points": 1,
-      "question": "Du hast denselben Prompt mehrfach verwendet, aber unterschiedliche Antworten für das LLM erhalten. Warum passiert das?",
+      "question": "Betrachten Sie Large-Language-Modelle (LLMs). Welche der folgenden Optionen bietet die BESTE Erklärung dafür, warum die begrenzte Größe des Kontextfensters die Textverarbeitungsfähigkeiten von LLMs beeinträchtigen kann?",
       "options": [
-        "Weil der Prompt falsch ist",
-        "Weil LLMs nicht-deterministisches Verhalten aufweisen",
-        "Weil die Trainingsdaten fehlerhaft waren",
-        "Weil LLMs darauf trainiert sind, die Antwort immer zu variieren"
+        "Weil das Kontextfenster zeitliche Verarbeitungssequenzen einschränkt und LLMs daran hindert, bei der Analyse längerer Texte die chronologische Konsistenz aufrechtzuerhalten.",
+        "Weil das Kontextfenster Querverweise begrenzt und damit die Fähigkeit von LLMs einschränkt, Informationen aus verschiedenen Dokumenten gleichzeitig zu verknüpfen.",
+        "Weil die begrenzte Größe des Kontextfensters LLMs dazu zwingt, frühere Informationen zu verwerfen, die jedoch relevante Details enthalten können, die für das Verständnis späterer Inhalte erforderlich sind.",
+        "Weil das Kontextfenster die Granularität der Analyse einschränkt und LLMs daran hindert, zwischen Zeichen- und Dokumentebene zu wechseln."
       ],
       "correct": 2,
-      "explanation": "Richtige Antwort: C"
+      "explanation": "Ein begrenztes Kontextfenster limitiert die Anzahl gleichzeitig berücksichtigter Tokens; bei Überschreitung müssen frühere Tokens verworfen werden, was relevante Informationen für das Verständnis späterer Inhalte verloren gehen lassen kann."
     },
     {
       "id": 3,
       "chapter": 1,
       "points": 1,
-      "question": "Wie hängt Tokenisierung mit Embeddings zusammen?",
+      "question": "Welche der folgenden Aussagen beschreibt die Tokenisierung bei der Textverarbeitung für LLMs AM BESTEN?",
       "options": [
-        "Token sind eine numerische Darstellung dafür, wie ein gegebenes Wort in das Modell eingebettet ist",
-        "Tokens repräsentieren Zeichen, Unterwörter oder Wörter, und Einbettungen erfassen die semantische, syntaktische und kontextuelle Beziehung der Tokens",
-        "Einbettungen beschreiben die Textkomponente so, dass sie für die Nutzung innerhalb des Modells tokenisiert werden kann",
-        "Einbettungen identifizieren das nichtdeterministische Verhalten einer Wortkomponente"
+        "Die Tokenisierung wandelt Token in hochdimensionale Vektoren um, um ihre Bedeutung zu erfassen.",
+        "Die Tokenisierung generiert die Bausteine, die zum Verstehen und Generieren von Text verwendet werden.",
+        "Die Tokenisierung generiert mithilfe neuronaler Netze kontextuell angemessene Antworten.",
+        "Die Tokenisierung sagt das nächste Token in einer Sequenz auf der Grundlage gelernter Beziehungen voraus."
       ],
       "correct": 1,
-      "explanation": "Richtige Antwort: B"
+      "explanation": "Tokenisierung zerlegt Text in kleinere Einheiten (Token), die als Bausteine für das Verstehen und Erzeugen von Sprache dienen; die anderen Optionen beschreiben Embeddings bzw. die Textgenerierung selbst, nicht die Tokenisierung."
     },
     {
       "id": 4,
       "chapter": 1,
       "points": 1,
-      "question": "Du brauchst einen LLM, der bei der Entscheidungsfindung auf Basis eines ähnlichen Prozesses der menschlichen Logik hilft. Welche Art von LLM solltest du verwenden?",
+      "multiSelect": true,
+      "question": "Welche ZWEI der folgenden Aussagen über Foundation-LLMs, Instruktionsgetunte LLMs und Reasoning LLMs sind im Kontext des Softwaretestens KORREKT?",
       "options": [
-        "Foundation LLM",
-        "Instruktionsoptimiertes LLM",
-        "Begründung LLM",
-        "Ad-hoc LLM"
+        "Foundation-LLMs sind hervorragend geeignet, um Testfälle aus übergreifenden Anforderungen ohne strukturierte Eingaben zu generieren.",
+        "Reasoning-LLMs zeichnen sich durch die Erstellung von Testskripten aus, die sich streng an vordefinierte organisatorische Vorlagen halten.",
+        "Instruction-Tuned LLMs priorisieren die Testdurchführung autonom auf der Basis von Echtzeit-Benutzerfeedback.",
+        "Reasoning-LLMs sind hervorragend geeignet, um Daten aus Fehlerberichten zu synthetisieren, um Trends zu erkennen und Testmaßnahmen zu priorisieren.",
+        "Instruction-Tuned LLMs sind gut geeignet, Testfälle zu generieren, die der Gherkin-Syntax entsprechen."
       ],
-      "correct": 3,
-      "explanation": "Richtige Antwort: D"
+      "correct": [
+        3,
+        4
+      ],
+      "explanation": "Reasoning-LLMs eignen sich für das Synthetisieren von Daten und logische Schlussfolgerungen wie Trenderkennung und Priorisierung (d); Instruction-Tuned LLMs sind darauf trainiert, vorgegebene Formate und Syntaxregeln wie Gherkin einzuhalten (e)."
     },
     {
       "id": 5,
       "chapter": 1,
       "points": 1,
-      "question": "Welcher der folgenden Vorteile ist der Vorteil eines LLM, das mit Vision-Language-Modellen zur Entwicklung von Testfällen ergänzt wird?",
+      "question": "Welche der folgenden Aussagen beschreibt die Beziehung zwischen multimodalen LLMs und Vision-Sprach-Modellen AM BESTEN?",
       "options": [
-        "Es gibt keinen Vorteil, da dieses Modell hauptsächlich für militärische Anwendungen verwendet wird",
-        "Es kann Testfälle erstellen, die Text und visuelle Hinweise enthalten",
-        "Es kann Bilder viel schneller und genauer bearbeiten als ein Mensch",
-        "Es kann ausführbaren Code aus Wireframes und Screenshots generieren"
+        "Multimodale LLMs sind eine Untergruppe von Vision-Sprach-Modellen und für die Verarbeitung verschiedener Eingaben entwickelt.",
+        "Vision-Language-Modelle sind eine Untergruppe multimodaler LLMs, die speziell visuelle und textuelle Daten verarbeiten.",
+        "Vision-Language-Modelle stehen in keinem Zusammenhang mit multimodalen LLMs und beziehen sich ausschließlich auf die Benutzungsschnittstelle.",
+        "Multimodale LLMs und Vision-Language-Modelle sind gleichbedeutende Begriffe."
       ],
       "correct": 1,
-      "explanation": "Richtige Antwort: B"
+      "explanation": "Vision-Language-Modelle sind eine Untergruppe multimodaler LLMs, die speziell auf die Verarbeitung visueller und textueller Daten spezialisiert ist, nicht umgekehrt."
     },
     {
       "id": 6,
       "chapter": 2,
       "points": 1,
-      "question": "Frage 6 - [noch zu importieren]",
+      "multiSelect": true,
+      "question": "Welche ZWEI der folgenden Optionen stellen die WICHTIGSTEN Fähigkeiten von LLMs beim Test dar?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Identifizieren von Mehrdeutigkeiten und Inkonsistenzen in Anforderungen.",
+        "Generieren von vollständigem Anwendungscode für die Bereitstellung.",
+        "Automatisierung der Ausführung aller Testskripte ohne menschliches Eingreifen.",
+        "Durchführung explorativer Tests an Softwareanwendungen.",
+        "Erstellen von vielfältigen Testdaten mit verschiedenen Kombinationen und Grenzwerten."
       ],
-      "correct": 0,
-      "explanation": ""
+      "correct": [
+        0,
+        4
+      ],
+      "explanation": "LLMs können Anforderungen auf Mehrdeutigkeiten und Inkonsistenzen prüfen (a) und vielfältige Testdaten mit unterschiedlichen Kombinationen und Grenzwerten erzeugen (e); vollständige Codegenerierung, autonome Testausführung ohne Aufsicht und manuelles exploratives Testen gehören nicht zu ihren Kernfähigkeiten."
     },
     {
       "id": 7,
       "chapter": 2,
       "points": 1,
-      "question": "Frage 7 - [noch zu importieren]",
+      "question": "Welche der folgenden Aussagen erklärt AM BESTEN den Unterschied zwischen KI-Chatbot und LLM-gestützten Testanwendungen im Zusammenhang mit Softwaretesten?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Ein KI-Chatbot eignet sich besser für spezifische Testaufgaben, während LLM-gestützte Testanwendungen vor allem für Ad-hoc-Interaktionen gedacht sind.",
+        "Sowohl KI-Chatbot als auch LLM-gestützte Testanwendungen sind so konzipiert, dass sie ohne wesentliche Anpassung für dieselben Testaufgaben eingesetzt werden können.",
+        "LLM-gestützte Testanwendungen basieren auf Konversations-Prompts, während KI-Chatbots in Testwerkzeugen und -prozessen integriert werden müssen.",
+        "KI-Chatbots dienen als Konversationsschnittstellen für Ad-hoc-Tests, während LLM-gestützte Testanwendungen angepasste Lösungen für spezifische Testaufgaben bieten."
       ],
       "correct": 3,
-      "explanation": ""
+      "explanation": "KI-Chatbots sind primär für Ad-hoc-Konversationen geeignet, während LLM-gestützte Testanwendungen speziell in Testwerkzeuge und -prozesse integriert werden, um konkrete Testaufgaben zu unterstützen."
     },
     {
       "id": 8,
       "chapter": 2,
       "points": 1,
-      "question": "Frage 8 - [noch zu importieren]",
+      "question": "Ein Tester untersucht einen strukturierten Prompt, mit dem LLM-Unterstützung für die Performanzanalyse eingeholt werden soll. Eine der Komponenten dieses Prompts lautet: „Testberichte von Performanztestwerkzeugen, Systemüberwachungsprotokolle während Spitzenlastzeiten und Anwendungsbenchmarks aus früheren Versionen“. Welcher Komponente der sechsteiligen Prompt-Struktur lässt sich diese Beschreibung AM BESTEN zuordnen?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Kontext",
+        "Eingabedaten",
+        "Einschränkungen",
+        "Ausgabeformat"
       ],
       "correct": 1,
-      "explanation": ""
+      "explanation": "Die Beschreibung listet konkrete Datenquellen auf, die vom LLM verarbeitet werden sollen, und entspricht damit der Komponente Eingabedaten, nicht Kontext, Einschränkungen oder Ausgabeformat."
     },
     {
       "id": 9,
       "chapter": 2,
       "points": 1,
-      "question": "Frage 9 - [noch zu importieren]",
+      "question": "Ein Tester möchte, dass ein LLM eine Anforderung auf potenzielle Fehlerzustände analysiert. Im strukturierten Prompt, den der Tester verwendet, lautet eine Zeile: „Die potenziellen Fehlerzustände müssen in einer Markdown-Tabelle mit den folgenden Spalten angegeben werden: ID, Anforderung, Fehlerzustand, Beschreibung, Fehlerschweregrad“. Welcher Komponente der sechsteiligen Prompt-Struktur lässt sich diese Zeile AM BESTEN zuordnen?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Instruktionen",
+        "Einschränkungen",
+        "Ausgabeformat",
+        "Kontext"
       ],
       "correct": 2,
-      "explanation": ""
+      "explanation": "Die Zeile legt fest, wie die Ergebnisse dargestellt werden sollen (Tabelle mit bestimmten Spalten), was der Komponente Ausgabeformat entspricht."
     },
     {
       "id": 10,
       "chapter": 2,
       "points": 1,
-      "question": "Frage 10 - [noch zu importieren]",
+      "question": "Welche der folgenden Aussagen beschreibt AM BESTEN die Unterschiede zwischen den Techniken „Prompt-Verkettung (prompt chaining)“, „Few-Shot-Prompting“ und „Meta-Prompting“?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Prompt-Verkettung konzentriert sich auf die Bereitstellung von Beispielen, Few-Shot-Prompting unterteilt Aufgaben in Teilaufgaben und Meta-Prompting verfeinert Prompts manuell.",
+        "Few-Shot-Prompting bietet Anleitung anhand von Beispielen, Prompt-Verkettung unterteilt Aufgaben in mehrere einzelne Prompts und Meta-Prompting ermöglicht es dem Modell, seine eigenen Prompts iterativ zu verfeinern.",
+        "Meta-Prompting legt den Schwerpunkt auf die Aufteilung von Aufgaben in Schritte, Prompt-Verkettung verwendet Beispiele und Few-Shot-Prompting konzentriert sich auf die manuelle Optimierung von Prompts.",
+        "Prompt-Verkettung bietet Anleitung ohne Beispiele, Few-Shot-Prompting bietet Anleitung mit Beispielen und Meta-Prompting stützt sich auf vom Tester definierte Prompts."
       ],
       "correct": 1,
-      "explanation": ""
+      "explanation": "Few-Shot-Prompting liefert Beispiele zur Anleitung, Prompt-Verkettung zerlegt eine Aufgabe in mehrere aufeinanderfolgende Prompts, und Meta-Prompting lässt das LLM seine eigenen Prompts iterativ verfeinern."
     },
     {
       "id": 11,
       "chapter": 2,
       "points": 1,
-      "question": "Frage 11 - [noch zu importieren]",
+      "question": "Was ist die Hauptfunktion eines System-Prompts in Interaktionen mit LLMs?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Bereitstellung eines Rahmens für das LLM-Verhalten während der gesamten Konversation.",
+        "Übermittlung spezifischer Fragen oder Instruktionen vom Benutzer an das LLM.",
+        "Dynamische Anpassung an jede Benutzerinteraktion und Festlegung des Konversationskontexts.",
+        "Einbeziehung sichtbarer Benutzereingaben und Festlegung von Regeln für die Konversation."
       ],
       "correct": 0,
-      "explanation": ""
+      "explanation": "Der System-Prompt setzt den Rahmen für Verhalten, Ton und Regeln des LLM über die gesamte Konversation und ist in der Regel statisch sowie für Nutzer nicht sichtbar."
     },
     {
       "id": 12,
       "chapter": 2,
       "points": 2,
-      "question": "Frage 12 - [noch zu importieren]",
+      "multiSelect": true,
+      "question": "Sie sollen stabile, bereits auf Fehler geprüfte Anforderungen eines neuen Projekts mit generativer KI analysieren, indem Sie (1) Testbedingungen generieren, (2) diese risikobasiert priorisieren und (3) potenzielle Lücken in der Testüberdeckung mithilfe eines Prompt-Verkettungs-Ansatzes identifizieren.\n\nWelche ZWEI der folgenden Vorgehensweisen sind in diesem Szenario am WENIGSTEN geeignet und NICHT im Sinne des beschriebenen Prompt-Verkettungs-Ansatzes?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Übermitteln Sie die Anforderungen an das LLM und fordern Sie es auf, auf Grundlage dieser Anforderungen Testbedingungen zu erstellen.",
+        "Stellen Sie dem LLM die Testbedingungen zur Verfügung, geben Sie den Kontext für die Priorisierung (z. B. Risikobewertungen, Qualitätsziele) und fordern Sie eine Priorisierung an.",
+        "Stellen Sie dem LLM die priorisierten Testbedingungen zur Verfügung und fordern Sie eine Abdeckungsanalyse gegen die Anforderungen an.",
+        "Übermitteln Sie die Anforderungen an das LLM und fordern Sie es auf, in einem Schritt priorisierte Testbedingungen zu erstellen, die alle Aspekte abdecken.",
+        "Übermitteln Sie die Anforderungen an das LLM und fordern Sie es auf, Inkonsistenzen und Unklarheiten in den Anforderungen zu erkennen."
       ],
-      "correct": 0,
-      "explanation": ""
+      "correct": [
+        3,
+        4
+      ],
+      "explanation": "Ein Alles-in-einem-Schritt-Ansatz (d) widerspricht dem Prinzip des Prompt-Chainings, und die Suche nach Inkonsistenzen (e) ist nicht Ziel des Szenarios, da die Anforderungen bereits stabil und geprüft sind."
     },
     {
       "id": 13,
       "chapter": 2,
       "points": 2,
-      "question": "Frage 13 - [noch zu importieren]",
+      "question": "Erwägen Sie die Anwendung des sogenannten Few-Shot Prompting, um Testfälle im Gherkin-Stil (d. h. szenariobasiert) für die folgende User-Story und das folgende Akzeptanzkriterium zu generieren:\n\nUser-Story: „Als Benutzer möchte ich mein Passwort zurücksetzen, damit ich wieder Zugriff auf mein Konto erhalte, wenn ich es vergesse.“\n\nAkzeptanzkriterium: „Wenn ein Benutzer eine registrierte E-Mail-Adresse angibt, erhält er eine E-Mail zum Zurücksetzen seines Passworts.“\n\nSie können sich auf vordefinierte Beispiele stützen, die User Stories, Akzeptanzkriterien und Testfälle im Gherkin-Stil enthalten. Ihre Aufgabe besteht darin, eine Eingabeaufforderung zu erstellen, die das LLM bei der Generierung präziser Testfälle anleitet, die mit den Akzeptanzkriterien für die oben genannte User-Story übereinstimmen.\n\nWelche der folgenden Prompts eignet sich AM BESTEN für diese Aufgabe?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Prompt A: Rolle: Agieren Sie als Testanalyst. Kontext: Sie führen einen Test der Funktion zum Zurücksetzen des Passworts durch. Instruktion: Generieren Sie Testfälle im Gherkin-Stil für die User-Story und das Akzeptanzkriterium. Verwenden Sie dabei die folgenden vordefinierten Beispiele als Leitfaden: <<vordefinierte Beispiele>>. Eingabedaten: <<<User-Story>>> und <<<Akzeptanzkriterium>>>. Einschränkungen: Stützen Sie sich bei der Erstellung von Testfällen auf bewährte Verfahren. Ausgabeformat: Generieren Sie Testfälle mit den erwarteten Ergebnissen.",
+        "Prompt B: Rolle: Agieren Sie als Testanalyst, der auf Testfälle im Gherkin-Stil spezialisiert ist. Kontext: Sie führen einen Test der Funktion zum Zurücksetzen des Passworts durch. Instruktion: Erstellen Sie Testfälle im Gherkin-Stil für die User-Story und das Akzeptanzkriterium, wobei Sie sich an den folgenden vordefinierten Beispielen orientieren: <<<vordefinierte Beispiele>>>. Eingabedaten: <<<User-Story>>> und <<<Akzeptanzkriterium>>>. Einschränkungen: Verwenden Sie die „Given-When-Then”-Syntax und stellen Sie sicher, dass diese mit dem Akzeptanzkriterium übereinstimmt. Ausgabeformat: Beachten Sie das vorgegebene Format für Testfälle im Gherkin-Stil.",
+        "Prompt C: Rolle: Agieren Sie als Testanalyst. Kontext: Sie führen einen Test der Funktion zum Zurücksetzen des Passworts durch. Instruktion: Erstellen Sie Testfälle im Gherkin-Stil für die User-Story und das Akzeptanzkriterium. Stützen Sie sich bei der Erstellung der Testfälle auf bewährte Verfahren (Best Practices). Eingabedaten: <<<User-Story>>> und <<<Akzeptanzkriterium>>>. Einschränkungen: Verwenden Sie die „Given-When-Then”-Syntax und stellen Sie sicher, dass die Testfälle mit den Akzeptanzkriterien übereinstimmen. Ausgabeformat: Halten Sie sich an das vorgegebene Format für Testfälle im Gherkin-Stil.",
+        "Prompt D: Rolle: Agieren Sie als Testanalyst. Kontext: Sie testen eine Funktion zum Zurücksetzen des Passworts. Instruktion: Erstellen Sie mindestens zwei Testfälle im Gherkin-Stil für die User-Story und das Akzeptanzkriterium. Konzentrieren Sie sich dabei auf Randfälle. Eingabedaten: <<<User-Story>>> und <<<Akzeptanzkriterium>>>. Einschränkungen: Stellen Sie sicher, dass alle Testfälle der „Given-When-Then”-Syntax entsprechen. Ausgabeformat: Halten Sie sich an das vorgegebene Format für Testfälle im Gherkin-Stil."
       ],
       "correct": 1,
-      "explanation": ""
+      "explanation": "Prompt B ist am umfassendsten: Er nutzt vordefinierte Beispiele (Few-Shot), fordert explizit die Given-When-Then-Syntax und stellt sicher, dass die Testfälle mit dem Akzeptanzkriterium übereinstimmen."
     },
     {
       "id": 14,
       "chapter": 2,
       "points": 2,
-      "question": "Frage 14 - [noch zu importieren]",
+      "question": "Sie haben die Aufgabe, strukturierte Eingabeaufforderungen zur Analyse von Regressionstestergebnissen anzuwenden. Hier ist ein erster Entwurf der Eingabeaufforderung:\n\nRolle: Agieren Sie als Testanalyst.\nKontext: Analysieren Sie die Rohdaten der Regressionstestergebnisse aus einem kürzlich durchgeführten Testzyklus.\nInstruktion: Identifizieren Sie Unstimmigkeiten in den Testergebnissen.\nEingabedaten: Verwenden Sie die angehängte Datei mit den Roh-Testergebnissen.\nEinschränkungen: Verwenden Sie die Liste bekannter Anomalien zur Gegenprüfung.\nAusgabeformat: Stellen Sie eine Liste der Unstimmigkeiten in Tabellenform bereit.\n\nSie werden gebeten, diese Eingabeaufforderung zu verbessern. Welche der folgenden Verbesserungen würde die Eingabeaufforderung AM BESTEN an die bewährten Verfahren des strukturierten Prompt-Engineering für eine umfassende Analyse von Regressionstestberichten anpassen?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Fügen Sie einen Schritt hinzu, um ähnliche Probleme zu gruppieren und die Befunde mit der Liste bekannter Anomalien abzugleichen.",
+        "Geben Sie an, dass es sich um einen Analysten für Regressionstests handelt, der auf umsetzbare Erkenntnisse spezialisiert ist.",
+        "Erweitern Sie die Instruktion um die Trennung von erwarteten Ergebnissen und Ist-Ergebnissen, die Gruppierung von Problemen und das Hervorheben von Diskrepanzen.",
+        "Nehmen Sie Verweise auf Regressionstest-Prinzipien wie „Given-When-Then” in die Einschränkungen auf."
       ],
       "correct": 2,
-      "explanation": ""
+      "explanation": "Die Erweiterung der Instruktion um Trennung von Soll-/Ist-Ergebnissen, Gruppierung von Problemen und Hervorheben von Diskrepanzen deckt alle wichtigen strukturierten Analyseschritte ab und verbessert die Aussagekraft am stärksten."
     },
     {
       "id": 15,
       "chapter": 2,
       "points": 2,
-      "question": "Frage 15 - [noch zu importieren]",
+      "question": "Sie verwenden ein LLM, um die Erstellung umsetzbarer Testmetriken aus Rohdaten zu unterstützen. Die Metriken umfassen den Testfortschritt, Fehlertrends und die Abdeckung, die sowohl grafisch dargestellt, als auch mit Text erläutert werden. Ihr Ziel ist es, den Testprozess zu verbessern, um sicherzustellen, dass die generierten Metriken genau, umsetzbar und für die Beteiligten leicht interpretierbar sind.\n\nHier ist ein erster Entwurf eines Prompts, der zur Instruktion der KI verwendet wird:\n\nRolle: Agieren Sie als Testmanager.\nKontext: Ihnen werden Rohdaten aus Testtools zur Verfügung gestellt.\nInstruktion: Generieren Sie aus den Rohdaten Metriken zum Testfortschritt, zu Fehlertrends und zur Abdeckung.\nEingabedaten: Verwenden Sie die angehängte Datei mit den Rohdaten der Testergebnisse.\nEinschränkungen: Stellen Sie sicher, dass die Ausgabe prägnant und verständlich ist.\nAusgabeformat: Zeigen Sie die Metriken in einem Dashboard-Format.\n\nSie werden gebeten, diesen Prompt zu überarbeiten. Welche der folgenden Anpassungen würde die Fähigkeit des LLM, genaue und umsetzbare Metriken zu erstellen, am stärksten verbessern?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Geben Sie an, dass die Rolle ein Testmanager ist, der sich auf umsetzbare Erkenntnisse und Entscheidungsunterstützung konzentriert, um eine umfassende Analyse der Testdaten sicherzustellen.",
+        "Fügen Sie eine Instruktion hinzu, potenzielle Risiken, die aus den Trends in den generierten Metriken identifiziert wurden, zusammen mit ihrer Folgenabschätzung und Priorisierung aufzunehmen.",
+        "Erweitern Sie das Ausgabeformat um eine Zusammenfassung in einfacher Sprache, die die Metriken interpretiert und die nächsten Schritte für die Beteiligten umreißt.",
+        "Betonen Sie die Einschränkung, dass die Ausgabe auch für die Stakeholder leicht interpretierbar sein muss, durch die Verwendung klarer Sprache und den Verzicht auf Fachjargon."
       ],
       "correct": 2,
-      "explanation": ""
+      "explanation": "Die Erweiterung des Ausgabeformats um eine allgemeinverständliche Zusammenfassung mit Interpretation der Metriken und nächsten Schritten verbessert die Umsetzbarkeit und Verständlichkeit für Stakeholder am direktesten."
     },
     {
       "id": 16,
       "chapter": 2,
       "points": 2,
-      "question": "Frage 16 - [noch zu importieren]",
+      "question": "Ihr Ziel ist es, Testfälle für ein KI-basiertes System zu erstellen, das unter dem Testorakelproblem leidet, bei dem das erwartete Ergebnis nicht eindeutig bestimmt werden kann. Sie können sich nur auf wenige vorhandene Testfälle mit bekannten erwarteten Ergebnissen verlassen. Durch geeignete Analysen haben Sie eine Reihe klar definierter Transformationsregeln identifiziert, die festlegen, wie sich Änderungen an den Eingaben auf die erwarteten Ergebnisse auswirken. Diese Regeln können auf alle vorhandenen Testfälle angewendet werden.\n\nSie haben sich entschieden, eine generative KI einzusetzen und einem bestimmten LLM die folgenden Informationen bereitzustellen:\n- die vorhandenen Testfälle mit ihren Eingaben und erwarteten Ergebnissen,\n- eine klare Beschreibung der Transformationsregeln sowie\n- Richtlinien für die Generierung zusätzlicher Testfälle durch präzise Anwendung dieser Regeln auf die relevanten vorhandenen Testfälle.\n\nMit den angegebenen Informationen kann das ausgewählte LLM direkt zusätzliche Testfälle generieren, die Ihren Erwartungen entsprechen.\n\nWelche der folgenden Prompting-Techniken eignet sich AM BESTEN, um Ihr Ziel in diesem Szenario zu erreichen?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Few-Shot-Prompting",
+        "Prompt-Verkettung (Prompt Chaining)",
+        "Meta-Prompting",
+        "Zero-Shot-Prompting"
       ],
       "correct": 0,
-      "explanation": ""
+      "explanation": "Few-Shot-Prompting ist ideal, da vorhandene Testfälle mit Eingaben und erwarteten Ergebnissen als Beispiele dienen, die dem LLM die Transformationsregeln demonstrieren und es zur Generierung passender neuer Testfälle anleiten."
     },
     {
       "id": 17,
       "chapter": 2,
       "points": 1,
-      "question": "Frage 17 - [noch zu importieren]",
+      "question": "Sie verwenden generative KI, um das Testen einer Unterhaltungssoftwareanwendung zu unterstützen. Ihr Ziel ist es, sowohl typische Nutzungsszenarien als auch Randfälle möglichst umfassend abzudecken. Das generative KI-Modell generiert dazu:\n- Testfälle für Benutzerinteraktionsszenarien,\n- Testskripte für API-Interaktionen und\n- synthetische Testdaten zur Abdeckung von Randfällen.\n\nWelche Kombination aus Metriken und deren Nutzung bewertet die Leistung der generativen KI in diesem Szenario AM BESTEN und liefert eine geeignete Grundlage zur Verfeinerung der Prompts?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Messen Sie die Vielfalt der generierten Testfälle, um unterschiedliche Eingabeszenarien und Randfälle abzudecken, und erfassen Sie die Ausführungserfolgsrate der generierten API-Testskripte, um deren Zuverlässigkeit zu bewerten.",
+        "Bewerten Sie die Genauigkeit und Sensitivität der Testfälle gegenüber den Anforderungen an die Unterhaltungssoftware und nutzen Sie Zeiteffizienzmetriken, um KI-generierte Testskripte mit manuellen Testaktivitäten zu vergleichen.",
+        "Konzentrieren Sie sich auf die Genauigkeit der synthetischen Testdaten im Hinblick auf Konformitätsstandards für Unterhaltungssoftware und ergänzen Sie dies durch Relevanz und Kontext-Angemessenheit sowie die Ausführungserfolgsrate, um Übereinstimmung und Verwendbarkeit der Testskripte zu bewerten.",
+        "Priorisieren Sie Relevanz und Kontext-Angemessenheit aller Ergebnisse, um die Konsistenz mit den Anforderungen an die Unterhaltungssoftware zu gewährleisten, und setzen Sie Vielfalt-Metriken ein, um die Überdeckung von Randfällen zu erweitern, ohne die Ausführungserfolgsrate zu berücksichtigen."
       ],
       "correct": 0,
-      "explanation": ""
+      "explanation": "Die Kombination aus Diversitätsmetriken (Abdeckung typischer Szenarien und Randfälle) und Ausführungserfolgsrate (Zuverlässigkeit der API-Testskripte) bewertet sowohl die Breite der Abdeckung als auch die technische Ausführbarkeit der KI-Ergebnisse."
     },
     {
       "id": 18,
       "chapter": 2,
       "points": 1,
-      "question": "Frage 18 - [noch zu importieren]",
+      "question": "Welche der folgenden Verfahren eignet sich AM BESTEN, um zu analysieren, warum ein LLM wiederholt Testfälle mit falschen erwarteten Ergebnissen generiert, die den Eingaben widersprechen, und daraus Erkenntnisse zur Optimierung der Eingabeaufforderung (Prompt) und zur Vermeidung ähnlicher Fehler abzuleiten?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Ausgabeanalyse",
+        "A/B-Test von Prompts",
+        "Anpassung der Länge und Spezifität von Prompts",
+        "Integration von Benutzer-Feedback"
       ],
       "correct": 0,
-      "explanation": ""
+      "explanation": "Die Ausgabeanalyse untersucht die LLM-Ausgaben systematisch auf Ungenauigkeiten, sodass sich die Ursachen fehlerhafter erwarteter Ergebnisse nachvollziehen und konkrete Hinweise für die Prompt-Verfeinerung ableiten lassen."
     },
     {
       "id": 19,
       "chapter": 3,
       "points": 1,
-      "question": "Frage 19 - [noch zu importieren]",
+      "question": "Was ist eine Halluzination im Zusammenhang mit LLM-Ausgaben?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Ein logischer Fehler, bei dem das LLM einen mehrstufigen Denkprozess nicht korrekt nachvollziehen kann.",
+        "Eine Verzerrung in der LLM-Ausgabe, die dadurch verursacht wird, dass die Trainingsdaten bestimmte Perspektiven bevorzugen.",
+        "Eine Generierung irrelevanter oder sachlich falscher Ergebnisse durch das LLM für eine bestimmte Aufgabe.",
+        "Eine Einschränkung des LLM beim Verstehen nicht-englischer Perspektiven bei der Testgenerierung."
       ],
       "correct": 2,
-      "explanation": ""
+      "explanation": "Eine Halluzination liegt vor, wenn ein LLM Ausgaben erzeugt, die sachlich falsch oder für die jeweilige Aufgabe irrelevant sind; die anderen Optionen beschreiben Schlussfolgerungsfehler bzw. Verzerrungen (Bias)."
     },
     {
       "id": 20,
       "chapter": 3,
       "points": 2,
-      "question": "Frage 20 - [noch zu importieren]",
+      "question": "Sie verwenden generative KI, um Testfälle für eine E-Commerce-Anwendung (Online-Shop) zu erstellen. Die folgenden Merkmale wurden in der Projektbeschreibung ausdrücklich erwähnt:\n- Warenkorbverwaltung\n- Anwendung von Rabattcodes\n- Generierung von Bestellbestätigungs-E-Mails\n\nWelche der folgenden KI-generierten Testfälle stellt auf Grundlage dieser Angaben AM EHESTEN eine Halluzination dar?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Überprüfen Sie, ob ein Benutzer mehrere Artikel in seinen Warenkorb legen und zur Kasse gehen kann.",
+        "Überprüfen Sie, ob ein Benutzer beim Bezahlen keinen abgelaufenen Rabattcode anwenden kann.",
+        "Überprüfen Sie, ob ein Benutzer nach erfolgreicher Bestellung eine Bestätigungs-E-Mail erhält.",
+        "Überprüfen Sie, ob ein Benutzer eine Wunschliste erstellen kann, um Lieblingsartikel für später zu speichern."
       ],
       "correct": 3,
-      "explanation": ""
+      "explanation": "Die Wunschlistenfunktion wird in der Projektbeschreibung nicht erwähnt, während die anderen drei Testfälle direkt auf explizit genannte Merkmale zurückgehen; Option d) ist daher die wahrscheinlichste Halluzination."
     },
     {
       "id": 21,
       "chapter": 3,
       "points": 1,
-      "question": "Frage 21 - [noch zu importieren]",
+      "question": "Welche der folgenden Optionen beschreibt AM BESTEN einen unmittelbaren Vorteil klarer und strukturierter Eingabedatenformate (z. B. Tabellen, JSON, fest definierte Felder) beim Einsatz von LLMs für Testaufgaben?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Führt dazu, dass der Aufwand für das Feintuning von LLMs für Testaufgaben reduziert wird.",
+        "Führt dazu, dass LLMs weniger mehrdeutige Ergebnisse für Testaufgaben erzeugen.",
+        "Führt dazu, dass LLMs kontextrelevantere und präzisere Ausgaben für Testaufgaben erzeugen.",
+        "Führt dazu, dass LLMs kreativere Ergebnisse für Testaufgaben erzeugen."
       ],
       "correct": 1,
-      "explanation": ""
+      "explanation": "Klar strukturierte Eingabedaten minimieren Missverständnisse, da Mehrdeutigkeiten häufig aus unklaren, schlecht strukturierten Daten entstehen; Feintuning-Aufwand, Kontextrelevanz und Kreativität werden dadurch nicht direkt beeinflusst."
     },
     {
       "id": 22,
       "chapter": 3,
       "points": 1,
-      "question": "Frage 22 - [noch zu importieren]",
+      "question": "Welche Strategie kann dazu beitragen, die Variabilität der Ausgaben eines LLMs zu verringern, indem die Wahrscheinlichkeitsverteilung während der Antwortgenerierung eingeschränkt wird?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Erhöhung der Lernrate.",
+        "Senkung des Temperaturparameters",
+        "Erhöhung des Anfangswerts für den Zufallsgenerator (Random Seed).",
+        "Senkung des Anfangswerts für den Zufallsgenerator (Random Seed)."
       ],
       "correct": 1,
-      "explanation": ""
+      "explanation": "Die Temperatur steuert die Zufälligkeit der Ausgabe, indem sie auf die Wahrscheinlichkeitsverteilung während der Inferenz einwirkt; eine Senkung der Temperatur reduziert die Variabilität und führt zu konsistenteren Ausgaben."
     },
     {
       "id": 23,
       "chapter": 3,
       "points": 1,
-      "question": "Frage 23 - [noch zu importieren]",
+      "question": "Welche der folgenden Aussagen zu Datenschutzbedenken bei der Verwendung generativer KI in Softwaretests ist NICHT KORREKT?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Generative KI kann unbeabsichtigt sensible Daten durch ihre Ausgabe offenlegen.",
+        "Generative KI-Tools können sensible Daten ohne ausdrückliche Zustimmung des Benutzers speichern und verarbeiten, was zu Missbrauch führen kann.",
+        "Die Verwendung von generativen KI-Tools ohne Einhaltung von Datenschutzbestimmungen wie der Datenschutz-Grundverordnung (DSGVO) kann zu Rechtsstreitigkeiten führen.",
+        "Ein LLM kann unter Umständen echte sensible Daten offenlegen, wenn es bei der Generierung synthetischer Testdaten halluziniert, unabhängig von den Trainingsdaten."
       ],
       "correct": 3,
-      "explanation": ""
+      "explanation": "Aussage d) ist nicht korrekt: Ein LLM kann keine echten sensiblen Daten offenlegen, wenn es halluziniert, solange es nicht mit solchen Daten trainiert wurde – Halluzinationen sind rein synthetisch und basieren auf gelernten Mustern, nicht auf realen Trainingsdaten."
     },
     {
       "id": 24,
       "chapter": 3,
       "points": 1,
-      "question": "Frage 24 - [noch zu importieren]",
+      "question": "Ein Angreifer schleust gefälschte Testergebnisse in den Trainingsdatensatz eines LLMs ein, das dafür vorgesehen ist, optimale Testabdeckungsstrategien zu empfehlen. Auf welche Art von Angriffsvektor bezieht sich diese Beschreibung AM BESTEN?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Generierung von bösartigem Code",
+        "Datenexfiltration",
+        "Manipulation von Anfragen",
+        "Datenverunreinigung"
       ],
       "correct": 3,
-      "explanation": ""
+      "explanation": "Das Einschleusen gefälschter Daten in den Trainingsdatensatz eines LLM entspricht der Datenverunreinigung (Data Poisoning), da hierbei die Trainingsdaten selbst manipuliert werden."
     },
     {
       "id": 25,
       "chapter": 3,
       "points": 1,
-      "question": "Frage 25 - [noch zu importieren]",
+      "question": "Ordnen Sie jede Art von Angriffsvektor (1-4) dem entsprechenden Beispiel (A-D) zu:\n\n1. „Datenexfiltration”\n2. „Manipulation von Anfragen”\n3. „Datenverunreinigung”\n4. „Generierung von bösartigem Code”\n\nA. Ein Angreifer verändert in böswilliger Absicht Daten, die die Rückverfolgbarkeit zwischen Anforderungen und Testfällen betreffen, innerhalb des Datensatzes, der zum Feintuning eines LLM verwendet wird, und beeinträchtigt damit dessen Genauigkeit bei der Generierung von Testfällen aus Anforderungen.\nB. Ein Angreifer erstellt und übermittelt böswillig manipulierte Eingabeaufforderungen (Prompts), die ein LLM, das zur Unterstützung von Testern bei der automatisierten Testskriptgenerierung feinabgestimmt wurde, dazu veranlassen, verwundbare Testskripte mit versteckten Sicherheitslücken zu erstellen.\nC. Ein Angreifer übermittelt in böswilliger Absicht umfangreiche, speziell präparierte Eingabeaufforderungen (Prompts), die ein LLM, das zur Unterstützung von Testern bei der Generierung von Testfällen feinabgestimmt wurde, dazu verleiten, versehentlich vertrauliche API-Schlüssel preiszugeben, die aus früheren Testprojekten stammen.\nD. Ein Angreifer übermittelt in böswilliger Absicht sorgfältig manipulierte Referenz-Screenshots an ein visuelles Testframework, das ein LLM für vergleichende visuelle Analysen verwendet, um das LLM zu täuschen, sodass es während Regressionstests echte UI-Probleme systematisch ignoriert.",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "1C, 2D, 3A, 4B",
+        "1B, 2D, 3A, 4C",
+        "1D, 2C, 3B, 4A",
+        "1C, 2B, 3D, 4A"
       ],
       "correct": 0,
-      "explanation": ""
+      "explanation": "Datenexfiltration entspricht dem Preisgeben vertraulicher API-Schlüssel (1C), Manipulation von Anfragen den veränderten Referenz-Screenshots zur Laufzeit (2D), Datenverunreinigung der Manipulation des Feintuning-Datensatzes (3A) und Generierung von bösartigem Code dem Erzeugen verwundbarer Testskripte (4B)."
     },
     {
       "id": 26,
       "chapter": 3,
       "points": 1,
-      "question": "Frage 26 - [noch zu importieren]",
+      "question": "Welche der folgenden Strategien adressiert die Risiken für den Datenschutz im Zusammenhang mit auf generativer KI basierenden Softwaretesten AM BESTEN?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Mehrere LLMs zur Bewertung und zum Vergleich von Testergebnissen verwenden, um die Genauigkeit zu verbessern.",
+        "Sensible Testdaten durch eine anonymisierte Version derselben ersetzen.",
+        "Uneingeschränkten Zugriff auf sensible Testdaten gewähren, um das Training generativer KI zu verbessern.",
+        "Die Verschlüsselung sensibler Testdaten deaktivieren, um die Datenspeicherung und Übertragungsprozesse zu vereinfachen."
       ],
       "correct": 1,
-      "explanation": ""
+      "explanation": "Die Anonymisierung sensibler Testdaten ist eine effektive Strategie zur Minderung von Datenschutzrisiken; uneingeschränkter Zugriff und deaktivierte Verschlüsselung erhöhen das Risiko stattdessen."
     },
     {
       "id": 27,
       "chapter": 3,
       "points": 1,
-      "question": "Frage 27 - [noch zu importieren]",
+      "question": "Welche der folgenden Aussagen über die Auswirkungen der Verwendung von LLMs auf den Energieverbrauch und die CO₂-Emissionen ist KORREKT?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Bildgenerierungsaufgaben verbrauchen wesentlich mehr Energie als Textgenerierungsaufgaben, verursachen jedoch weniger CO₂-Emissionen.",
+        "Generative KI-gestützte Suchvorgänge verbrauchen aufgrund ihrer optimierten Algorithmen deutlich weniger Energie als herkömmliche Websuchen.",
+        "Bildgenerierungsaufgaben verbrauchen aufgrund ihrer höheren Komplexität erheblich mehr Energie als Textgenerierungsaufgaben.",
+        "Textgenerierungsaufgaben verbrauchen sehr wenig Energie und können daher von Millionen Nutzern ausgeführt werden, ohne einen nennenswerten Energieverbrauch zu verursachen."
       ],
       "correct": 2,
-      "explanation": ""
+      "explanation": "Bildgenerierung erfordert deutlich mehr Rechenressourcen als Textgenerierung und ist daher wesentlich energieintensiver; Energieverbrauch und CO₂-Emissionen hängen zudem in der Regel zusammen."
     },
     {
       "id": 28,
       "chapter": 3,
       "points": 1,
-      "question": "Frage 28 - [noch zu importieren]",
+      "multiSelect": true,
+      "question": "Welche ZWEI der folgenden Normen – oder Teile davon – sind für den Einsatz von generativer KI beim Testen von Software AM EHESTEN relevant?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "ISO/IEC 25010:2023",
+        "ISO/IEC 23053:2022",
+        "ISO/IEC/IEEE 29119-2:2021",
+        "ISO/IEC 42001:2023",
+        "ISO/IEC/IEEE 29119-3:2021"
       ],
-      "correct": 1,
-      "explanation": ""
+      "correct": [
+        1,
+        3
+      ],
+      "explanation": "ISO/IEC 23053:2022 liefert einen Rahmen für Datenqualität, Transparenz und Fehlertoleranz bei GenAI im Testkontext, und ISO/IEC 42001:2023 definiert Anforderungen an das Management von KI-basierten Systemen; beide werden explizit im Lehrplan (Abschnitt 3.4.1) genannt."
     },
     {
       "id": 29,
       "chapter": 4,
       "points": 1,
-      "question": "Frage 29 - [noch zu importieren]",
+      "question": "Welche der folgenden Komponenten einer LLM-gestützten Testanwendung ist dafür verantwortlich, Benutzereingaben mit strukturierten, semantisch ähnlichen Daten zu kombinieren, um einen Prompt für das LLM vorzubereiten?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Backend",
+        "Frontend",
+        "Authentifizierungskomponente",
+        "Post-Processing-Komponente"
       ],
       "correct": 0,
-      "explanation": ""
+      "explanation": "Das Backend (Orchestrator/LLM-gestützter Agent) ruft Daten aus relationalen und Vektordatenbanken ab, kombiniert sie mit Benutzer-Prompts und bereitet den für das LLM maßgeschneiderten Prompt vor."
     },
     {
       "id": 30,
       "chapter": 4,
       "points": 1,
-      "question": "Frage 30 - [noch zu importieren]",
+      "question": "Als Tester sind Sie für eine Bankanwendung zuständig, die Funktionen wie die Benutzeranmeldung, die Kontoverwaltung und sichere Transaktionen umfasst. Die Systemdokumentation, einschließlich der API-Spezifikationen und Sicherheitsanforderungen, ist in einer Vektordatenbank gespeichert. Historische Testfälle sind dagegen in einer relationalen Datenbank gespeichert.\n\nIhre Aufgabe besteht darin, mithilfe eines Retrieval-Augmented-Generation-(RAG)-Frameworks Testfälle zu erstellen, um die Übereinstimmung mit den neuesten Spezifikationen und Anforderungen sicherzustellen.\n\nWelche der folgenden Optionen stellt die AM BESTEN geeignete Verwendung des RAG-Frameworks in diesem Szenario dar?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Eine Abfrage absenden, die eine zu testende Funktion angibt. Das RAG-Framework ruft relevante Spezifikationen und Anforderungen aus der Vektordatenbank ab, kombiniert sie mit historischen Testfällen und generiert automatisch präzise und kontextbezogene Testfälle über das LLM.",
+        "Eine Abfrage einreichen, in der alle zu testenden Funktionen angegeben sind. Das RAG-Framework ruft relevante Spezifikationen und Anforderungen aus der Vektordatenbank ab, kombiniert sie mit historischen Testfällen und generiert automatisch genaue und kontextbezogene Testfälle über das LLM.",
+        "Das RAG-Framework verwenden, um historische Testfälle aus der relationalen Datenbank und Sicherheitsanforderungen aus der Vektordatenbank abzurufen. Die abgerufenen Informationen manuell überprüfen, bevor die Abfrage für das LLM verfeinert wird, um gezielte Testfälle zu generieren.",
+        "Sich auf die internen Trainingsdaten des LLM verlassen, um Testfälle zu generieren, während das RAG-Framework oder die Referenzabfrage verwendet wird, ohne die abgerufenen Informationen direkt in den Generierungsprozess einzubeziehen."
       ],
       "correct": 0,
-      "explanation": ""
+      "explanation": "RAG entfaltet seinen Nutzen bei gezielten Abfragen zu einer spezifischen Funktion: Es ruft automatisch relevante Spezifikationen und historische Testfälle ab und übergibt sie an das LLM, das daraus präzise, kontextbezogene Testfälle generiert."
     },
     {
       "id": 31,
       "chapter": 4,
       "points": 1,
-      "question": "Frage 31 - [noch zu importieren]",
+      "question": "Welche der folgenden Optionen beschreibt AM BESTEN die Verbesserungen, die autonome und semiautonome LLM-gestützte Agenten für die Automatisierung von Testprozessen mit sich bringen?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Sie können Effizienz und Qualität primär durch die Wahl zwischen Single-Agenten und Multi-Agenten-Systemen verbessern, unabhängig vom Grad menschlicher Interaktion.",
+        "Sie können die Qualität bei der Automatisierung von Testprozessen durch zusätzliche Verifizierungsschritte verbessern, jedoch auf Kosten der Effizienz.",
+        "Sie können sowohl die Effizienz als auch die Qualität bei der Automatisierung von Testprozessen verbessern, indem sie ihre Fähigkeit nutzen, mit unterschiedlichen Graden menschlicher Interaktion zu arbeiten.",
+        "Sie können sowohl die Effizienz als auch die Qualität bei der Automatisierung von Testprozessen verbessern und gleichzeitig die Notwendigkeit von Verifikationen innerhalb dieser Testprozesse beseitigen."
       ],
       "correct": 2,
-      "explanation": ""
+      "explanation": "Autonome Agenten steigern die Effizienz durch minimalen menschlichen Eingriff, während semiautonome Agenten durch strategische menschliche Aufsicht die Qualität sichern; zusammen ermöglichen sie einen ausgewogenen Ansatz für Effizienz und Qualität."
     },
     {
       "id": 32,
       "chapter": 4,
       "points": 1,
-      "question": "Frage 32 - [noch zu importieren]",
+      "question": "Welche der folgenden Aussagen über das Feintuning von Sprachmodellen für spezifische Testaufgaben ist FALSCH?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Feintuning umfasst das Training eines vortrainierten Modells mit aufgabenspezifischen Daten, um dessen Leistung und Fachkenntnisse zu verbessern.",
+        "Durch Feintuning wird ein Sprachmodell mit neuen Fähigkeiten ausgestattet, indem sein allgemeines Wissen durch aufgabenspezifisches Denken ersetzt wird, wodurch eine Überanpassung vermieden wird.",
+        "Durch Feintuning werden die Parameter eines vortrainierten Modells anhand eines gezielten Datensatzes modifiziert, um es an einen bestimmten Bereich oder eine bestimmte Aufgabe anzupassen.",
+        "Feintuning erfordert qualitativ hochwertige, aufgabenspezifische Datensätze, um verzerrte oder ungenaue Ergebnisse zu vermeiden."
       ],
       "correct": 1,
-      "explanation": ""
+      "explanation": "Aussage b) ist falsch: Feintuning ersetzt nicht das allgemeine Wissen des Modells durch aufgabenspezifisches Denken, und Überanpassung bleibt weiterhin eine mögliche Herausforderung."
     },
     {
       "id": 33,
       "chapter": 4,
       "points": 1,
-      "question": "Frage 33 - [noch zu importieren]",
+      "question": "Welche der folgenden Aussagen beschreibt AM BESTEN den Schwerpunkt von Large-Language-Model-Operations (LLMOps) bei der Bereitstellung und Verwaltung von LLMs für Testaufgaben?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Vermeidung der Abhängigkeit von generativer KI in Testprozessen.",
+        "Effiziente Verwaltung, Überwachung und Optimierung von LLMs über ihren Lebenszyklus hinweg, einschließlich Datenschutz-, Sicherheit- und Kostenaspekten.",
+        "Die Beschränkung der LLM-Nutzung auf Chatbot-basiertes Testen, um die Komplexität zu reduzieren.",
+        "Vollständige Automatisierung aller Testaufgaben ohne menschliche Beteiligung."
       ],
       "correct": 1,
-      "explanation": ""
+      "explanation": "LLMOps konzentriert sich auf die effiziente Verwaltung, Überwachung und Optimierung von LLMs über deren gesamten Lebenszyklus, einschließlich Datenschutz-, Sicherheits- und Kostenaspekten."
     },
     {
       "id": 34,
       "chapter": 5,
       "points": 1,
-      "question": "Frage 34 - [noch zu importieren]",
+      "question": "Welche der folgenden Aussagen über Schatten-KI ist RICHTIG?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Schatten-KI erzwingt die Einhaltung der Datenrichtlinien des Unternehmens und der geltenden KI-Vorschriften.",
+        "Schatten-KI macht klare Lizenzvereinbarungen für KI-Tools überflüssig.",
+        "Schatten-KI verringert das Risiko von Streitigkeiten über geistiges Eigentum.",
+        "Schatten-KI kann zu unbefugten Zugriffen auf sensible Informationen führen."
       ],
       "correct": 3,
-      "explanation": ""
+      "explanation": "Schatten-KI verfügt häufig nicht über robuste Sicherheitsmaßnahmen, wodurch das Risiko von Datenpannen oder unbefugtem Zugriff auf sensible Informationen steigt; sie unterläuft zudem Unternehmensrichtlinien statt sie durchzusetzen."
     },
     {
       "id": 35,
       "chapter": 5,
       "points": 1,
-      "question": "Frage 35 - [noch zu importieren]",
+      "question": "Was ist ein wichtiger Aspekt, der bei der Definition einer generativen KI-Strategie für das Testen zu berücksichtigen ist?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Planung von Schulungsprogrammen, um sicherzustellen, dass die Teammitglieder Zertifizierungen für jedes verwendete LLM erhalten.",
+        "Auswahl von LLMs, die sich effizient in bestehende Testumgebungen und Testtools integrieren lassen.",
+        "Sicherstellen der Verfügbarkeit möglichst vieler Eingabedaten, um die Wahrscheinlichkeit einer höheren LLM-Ausgabequalität zu gewährleisten.",
+        "Erhebung von standardisierten Metriken aus dem überwachten maschinellen Lernen, um die Effektivität der LLM-Ausgaben zu bewerten."
       ],
       "correct": 1,
-      "explanation": ""
+      "explanation": "Die Auswahl von LLMs, die mit der bestehenden Testinfrastruktur und den Skalierbarkeitsanforderungen kompatibel sind, ist ein zentraler Aspekt einer GenAI-Strategie."
     },
     {
       "id": 36,
       "chapter": 5,
       "points": 1,
-      "question": "Frage 36 - [noch zu importieren]",
+      "question": "Welche der folgenden Aussagen beschreibt AM BESTEN ein wesentliches Kriterium für die Auswahl eines geeigneten Large-Language-Modells (LLM) für bestimmte Testaufgaben in einer Testorganisation?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Die Leistung des LLM sollte ausschließlich anhand unternehmensinterner Benchmarks für die jeweiligen Testaufgaben bewertet werden.",
+        "Die wiederkehrenden Kosten, z. B. für die benötigten Rechenressourcen, sollten berücksichtigt werden.",
+        "Die Bewertung des LLM sollte sich an öffentlich verfügbaren Community-Benchmarks orientieren, um vollständige Kompatibilität sicherzustellen.",
+        "Die wiederkehrenden Kosten sollten im Rahmen eines Proof of Concept bewertet werden, um die Eignung des LLM für Testaufgaben nachzuweisen."
       ],
       "correct": 1,
-      "explanation": ""
+      "explanation": "Ein wichtiges Auswahlkriterium ist die Bewertung der wiederkehrenden Kosten (z. B. Rechenressourcen); die anderen Optionen setzen entweder auf ein unzureichendes Alleinkriterium oder verwechseln wiederkehrende mit einmaligen Kosten."
     },
     {
       "id": 37,
       "chapter": 5,
       "points": 1,
-      "question": "Frage 37 - [noch zu importieren]",
+      "question": "Welche Phasen sind bei der Einführung von generativer KI in einem Unternehmen BESONDERS WICHTIG?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Erkundung, Einführung und Definition der Nutzung, sowie Nutzung und Iteration",
+        "Bewusstsein, Priorisierung der Nutzung, Leistungsüberwachung",
+        "Planung, Experimentieren, Bewertung und Verfeinerung (Refinement)",
+        "Schulung, Testen, Implementierung und Skalierung"
       ],
       "correct": 0,
-      "explanation": ""
+      "explanation": "Der Lehrplan nennt drei Schlüsselphasen bei der Einführung von generativer KI: Entdeckung, Einführung und Definition der Nutzung sowie Nutzung und Iteration."
     },
     {
       "id": 38,
       "chapter": 5,
       "points": 1,
-      "question": "Frage 38 - [noch zu importieren]",
+      "question": "Welche der folgenden Optionen beschreibt AM BESTEN ein Beispiel für Anforderungen an Kenntnisse und/oder Fähigkeiten, die Tester benötigen, um in Testprozessen mit Large-Language-Modellen (LLMs) effektiv zu arbeiten?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Beherrschung von Techniken, die speziell darauf abzielen, zu verhindern, dass LLMs bei bestimmten Testaufgaben Halluzinationen oder Argumentationsfehler begehen.",
+        "Auswahl und Implementierung geeigneter Testautomatisierungsansätze, wie z. B. der schlüsselwortgetriebenen Testautomatisierung, zur Automatisierung von Testprozessen.",
+        "Auswahl des am besten geeigneten LLM anhand von Kriterien wie seiner Fähigkeit, an spezifische Testaufgaben angepasst oder feinabgestimmt (fine-tuned) zu werden.",
+        "Sicherstellung, dass die bei der Entwicklung der LLMs verwendeten Validierungs- und Testdaten von höchster Qualität sind."
       ],
       "correct": 2,
-      "explanation": ""
+      "explanation": "Der Lehrplan nennt die Bewertung und Auswahl von LLMs anhand ihrer Anpassbarkeit an spezifische Testaufgaben als Schlüsselkompetenz für Tester; Halluzinationen können nicht verhindert, nur gemindert werden, und die Entwicklung der LLMs selbst liegt außerhalb der Testerrolle."
     },
     {
       "id": 39,
       "chapter": 5,
       "points": 1,
-      "question": "Frage 39 - [noch zu importieren]",
+      "question": "Was ist der BESTE Ansatz, um innerhalb von Testteams Fähigkeiten zu fördern, die speziell die Einführung von generativer KI unterstützen?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Hauptsächlich auf externe Expertenkurse mit praktischen Übungen setzen, mit dem Ziel, KI sofort in alle täglichen Testaufgaben zu integrieren.",
+        "Unabhängiges Experimentieren mit verschiedenen LLMs fördern, ohne einem strukturierten Lernprozess zu folgen.",
+        "Einen praxisorientierten, schrittweisen Lernprozess einführen, der durch angeleitete Übungen, Peer-Learning und Wissensaustausch-Communities unterstützt wird.",
+        "Hauptsächlich auf theoretische Kurse von externen Experten setzen, um KI schrittweise im Einklang mit dem tatsächlichen Lernfortschritt in die täglichen Testaufgaben zu integrieren."
       ],
       "correct": 2,
-      "explanation": ""
+      "explanation": "Der Lehrplan empfiehlt einen schrittweisen, praxisorientierten Lernprozess mit angeleiteten Übungen, Peer-Learning und Wissensaustausch in Communities."
     },
     {
       "id": 40,
       "chapter": 5,
       "points": 1,
-      "question": "Frage 40 - [noch zu importieren]",
+      "question": "Welche der folgenden Antworten beschreibt AM BESTEN, wie sich die Einführung von generativer KI für Testen auf die Rollen und Verantwortlichkeiten von Testern und Testmanagern innerhalb einer Testorganisation auswirkt?",
       "options": [
-        "a) ...",
-        "b) ...",
-        "c) ...",
-        "d) ..."
+        "Tester verlagern ihren Fokus vom manuellen Entwerfen von Testfällen hin zur Anleitung und Überprüfung von KI-generierten Testartefakten.",
+        "Testmanager verlagern ihren Fokus vom Management von Testprojekten auf das Verständnis der inneren Funktionsweise generativer KI-Technologien.",
+        "Tester verlagern ihren Fokus vom manuellen Entwerfen von Testfällen hin zur Überwachung KI-basierter Testprozesse.",
+        "Testmanager verlagern ihren Fokus von der Abhängigkeit von Menschen hin zur ausschließlichen Nutzung generativer KI, um die Produktivität bei Testaufgaben zu steigern."
       ],
       "correct": 0,
-      "explanation": ""
+      "explanation": "Tester entwickeln sich zu Spezialisten für KI-gestützte Tests, die Prompts verfeinern und KI-generierte Testartefakte anleiten und überprüfen; die operative Überwachung KI-basierter Prozesse bleibt beim Testmanagement."
     }
   ],
   "glossary": [

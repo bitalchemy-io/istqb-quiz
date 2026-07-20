@@ -30,20 +30,37 @@ export default function ISTQBQuizApp() {
     }));
   }, [answers, stats]);
 
-  const handleAnswer = (questionId, optionIndex) => {
-    if (!submitted) {
-      setAnswers(prev => ({
-        ...prev,
-        [questionId]: optionIndex
-      }));
+  const handleAnswer = (question, optionIndex) => {
+    if (submitted) return;
+    if (question.multiSelect) {
+      setAnswers(prev => {
+        const current = prev[question.id] || [];
+        const next = current.includes(optionIndex)
+          ? current.filter(i => i !== optionIndex)
+          : [...current, optionIndex];
+        return { ...prev, [question.id]: next };
+      });
+    } else {
+      setAnswers(prev => ({ ...prev, [question.id]: optionIndex }));
     }
+  };
+
+  const isAnswerCorrect = (question, userAnswer) => {
+    if (question.multiSelect) {
+      if (!Array.isArray(userAnswer)) return false;
+      const sortedUser = [...userAnswer].sort();
+      const sortedCorrect = [...question.correct].sort();
+      return sortedUser.length === sortedCorrect.length &&
+        sortedUser.every((v, i) => v === sortedCorrect[i]);
+    }
+    return userAnswer === question.correct;
   };
 
   const handleSubmitQuestion = () => {
     const q = chapQuestions[currentQuestionIdx];
     const userAnswer = answers[q.id];
-    const isCorrect = userAnswer === q.correct;
-    
+    const isCorrect = isAnswerCorrect(q, userAnswer);
+
     setStats(prev => ({
       total: prev.total + 1,
       correct: isCorrect ? prev.correct + 1 : prev.correct,
@@ -203,7 +220,16 @@ export default function ISTQBQuizApp() {
   // QUIZ VIEW
   if (view === 'quiz' && currentQuestion) {
     const userAnswer = answers[currentQuestion.id];
-    const isAnswered = userAnswer !== undefined;
+    const isSelected = (idx) => currentQuestion.multiSelect
+      ? Array.isArray(userAnswer) && userAnswer.includes(idx)
+      : userAnswer === idx;
+    const isAnswered = currentQuestion.multiSelect
+      ? Array.isArray(userAnswer) && userAnswer.length === currentQuestion.correct.length
+      : userAnswer !== undefined;
+    const isCorrectOption = (idx) => currentQuestion.multiSelect
+      ? currentQuestion.correct.includes(idx)
+      : idx === currentQuestion.correct;
+    const wasCorrect = submitted && isAnswerCorrect(currentQuestion, userAnswer);
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
@@ -229,35 +255,40 @@ export default function ISTQBQuizApp() {
                 />
               </div>
               <h2 className="text-2xl font-bold mb-4 text-gray-900">{currentQuestion.question}</h2>
-              <p className="text-sm text-gray-500">{currentQuestion.points} Punkt(e)</p>
+              <p className="text-sm text-gray-500">
+                {currentQuestion.points} Punkt(e)
+                {currentQuestion.multiSelect && ` · Wählen Sie ${currentQuestion.correct.length} Optionen!`}
+              </p>
             </div>
 
             <div className="space-y-3 mb-8">
               {currentQuestion.options.map((option, idx) => (
                 <button
                   key={idx}
-                  onClick={() => handleAnswer(currentQuestion.id, idx)}
+                  onClick={() => handleAnswer(currentQuestion, idx)}
                   disabled={submitted}
                   className={`w-full p-4 text-left rounded-lg border-2 transition ${
-                    userAnswer === idx
+                    isSelected(idx)
                       ? 'border-indigo-600 bg-indigo-50'
                       : 'border-gray-200 hover:border-indigo-300'
-                  } ${submitted && idx === currentQuestion.correct ? 'bg-green-50 border-green-600' : ''} ${
-                    submitted && userAnswer === idx && idx !== currentQuestion.correct
+                  } ${submitted && isCorrectOption(idx) ? 'bg-green-50 border-green-600' : ''} ${
+                    submitted && isSelected(idx) && !isCorrectOption(idx)
                       ? 'bg-red-50 border-red-600'
                       : ''
                   }`}
                 >
-                  <div className="font-semibold text-gray-900">{String.fromCharCode(97 + idx)})</div>
+                  <div className="font-semibold text-gray-900">
+                    {currentQuestion.multiSelect ? '☐' : ''} {String.fromCharCode(97 + idx)})
+                  </div>
                   <div className="text-gray-700 mt-1">{option}</div>
                 </button>
               ))}
             </div>
 
             {submitted && (
-              <div className={`p-4 rounded-lg mb-6 ${userAnswer === currentQuestion.correct ? 'bg-green-100' : 'bg-red-100'}`}>
-                <p className={`font-semibold mb-2 ${userAnswer === currentQuestion.correct ? 'text-green-800' : 'text-red-800'}`}>
-                  {userAnswer === currentQuestion.correct ? '✓ Richtig!' : '✗ Leider falsch.'}
+              <div className={`p-4 rounded-lg mb-6 ${wasCorrect ? 'bg-green-100' : 'bg-red-100'}`}>
+                <p className={`font-semibold mb-2 ${wasCorrect ? 'text-green-800' : 'text-red-800'}`}>
+                  {wasCorrect ? '✓ Richtig!' : '✗ Leider falsch.'}
                 </p>
                 <p className="text-gray-800">{currentQuestion.explanation}</p>
               </div>
