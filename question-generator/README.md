@@ -5,6 +5,11 @@ ISTQB-style multiple-choice questions from the syllabus text
 (`src/data/theory-N.md`) via Ollama, lets you review/accept them, then
 writes, commits, and pushes accepted questions into `src/data/quizData.json`.
 
+**No entry point in the public app.** The public React app (`src/App.jsx`)
+has no button, menu item, or link to this tool — that's deliberate, not
+missing. Access it directly at its own URL (see below), never through the
+quiz UI.
+
 ## Running on the Mac Mini (Docker)
 
 The container needs `git` push access to this repo, so the SAME checkout
