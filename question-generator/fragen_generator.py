@@ -140,6 +140,13 @@ def uebernehme_fragen(kapitel: int, akzeptierte_fragen: list[dict]) -> str:
 
     _run_git(["add", "src/data/quizData.json"])
     _run_git(["commit", "-m", commit_message])
-    _run_git(["push"])
+
+    try:
+        _run_git(["push"])
+    except FragenGeneratorError as e:
+        stderr = str(e).replace("git push fehlgeschlagen: ", "")
+        raise FragenGeneratorError(
+            f"Commit erfolgreich lokal (chapter {kapitel}), aber push fehlgeschlagen — bitte manuell erneut versuchen: {stderr}"
+        )
 
     return commit_message

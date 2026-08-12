@@ -355,8 +355,15 @@ def test_uebernehme_fragen_raises_with_clear_message_when_push_fails(
         }
     ]
 
-    with pytest.raises(fragen_generator.FragenGeneratorError):
+    with pytest.raises(fragen_generator.FragenGeneratorError) as exc_info:
         fragen_generator.uebernehme_fragen(1, akzeptierte)
+
+    # Error message must indicate commit succeeded locally
+    error_message = str(exc_info.value)
+    assert "Commit erfolgreich lokal" in error_message
+    assert "chapter 1" in error_message
+    assert "push fehlgeschlagen" in error_message
+    assert "manuell erneut versuchen" in error_message
 
     # The commit must still exist locally even though the push failed
     log = subprocess.run(
