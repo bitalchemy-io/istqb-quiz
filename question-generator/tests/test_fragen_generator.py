@@ -206,3 +206,164 @@ def test_generiere_fragen_includes_existing_questions_in_prompt(
     )
 
     assert "Alte Frage?" in captured["prompt"]
+
+
+import subprocess
+
+
+def _init_git_repo_with_remote(repo_root, remote_root):
+    subprocess.run(
+        ["git", "init", "--bare"], cwd=remote_root, capture_output=True, check=True
+    )
+    subprocess.run(["git", "init"], cwd=repo_root, capture_output=True, check=True)
+    subprocess.run(
+        ["git", "branch", "-M", "main"], cwd=repo_root, capture_output=True, check=True
+    )
+    subprocess.run(
+        ["git", "config", "user.email", "test@test.local"],
+        cwd=repo_root,
+        capture_output=True,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "config", "user.name", "Test"],
+        cwd=repo_root,
+        capture_output=True,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "remote", "add", "origin", str(remote_root)],
+        cwd=repo_root,
+        capture_output=True,
+        check=True,
+    )
+
+
+def test_naechste_frage_id_continues_from_max(fragen_generator):
+    quiz_data = {"questions": [{"id": 5}, {"id": 12}, {"id": 3}]}
+
+    assert fragen_generator.naechste_frage_id(quiz_data) == 13
+
+
+def test_naechste_frage_id_starts_at_1_when_empty(fragen_generator):
+    assert fragen_generator.naechste_frage_id({"questions": []}) == 1
+
+
+def test_uebernehme_fragen_writes_commits_and_pushes(
+    fragen_generator, tmp_path, monkeypatch
+):
+    repo_root = tmp_path / "work"
+    remote_root = tmp_path / "remote.git"
+    repo_root.mkdir()
+    remote_root.mkdir()
+    data_dir = repo_root / "src" / "data"
+    data_dir.mkdir(parents=True)
+    quiz_data_path = data_dir / "quizData.json"
+    quiz_data_path.write_text(
+        json.dumps({"chapters": [], "questions": [{"id": 1}], "glossary": []}),
+        encoding="utf-8",
+    )
+
+    _init_git_repo_with_remote(repo_root, remote_root)
+    subprocess.run(["git", "add", "-A"], cwd=repo_root, capture_output=True, check=True)
+    subprocess.run(
+        ["git", "commit", "-m", "init"], cwd=repo_root, capture_output=True, check=True
+    )
+    subprocess.run(
+        ["git", "push", "-u", "origin", "main"],
+        cwd=repo_root,
+        capture_output=True,
+        check=True,
+    )
+
+    monkeypatch.setattr(fragen_generator, "REPO_ROOT", str(repo_root))
+    monkeypatch.setattr(fragen_generator, "QUIZ_DATA_PATH", str(quiz_data_path))
+
+    akzeptierte = [
+        {
+            "question": "Neue Frage?",
+            "options": ["a", "b", "c", "d"],
+            "correct": 0,
+            "explanation": "...",
+        }
+    ]
+
+    commit_message = fragen_generator.uebernehme_fragen(3, akzeptierte)
+
+    assert "1" in commit_message and "chapter 3" in commit_message
+
+    updated = json.loads(quiz_data_path.read_text(encoding="utf-8"))
+    assert len(updated["questions"]) == 2
+    neue_frage = updated["questions"][1]
+    assert neue_frage["id"] == 2
+    assert neue_frage["chapter"] == 3
+    assert neue_frage["points"] == 1
+    assert neue_frage["question"] == "Neue Frage?"
+
+    log = subprocess.run(
+        ["git", "log", "--oneline", "-1"],
+        cwd=remote_root,
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    assert "chapter 3" in log.stdout
+
+
+def test_uebernehme_fragen_raises_with_clear_message_when_push_fails(
+    fragen_generator, tmp_path, monkeypatch
+):
+    repo_root = tmp_path / "work"
+    data_dir = repo_root / "src" / "data"
+    data_dir.mkdir(parents=True)
+    quiz_data_path = data_dir / "quizData.json"
+    quiz_data_path.write_text(
+        json.dumps({"chapters": [], "questions": [], "glossary": []}), encoding="utf-8"
+    )
+
+    subprocess.run(["git", "init"], cwd=repo_root, capture_output=True, check=True)
+    subprocess.run(
+        ["git", "branch", "-M", "main"], cwd=repo_root, capture_output=True, check=True
+    )
+    subprocess.run(
+        ["git", "config", "user.email", "test@test.local"],
+        cwd=repo_root,
+        capture_output=True,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "config", "user.name", "Test"],
+        cwd=repo_root,
+        capture_output=True,
+        check=True,
+    )
+    subprocess.run(["git", "add", "-A"], cwd=repo_root, capture_output=True, check=True)
+    subprocess.run(
+        ["git", "commit", "-m", "init"], cwd=repo_root, capture_output=True, check=True
+    )
+    # No remote configured at all -> push must fail
+
+    monkeypatch.setattr(fragen_generator, "REPO_ROOT", str(repo_root))
+    monkeypatch.setattr(fragen_generator, "QUIZ_DATA_PATH", str(quiz_data_path))
+
+    akzeptierte = [
+        {
+            "question": "?",
+            "options": ["a", "b", "c", "d"],
+            "correct": 0,
+            "explanation": "...",
+        }
+    ]
+
+    with pytest.raises(fragen_generator.FragenGeneratorError):
+        fragen_generator.uebernehme_fragen(1, akzeptierte)
+
+    # The commit must still exist locally even though the push failed
+    log = subprocess.run(
+        ["git", "log", "--oneline"],
+        cwd=repo_root,
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    assert "chapter 1" in log.stdout

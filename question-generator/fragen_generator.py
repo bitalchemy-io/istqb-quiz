@@ -92,3 +92,54 @@ def generiere_fragen(
             raise FragenGeneratorError("Ollama hat ungültige Fragen geliefert.")
 
     return fragen
+
+
+def naechste_frage_id(quiz_data: dict) -> int:
+    if not quiz_data["questions"]:
+        return 1
+    return max(f["id"] for f in quiz_data["questions"]) + 1
+
+
+def _run_git(args: list[str]) -> None:
+    result = subprocess.run(
+        ["git", *args], cwd=REPO_ROOT, capture_output=True, text=True
+    )
+    if result.returncode != 0:
+        raise FragenGeneratorError(
+            f"git {' '.join(args)} fehlgeschlagen: {result.stderr.strip()}"
+        )
+
+
+def uebernehme_fragen(kapitel: int, akzeptierte_fragen: list[dict]) -> str:
+    with open(QUIZ_DATA_PATH, encoding="utf-8") as f:
+        quiz_data = json.load(f)
+
+    naechste_id = naechste_frage_id(quiz_data)
+    for i, frage in enumerate(akzeptierte_fragen):
+        quiz_data["questions"].append(
+            {
+                "id": naechste_id + i,
+                "chapter": kapitel,
+                "points": 1,
+                "question": frage["question"],
+                "options": frage["options"],
+                "correct": frage["correct"],
+                "explanation": frage["explanation"],
+            }
+        )
+
+    with open(QUIZ_DATA_PATH, "w", encoding="utf-8") as f:
+        json.dump(quiz_data, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+
+    anzahl = len(akzeptierte_fragen)
+    plural = "n" if anzahl != 1 else ""
+    commit_message = (
+        f"feat(quiz): add {anzahl} generated question{plural} for chapter {kapitel}"
+    )
+
+    _run_git(["add", "src/data/quizData.json"])
+    _run_git(["commit", "-m", commit_message])
+    _run_git(["push"])
+
+    return commit_message
