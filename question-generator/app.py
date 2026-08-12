@@ -6,7 +6,7 @@ import os
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 import fragen_generator as fg
 
@@ -20,8 +20,8 @@ class GenerateRequest(BaseModel):
 
 class Frage(BaseModel):
     question: str
-    options: list[str]
-    correct: int
+    options: list[str] = Field(min_length=4, max_length=4)
+    correct: int = Field(ge=0, le=3)
     explanation: str
 
 

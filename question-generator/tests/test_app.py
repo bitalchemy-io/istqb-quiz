@@ -142,3 +142,43 @@ def test_accept_questions_returns_502_on_push_failure(monkeypatch):
     )
 
     assert response.status_code == 502
+
+
+def test_accept_questions_rejects_invalid_options_length():
+    """Test that POST /api/accept-questions rejects options with wrong length."""
+    response = client.post(
+        "/api/accept-questions",
+        json={
+            "kapitel": 1,
+            "fragen": [
+                {
+                    "question": "?",
+                    "options": ["a", "b"],  # Only 2 items instead of 4
+                    "correct": 0,
+                    "explanation": "...",
+                }
+            ],
+        },
+    )
+
+    assert response.status_code == 422
+
+
+def test_accept_questions_rejects_invalid_correct_index():
+    """Test that POST /api/accept-questions rejects correct index out of range."""
+    response = client.post(
+        "/api/accept-questions",
+        json={
+            "kapitel": 1,
+            "fragen": [
+                {
+                    "question": "?",
+                    "options": ["a", "b", "c", "d"],
+                    "correct": 9,  # Out of range (must be 0-3)
+                    "explanation": "...",
+                }
+            ],
+        },
+    )
+
+    assert response.status_code == 422
