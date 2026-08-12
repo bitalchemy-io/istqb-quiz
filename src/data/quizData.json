@@ -1387,6 +1387,48 @@
       ],
       "correct": 2,
       "explanation": "Diese Technologie verwendet neuronale Netze, um Merkmale automatisch aus Daten zu lernen."
+    },
+    {
+      "id": 96,
+      "chapter": 1,
+      "points": 1,
+      "question": "Ordnen Sie den folgenden Arten von KI-Technologien (1–4) die passende Beschreibung (A-D) zu:",
+      "options": [
+        "KI-Technologie: 1. Symbolische KI, Beschreibung: A. Verwendet neuronale Netze, um Merkmale automatisch aus Daten zu lernen.",
+        "KI-Technologie: 2. Klassisches maschinelles Lernen, Beschreibung: D. Verwendet einen datengesteuerten Ansatz, der in der Regel (manuelle) Merkmalauswahl erfordert.",
+        "KI-Technologie: 3. Deep Learning, Beschreibung: C. Verwendet Deep Learning, um neue Inhalte zu erstellen, basierend auf den gelernten Trainingsdaten.",
+        "KI-Technologie: 4. Generative KI, Beschreibung: B. Verwendet regelbasierte Systeme, um menschliche Entscheidungen nachzuahmen."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 97,
+      "chapter": 1,
+      "points": 1,
+      "question": "Betrachten Sie Large-Language-Modelle (LLMs). Welche der folgenden Optionen bietet die BESTE Erklärung dafür, warum die begrenzte Größe des Kontextfensters die Textverarbeitungsfähigkeiten von LLMs beeinträchtigen kann?",
+      "options": [
+        "Der begrenzten Größe des Kontextfensters ist es zu verdanken, dass LLMs komplexe logische Schlüsse ziehen können.",
+        "Das Kontextfenster gibt LLMs die Möglichkeit, kontinuierlich neue Informationen abrufen und verarbeiten.",
+        "Die begrenzte Größe des Kontextfensters führt dazu, dass LLMs ihre Textverarbeitungsfähigkeiten nicht optimal ausnutzen können.",
+        "Der begrenzten Größe des Kontextfensters ist es zu verdanken, dass LLMs schnelle Antworten liefern können."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 98,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welche der folgenden Aussagen beschreibt die Tokenisierung bei der Textverarbeitung für LLMs AM BESTEN?",
+      "options": [
+        "Tokenisierung ist die numerische Vektordarstellung von Bedeutung/Kontext.",
+        "Tokenisierung ist die Zerlegung von Text in kleinste Verarbeitungseinheiten (Tokens).",
+        "Tokenisierung ist eine Architektur hinter modernen LLMs.",
+        "Tokenisierung ist die Erzeugung von neuen Inhalten aus Trainingsmustern."
+      ],
+      "correct": 1,
+      "explanation": ""
     }
   ],
   "glossary": [
