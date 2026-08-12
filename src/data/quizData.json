@@ -1177,6 +1177,202 @@
       ],
       "correct": 2,
       "explanation": "Üblicherweise ist der Testmanager dafür verantwortlich sicherzustellen, dass das Team als Ganzes über diese Fähigkeiten verfügt, während Einzelne für ihre eigene Weiterentwicklung zuständig sind."
+    },
+    {
+      "id": 81,
+      "chapter": 1,
+      "points": 1,
+      "question": "Ordnen Sie den folgenden Arten von KI-Technologien (1–4) die passende Beschreibung (A-D) zu:",
+      "options": [
+        "Verwendet neuronale Netze, um Merkmale automatisch aus Daten zu lernen.",
+        "Verwendet regelbasierte Systeme, um menschliche Entscheidungen nachzuahmen.",
+        "Verwendet Deep Learning, um neue Inhalte zu erstellen, basierend auf den gelernten Trainingsdaten.",
+        "Verwendet einen datengesteuerten Ansatz, der in der Regel (manuelle) Merkmalauswahl erfordert."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 82,
+      "chapter": 1,
+      "points": 1,
+      "question": "Betrachten Sie Large-Language-Modelle (LLMs). Welche der folgenden Optionen bietet die BESTE Erklärung dafür, warum die begrenzte Größe des Kontextfensters die Textverarbeitungsfähigkeiten von LLMs beeinträchtigen kann?",
+      "options": [
+        "Wenn das Kontextfenster zu klein ist, können LLMs keine genügend große Informationsmenge verarbeiten.",
+        "Das Kontextfenster hat keinen Einfluss auf die Fähigkeit der LLMs zur Textverarbeitung.",
+        "Ein zu großes Kontextfenster würde die Verarbeitungskapazität von LLMs überfordern.",
+        "Die Kontextgröße ist für das Lernen im Kontext von LLMs ohne Bedeutung."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "id": 83,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welche der folgenden Aussagen beschreibt die Tokenisierung bei der Textverarbeitung für LLMs AM BESTEN?",
+      "options": [
+        "Tokenisierung ist gleichbedeutend mit Embedding.",
+        "Die Tokenisierung ist ein Prozess, in dem ein großer Satz in kleinere Einheiten zerlegt wird.",
+        "Die Tokenisierung beschreibt die numerische Vektordarstellung der Bedeutung und des Kontexts.",
+        "Embeddings sind eine Art von Tokens."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 84,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welche ZWEI der folgenden Aussagen über Foundation-LLMs, Instruktionsgetunte LLMs und Reasoning LLMs sind im Kontext des Softwaretestens KORREKT?",
+      "options": [
+        "Foundation-LLMs werden für allgemeine Aufgaben verwendet.",
+        "Instruktionsgetunte LLMs sind besonders geeignet für Reale Testanwendungen.",
+        "Reasoning LLMs sind trainiert, um logisches Schließen und Chain-of-Thought zu ermöglichen.",
+        "Alle der genannten Aussagen sind wahr."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 85,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welche der folgenden Aussagen beschreibt die Beziehung zwischen multimodalen LLMs und Vision-Sprach-Modellen AM BESTEN?",
+      "options": [
+        "Multimodale Modelle verarbeiten nur Textdaten.",
+        "Vision-Sprach-Modelle sind ein Unterart von Multimodalen Modellen.",
+        "Multimodale Modelle verarbeiten ausschließlich Bilder und Audio.",
+        "Keine der obigen Aussagen ist korrekt."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 86,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welche der folgenden Methoden verwendet Deep-Learning-Techniken, um neue Inhalte zu erstellen?",
+      "options": [
+        "Klassisches maschinelles Lernen",
+        "Generative KI",
+        "Deep Learning",
+        "Symbolische KI"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 87,
+      "chapter": 1,
+      "points": 1,
+      "question": "Du hast denselben Prompt mehrfach verwendet, aber unterschiedliche Antworten vom LLM erhalten. Warum passiert das?",
+      "options": [
+        "Die LLMs wurden ungleichmäßig trainiert.",
+        "Die Modelle sind nicht in der Lage, kontextbezogene Informationen zu verstehen.",
+        "Jeder LLM ist auf ein bestimmtes Thema spezialisiert und kann nur über dieses sprechen.",
+        "Der Prompt selbst ist nicht für eine korrekte Antwort geeignet."
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "id": 88,
+      "chapter": 1,
+      "points": 1,
+      "question": "Wie hängt Tokenisierung mit Embeddings zusammen?",
+      "options": [
+        "Tokenisierung ist gleichbedeutend mit Embedding.",
+        "Embeddings sind ein Ergebnis der Tokenisierung.",
+        "Die Tokenisierung ist ein Prozess, bei dem ein Satz in kleinere Einheiten zerlegt wird.",
+        "Ein Embedding ist eine Art von Token."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 89,
+      "chapter": 1,
+      "points": 1,
+      "question": "Du brauchst ein LLM, das bei der Entscheidungsfindung nach einem Prozess ähnlich der menschlichen Logik unterstützt. Welche Art von LLM solltest du verwenden?",
+      "options": [
+        "Ein Reasoning-LLM",
+        "Ein Foundation-LLM",
+        "Ein Instruction-Tuned-LLM",
+        "Jeder genannte Typ ist geeignet."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "id": 90,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welcher der folgenden Punkte ist ein Vorteil eines LLM, das mit Vision-Language-Modellen zur Entwicklung von Testfällen ergänzt wird?",
+      "options": [
+        "Es kann Textdaten nicht verarbeiten.",
+        "Die Verarbeitungskapazität des Modells sinkt.",
+        "Der KI-Sektor wird durch diese Kombination bereichert.",
+        "Das Modell ist aufgrund der Kombination mit Vision-Language-Modelle zu komplex."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 91,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welche KI-Technologie verwendet neuronale Netze, um Merkmale automatisch aus Daten zu lernen?",
+      "options": [
+        "Symbolische KI",
+        "Klassisches maschinelles Lernen",
+        "Deep Learning",
+        "Generative KI"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 92,
+      "chapter": 1,
+      "points": 1,
+      "question": "Warum kann die begrenzte Größe des Kontextfensters die Textverarbeitungsfähigkeiten von Large-Language-Modellen (LLMs) beeinträchtigen?",
+      "options": [
+        "Weil LLMs nur auf einem begrenzten Datensatz trainiert werden",
+        "Weil der Kontextfenster zu klein ist, um genügend Informationen zu speichern",
+        "Weil LLMs keine Tokenisierung benötigen",
+        "Weil die LLMs keine Embeddings verwenden"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "id": 93,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welche Art von Large-Language-Modelle (LLMs) ist am besten geeignet für die Entscheidungsfindung nach einem Prozess ähnlich der menschlichen Logik?",
+      "options": [
+        "Foundation LLM",
+        "Instruction-Tuned LLM",
+        "Reasoning LLM",
+        "Multimodale Modelle"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "id": 94,
+      "chapter": 1,
+      "points": 1,
+      "question": "Was ist ein Vorteil eines Large-Language-Modells (LLM), das mit Vision-Language-Modellen zur Entwicklung von Testfällen ergänzt wird?",
+      "options": [
+        "Es kann nur Text verarbeiten",
+        "Es kann nur Bild verarbeiten",
+        "Es kann mehrere Datentypen gleichzeitig verarbeiten",
+        "Es kann schnellere Ergebnisse liefern"
+      ],
+      "correct": 2,
+      "explanation": ""
     }
   ],
   "glossary": [
