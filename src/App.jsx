@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BookOpen, BarChart3, Search, ChevronRight, RotateCcw, Lock, Star, FileText } from 'lucide-react';
 import { marked } from 'marked';
 import QUIZ_DATA from './data/quizData.json';
@@ -61,6 +61,15 @@ function ResultBadge({ correct }) {
   );
 }
 
+function loadSavedProgress() {
+  try {
+    const saved = localStorage.getItem('istqb_progress');
+    return saved ? JSON.parse(saved) : null;
+  } catch {
+    return null;
+  }
+}
+
 function buildGlossaryQuiz() {
   const terms = shuffle(QUIZ_DATA.glossary).slice(0, Math.min(GLOSSARY_QUIZ_LENGTH, QUIZ_DATA.glossary.length));
   return terms.map((item) => {
@@ -112,10 +121,10 @@ export default function ISTQBQuizApp() {
   const [view, setView] = useState('home');
   const [currentChapter, setCurrentChapter] = useState(null);
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const [answers, setAnswers] = useState(() => loadSavedProgress()?.answers || {});
   const [submitted, setSubmitted] = useState(false);
   const [searchGlossary, setSearchGlossary] = useState('');
-  const [stats, setStats] = useState({ total: 0, correct: 0, points: 0, maxPoints: 0 });
+  const [stats, setStats] = useState(() => loadSavedProgress()?.stats || { total: 0, correct: 0, points: 0, maxPoints: 0 });
   const [glossaryQuiz, setGlossaryQuiz] = useState([]);
   const [glossaryQuizIdx, setGlossaryQuizIdx] = useState(0);
   const [glossaryAnswer, setGlossaryAnswer] = useState(null);
@@ -132,16 +141,6 @@ export default function ISTQBQuizApp() {
     document.documentElement.style.fontSize = `${FONT_SCALES[fontScaleIdx]}%`;
     localStorage.setItem(FONT_SCALE_KEY, String(FONT_SCALES[fontScaleIdx]));
   }, [fontScaleIdx]);
-
-  // Daten aus localStorage laden
-  useEffect(() => {
-    const saved = localStorage.getItem('istqb_progress');
-    if (saved) {
-      const data = JSON.parse(saved);
-      setAnswers(data.answers || {});
-      setStats(data.stats || { total: 0, correct: 0, points: 0, maxPoints: 0 });
-    }
-  }, []);
 
   // Fortschritt speichern
   useEffect(() => {
