@@ -21,12 +21,15 @@ docker run -d \
   --name istqb-question-generator \
   -p 8010:8010 \
   -v /absolute/path/to/istqb-quiz:/repo-checkout \
+  -v ~/.config/gh:/root/.config/gh:ro \
   -e REPO_ROOT=/repo-checkout \
   -e OLLAMA_URL=http://host.docker.internal:11434 \
   -e OLLAMA_MODEL=llama3.1:latest \
   --add-host=host.docker.internal:host-gateway \
   istqb-question-generator
 ```
+
+The `-v ~/.config/gh:/root/.config/gh:ro` mount provides the container's `git push` command with access to the GitHub CLI credential helper, which is configured via `gh auth setup-git` in the bind-mounted checkout.
 
 Access via Tailscale only: `http://100.73.147.87:8010` — do not publish
 this port to the LAN/public internet, since it has unauthenticated git
