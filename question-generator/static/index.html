@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fragen-Generator</title>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; background: #0f172a; color: #e2e8f0; }
+      h1 { font-size: 1.5rem; }
+      label { display: block; margin: 1rem 0 0.25rem; }
+      input, select, button { font-size: 1rem; padding: 0.4rem; }
+      button { cursor: pointer; margin-top: 1rem; background: #4f46e5; color: white; border: none; border-radius: 4px; padding: 0.5rem 1rem; }
+      button:disabled { opacity: 0.5; cursor: not-allowed; }
+      .frage { border: 1px solid #334155; border-radius: 6px; padding: 1rem; margin: 1rem 0; }
+      .frage.verworfen { opacity: 0.4; }
+      .optionen { margin: 0.5rem 0; }
+      .optionen div.richtig { color: #4ade80; font-weight: bold; }
+      .erklaerung { color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem; }
+      .fehler { color: #f87171; }
+      .erfolg { color: #4ade80; }
+    </style>
+  </head>
+  <body>
+    <h1>Fragen-Generator</h1>
+
+    <label for="kapitel">Kapitel</label>
+    <select id="kapitel">
+      <option value="1">1 – Generative KI Grundlagen</option>
+      <option value="2">2 – Prompt Engineering</option>
+      <option value="3">3 – Risikomanagement</option>
+      <option value="4">4 – LLM-Infrastruktur</option>
+      <option value="5">5 – Organisatorische Integration</option>
+    </select>
+
+    <label for="anzahl">Anzahl neuer Fragen</label>
+    <input type="number" id="anzahl" min="1" max="10" value="3" />
+
+    <button id="generieren-btn">Fragen generieren</button>
+
+    <div id="status"></div>
+    <div id="fragen-liste"></div>
+
+    <button id="uebernehmen-btn" style="display: none">Ausgewählte übernehmen</button>
+
+    <script>
+      let generierteFragen = []
+      const akzeptiert = new Set()
+
+      const statusEl = document.getElementById('status')
+      const listeEl = document.getElementById('fragen-liste')
+      const generierenBtn = document.getElementById('generieren-btn')
+      const uebernehmenBtn = document.getElementById('uebernehmen-btn')
+
+      function renderFragen() {
+        listeEl.innerHTML = ''
+        generierteFragen.forEach((frage, i) => {
+          const div = document.createElement('div')
+          div.className = 'frage' + (akzeptiert.has(i) ? '' : ' verworfen')
+
+          const optionenHtml = frage.options
+            .map((opt, j) => `<div class="${j === frage.correct ? 'richtig' : ''}">${j === frage.correct ? '✓ ' : ''}${opt}</div>`)
+            .join('')
+
+          div.innerHTML = `
+            <label>
+              <input type="checkbox" ${akzeptiert.has(i) ? 'checked' : ''} data-index="${i}" />
+              <strong>${frage.question}</strong>
+            </label>
+            <div class="optionen">${optionenHtml}</div>
+            <div class="erklaerung">${frage.explanation}</div>
+          `
+
+          div.querySelector('input[type="checkbox"]').addEventListener('change', (e) => {
+            if (e.target.checked) akzeptiert.add(i)
+            else akzeptiert.delete(i)
+            renderFragen()
+          })
+
+          listeEl.appendChild(div)
+        })
+        uebernehmenBtn.style.display = generierteFragen.length > 0 ? 'block' : 'none'
+      }
+
+      generierenBtn.addEventListener('click', async () => {
+        const kapitel = Number(document.getElementById('kapitel').value)
+        const anzahl = Number(document.getElementById('anzahl').value)
+
+        generierenBtn.disabled = true
+        statusEl.innerHTML = 'Generiere Fragen ...'
+
+        try {
+          const response = await fetch('/api/generate-questions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ kapitel, anzahl }),
+          })
+          if (!response.ok) {
+            const body = await response.json().catch(() => ({}))
+            throw new Error(body.error ?? body.detail ?? `HTTP ${response.status}`)
+          }
+          generierteFragen = await response.json()
+          akzeptiert.clear()
+          generierteFragen.forEach((_, i) => akzeptiert.add(i))
+          statusEl.innerHTML = ''
+          renderFragen()
+        } catch (err) {
+          statusEl.innerHTML = `<p class="fehler">${err.message}</p>`
+        } finally {
+          generierenBtn.disabled = false
+        }
+      })
+
+      uebernehmenBtn.addEventListener('click', async () => {
+        const kapitel = Number(document.getElementById('kapitel').value)
+        const ausgewaehlt = generierteFragen.filter((_, i) => akzeptiert.has(i))
+
+        if (ausgewaehlt.length === 0) {
+          statusEl.innerHTML = '<p class="fehler">Keine Fragen ausgewählt.</p>'
+          return
+        }
+
+        uebernehmenBtn.disabled = true
+        statusEl.innerHTML = 'Übernehme Fragen ...'
+
+        try {
+          const response = await fetch('/api/accept-questions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ kapitel, fragen: ausgewaehlt }),
+          })
+          if (!response.ok) {
+            const body = await response.json().catch(() => ({}))
+            throw new Error(body.error ?? body.detail ?? `HTTP ${response.status}`)
+          }
+          const result = await response.json()
+          statusEl.innerHTML = `<p class="erfolg">Übernommen und gepusht: ${result.commit_message}</p>`
+          generierteFragen = []
+          akzeptiert.clear()
+          renderFragen()
+        } catch (err) {
+          statusEl.innerHTML = `<p class="fehler">${err.message}</p>`
+        } finally {
+          uebernehmenBtn.disabled = false
+        }
+      })
+    </script>
+  </body>
+</html>
