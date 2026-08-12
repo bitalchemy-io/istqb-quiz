@@ -44,6 +44,7 @@
 
     <script>
       let generierteFragen = []
+      let aktuellesKapitel = null
       const akzeptiert = new Set()
 
       const statusEl = document.getElementById('status')
@@ -83,6 +84,7 @@
 
       generierenBtn.addEventListener('click', async () => {
         const kapitel = Number(document.getElementById('kapitel').value)
+        aktuellesKapitel = kapitel
         const anzahl = Number(document.getElementById('anzahl').value)
 
         generierenBtn.disabled = true
@@ -111,7 +113,7 @@
       })
 
       uebernehmenBtn.addEventListener('click', async () => {
-        const kapitel = Number(document.getElementById('kapitel').value)
+        const kapitel = aktuellesKapitel
         const ausgewaehlt = generierteFragen.filter((_, i) => akzeptiert.has(i))
 
         if (ausgewaehlt.length === 0) {
@@ -135,6 +137,7 @@
           const result = await response.json()
           statusEl.innerHTML = `<p class="erfolg">Übernommen und gepusht: ${result.commit_message}</p>`
           generierteFragen = []
+          aktuellesKapitel = null
           akzeptiert.clear()
           renderFragen()
         } catch (err) {
