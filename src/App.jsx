@@ -34,6 +34,33 @@ function optionStateClasses(selected, submitted, correct) {
   return 'border-slate-700 hover:border-indigo-500/50';
 }
 
+function TickBar({ percent, width = 24, filledClass = 'text-indigo-400', emptyClass = 'text-slate-600' }) {
+  const p = Math.min(100, Math.max(0, percent || 0));
+  const filled = Math.round((p / 100) * width);
+  return (
+    <span className="font-mono text-[11px] sm:text-xs tracking-tight select-none whitespace-nowrap">
+      <span className="text-slate-600">[</span>
+      <span className={filledClass}>{'█'.repeat(filled)}</span>
+      <span className={emptyClass}>{'·'.repeat(width - filled)}</span>
+      <span className="text-slate-600">]</span>
+    </span>
+  );
+}
+
+function ResultBadge({ correct }) {
+  return (
+    <span
+      className={`font-mono text-xs font-bold tracking-wider px-2 py-0.5 rounded border ${
+        correct
+          ? 'text-emerald-400 border-emerald-500/40 bg-emerald-500/10'
+          : 'text-red-400 border-red-500/40 bg-red-500/10'
+      }`}
+    >
+      {correct ? 'PASS' : 'FAIL'}
+    </span>
+  );
+}
+
 function buildGlossaryQuiz() {
   const terms = shuffle(QUIZ_DATA.glossary).slice(0, Math.min(GLOSSARY_QUIZ_LENGTH, QUIZ_DATA.glossary.length));
   return terms.map((item) => {
@@ -49,10 +76,10 @@ function buildGlossaryQuiz() {
   });
 }
 
-const PAGE_BG = 'bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950';
-const CARD = 'bg-slate-800/60 border border-slate-700/60 backdrop-blur-sm';
-const CARD_HOVER = 'hover:border-indigo-500/50 hover:bg-slate-800';
-const BACK_BTN = 'px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg shadow hover:bg-slate-700 text-slate-300 transition';
+const PAGE_BG = 'bg-gradient-to-br from-deep via-deep to-indigo-950';
+const CARD = 'bg-surface border border-line backdrop-blur-sm';
+const CARD_HOVER = 'hover:border-indigo-500/50';
+const BACK_BTN = 'px-4 py-2 bg-surface border border-line rounded-lg shadow hover:border-indigo-500/40 text-muted font-mono text-sm transition';
 
 export default function ISTQBQuizApp() {
   const [view, setView] = useState('home');
@@ -203,12 +230,12 @@ export default function ISTQBQuizApp() {
   if (view === 'home') {
     return (
       <div className={`min-h-screen ${PAGE_BG}`}>
-        <header className="bg-slate-900/80 backdrop-blur border-b border-slate-800">
+        <header className="bg-deep/80 backdrop-blur border-b border-line">
           <div className="max-w-6xl mx-auto px-4 py-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <BookOpen className="w-8 h-8 text-indigo-400" />
-                <h1 className="text-3xl font-bold text-white tracking-tight">ISTQB CT-GenAI</h1>
+                <h1 className="font-display text-3xl font-bold text-ink tracking-tight">ISTQB CT-GenAI</h1>
               </div>
               <button
                 onClick={() => setView('stats')}
@@ -224,16 +251,17 @@ export default function ISTQBQuizApp() {
         <main className="max-w-6xl mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
             <div className={`${CARD} rounded-lg p-6`}>
-              <div className="text-sm text-slate-400">Fragen beantwortet</div>
-              <div className="text-4xl font-bold text-indigo-400">{stats.total}</div>
+              <div className="font-mono text-xs uppercase tracking-wide text-muted">Beantwortet</div>
+              <div className="font-display text-4xl font-bold text-indigo-400">{stats.total}</div>
             </div>
             <div className={`${CARD} rounded-lg p-6`}>
-              <div className="text-sm text-slate-400">Richtige Antworten</div>
-              <div className="text-4xl font-bold text-emerald-400">{stats.correct}</div>
+              <div className="font-mono text-xs uppercase tracking-wide text-muted">Richtig</div>
+              <div className="font-display text-4xl font-bold text-emerald-400 mb-1">{stats.correct}</div>
+              <TickBar percent={stats.total > 0 ? (stats.correct / stats.total) * 100 : 0} width={16} filledClass="text-emerald-400" />
             </div>
             <div className={`${CARD} rounded-lg p-6`}>
-              <div className="text-sm text-slate-400">Punkte</div>
-              <div className="text-4xl font-bold text-indigo-400">{stats.points}/{stats.maxPoints}</div>
+              <div className="font-mono text-xs uppercase tracking-wide text-muted">Punkte</div>
+              <div className="font-display text-4xl font-bold text-indigo-400">{stats.points}/{stats.maxPoints}</div>
             </div>
           </div>
 
@@ -243,21 +271,21 @@ export default function ISTQBQuizApp() {
               className={`${CARD} ${CARD_HOVER} rounded-lg p-8 transition text-left`}
             >
               <BookOpen className="w-8 h-8 text-indigo-400 mb-3" />
-              <h3 className="text-xl font-bold mb-2 text-white">Glossar</h3>
-              <p className="text-slate-400">{QUIZ_DATA.glossary.length} Begriffe durchsuchen</p>
+              <h3 className="font-display text-xl font-bold mb-2 text-ink">Glossar</h3>
+              <p className="text-muted">{QUIZ_DATA.glossary.length} Begriffe durchsuchen</p>
             </button>
             <button
               onClick={resetProgress}
               className={`${CARD} ${CARD_HOVER} rounded-lg p-8 transition text-left`}
             >
               <RotateCcw className="w-8 h-8 text-red-400 mb-3" />
-              <h3 className="text-xl font-bold mb-2 text-white">Fortschritt zurücksetzen</h3>
-              <p className="text-slate-400">Alle Antworten löschen</p>
+              <h3 className="font-display text-xl font-bold mb-2 text-ink">Fortschritt zurücksetzen</h3>
+              <p className="text-muted">Alle Antworten löschen</p>
             </button>
           </div>
 
           <section>
-            <h2 className="text-2xl font-bold mb-6 text-white">Kapitel</h2>
+            <h2 className="font-display text-2xl font-bold mb-6 text-ink">Kapitel</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {QUIZ_DATA.chapters.map((chap) => {
                 const chapQuiz = QUIZ_DATA.questions.filter(q => q.chapter === chap.id);
@@ -268,22 +296,17 @@ export default function ISTQBQuizApp() {
                   <div key={chap.id} className={`${CARD} rounded-lg p-6 hover:border-slate-600 transition`}>
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
-                        <h3 className="text-lg font-bold text-white">{chap.title}</h3>
-                        <p className="text-sm text-slate-400">{chapQuiz.length} Fragen · {chap.duration}</p>
+                        <div className="font-mono text-xs text-muted mb-1">§{String(chap.id).padStart(2, '0')}</div>
+                        <h3 className="font-display text-lg font-bold text-ink">{chap.title}</h3>
+                        <p className="text-sm text-muted">{chapQuiz.length} Fragen · {chap.duration}</p>
                       </div>
                       {chap.free ? <Star className="w-5 h-5 text-amber-400 fill-amber-400" /> : <Lock className="w-5 h-5 text-slate-500" />}
                     </div>
 
                     <div className="mb-4">
-                      <div className="flex justify-between text-xs text-slate-400 mb-2">
-                        <span>Fortschritt</span>
+                      <div className="flex justify-between items-center text-xs font-mono text-muted mb-2">
                         <span>{chapAnswered}/{chapQuiz.length}</span>
-                      </div>
-                      <div className="w-full bg-slate-700 rounded-full h-2">
-                        <div
-                          className="bg-indigo-500 h-2 rounded-full transition-all"
-                          style={{ width: `${progress}%` }}
-                        />
+                        <TickBar percent={progress} />
                       </div>
                     </div>
 
@@ -337,30 +360,27 @@ export default function ISTQBQuizApp() {
         <div className="max-w-2xl mx-auto">
           <div className="mb-6 flex items-center justify-between">
             <button onClick={() => setView('home')} className={BACK_BTN}>
-              ← Zurück
+              ← zurück
             </button>
-            <div className="text-sm font-semibold text-slate-300">
-              Frage {currentQuestionIdx + 1} von {chapQuestions.length}
+            <div className="font-mono text-sm text-muted">
+              {currentQuestionIdx + 1}/{chapQuestions.length}
             </div>
           </div>
 
           <div className={`${CARD} rounded-lg shadow-xl p-8`}>
             <div className="mb-6">
-              <div className="w-full bg-slate-700 rounded-full h-2 mb-4">
-                <div
-                  className="bg-indigo-500 h-2 rounded-full transition-all"
-                  style={{ width: `${((currentQuestionIdx + 1) / chapQuestions.length) * 100}%` }}
-                />
+              <div className="mb-4">
+                <TickBar percent={((currentQuestionIdx + 1) / chapQuestions.length) * 100} width={32} />
               </div>
-              <h2 className="text-lg sm:text-xl font-bold mb-4 text-white whitespace-pre-line text-left">
+              <h2 className="text-lg sm:text-xl font-bold mb-4 text-ink whitespace-pre-line text-left">
                 {currentQuestion.question}
                 {currentQuestion.aiGenerated && (
-                  <span className="ml-2 align-middle text-xs font-semibold text-indigo-300 bg-indigo-900/50 border border-indigo-700 rounded px-1.5 py-0.5">
+                  <span className="ml-2 align-middle font-mono text-xs font-semibold text-indigo-300 bg-indigo-900/50 border border-indigo-700 rounded px-1.5 py-0.5">
                     KI
                   </span>
                 )}
               </h2>
-              <p className="text-sm text-slate-400">
+              <p className="font-mono text-xs text-muted">
                 {currentQuestion.points} Punkt(e)
                 {currentQuestion.multiSelect && ` · Wählen Sie ${currentQuestion.correct.length} Optionen!`}
               </p>
@@ -386,9 +406,12 @@ export default function ISTQBQuizApp() {
 
             {submitted && (
               <div className={`p-4 rounded-lg mb-6 border ${wasCorrect ? 'bg-emerald-500/15 border-emerald-500/30' : 'bg-red-500/15 border-red-500/30'}`}>
-                <p className={`font-semibold mb-2 ${wasCorrect ? 'text-emerald-300' : 'text-red-300'}`}>
-                  {wasCorrect ? '✓ Richtig!' : '✗ Leider falsch.'}
-                </p>
+                <div className="flex items-center gap-2 mb-2">
+                  <ResultBadge correct={wasCorrect} />
+                  <p className={`font-semibold ${wasCorrect ? 'text-emerald-300' : 'text-red-300'}`}>
+                    {wasCorrect ? 'Richtig!' : 'Leider falsch.'}
+                  </p>
+                </div>
                 <p className="text-slate-300">{currentQuestion.explanation}</p>
               </div>
             )}
@@ -424,7 +447,7 @@ export default function ISTQBQuizApp() {
       <div className={`min-h-screen ${PAGE_BG} p-4`}>
         <div className="max-w-3xl mx-auto">
           <button onClick={() => setView('home')} className={`mb-6 ${BACK_BTN}`}>
-            ← Zurück
+            ← zurück
           </button>
 
           <div className={`${CARD} rounded-lg shadow-xl p-8 mb-6`}>
@@ -453,12 +476,12 @@ export default function ISTQBQuizApp() {
       <div className={`min-h-screen ${PAGE_BG} p-4`}>
         <div className="max-w-2xl mx-auto">
           <button onClick={() => setView('home')} className={`mb-6 ${BACK_BTN}`}>
-            ← Zurück
+            ← zurück
           </button>
 
           <div className={`${CARD} rounded-lg shadow-xl p-8`}>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-white">Glossar</h2>
+              <h2 className="font-display text-2xl font-bold text-ink">Glossar</h2>
               <button
                 onClick={startGlossaryQuiz}
                 className="px-4 py-2 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400 transition text-sm"
@@ -482,7 +505,7 @@ export default function ISTQBQuizApp() {
               {filteredGlossary.length > 0 ? (
                 filteredGlossary.map((item, idx) => (
                   <div key={idx} className="border-l-4 border-indigo-500 pl-4 py-2">
-                    <h3 className="font-bold text-white">{item.term}</h3>
+                    <h3 className="font-display font-bold text-ink">{item.term}</h3>
                     <p className="text-slate-300 text-sm mt-1">{item.definition}</p>
                   </div>
                 ))
@@ -502,8 +525,8 @@ export default function ISTQBQuizApp() {
       return (
         <div className={`min-h-screen ${PAGE_BG} flex items-center justify-center p-4`}>
           <div className={`${CARD} rounded-lg shadow-xl p-8 text-center max-w-md w-full`}>
-            <h2 className="text-2xl font-bold mb-4 text-white">Runde beendet!</h2>
-            <p className="text-4xl font-bold text-indigo-400 mb-2">
+            <h2 className="font-display text-2xl font-bold mb-4 text-ink">Runde beendet!</h2>
+            <p className="font-display text-4xl font-bold text-indigo-400 mb-2">
               {glossaryScore.correct}/{glossaryScore.total}
             </p>
             <p className="text-slate-400 mb-8">richtig beantwortet</p>
@@ -533,23 +556,20 @@ export default function ISTQBQuizApp() {
         <div className="max-w-2xl mx-auto">
           <div className="mb-6 flex items-center justify-between">
             <button onClick={() => setView('glossary')} className={BACK_BTN}>
-              ← Zurück
+              ← zurück
             </button>
-            <div className="text-sm font-semibold text-slate-300">
-              Frage {glossaryQuizIdx + 1} von {glossaryQuiz.length}
+            <div className="font-mono text-sm text-muted">
+              {glossaryQuizIdx + 1}/{glossaryQuiz.length}
             </div>
           </div>
 
           <div className={`${CARD} rounded-lg shadow-xl p-8`}>
             <div className="mb-6">
-              <div className="w-full bg-slate-700 rounded-full h-2 mb-4">
-                <div
-                  className="bg-indigo-500 h-2 rounded-full transition-all"
-                  style={{ width: `${((glossaryQuizIdx + 1) / glossaryQuiz.length) * 100}%` }}
-                />
+              <div className="mb-4">
+                <TickBar percent={((glossaryQuizIdx + 1) / glossaryQuiz.length) * 100} width={32} />
               </div>
               <p className="text-sm text-slate-400 mb-2">Was bedeutet dieser Begriff?</p>
-              <h2 className="text-xl font-bold text-white">{gq.term}</h2>
+              <h2 className="font-display text-xl font-bold text-ink">{gq.term}</h2>
             </div>
 
             <div className="space-y-3 mb-8">
@@ -568,9 +588,10 @@ export default function ISTQBQuizApp() {
             </div>
 
             {glossarySubmitted && (
-              <div className={`p-4 rounded-lg mb-6 border ${glossaryAnswer === gq.correct ? 'bg-emerald-500/15 border-emerald-500/30' : 'bg-red-500/15 border-red-500/30'}`}>
+              <div className={`p-4 rounded-lg mb-6 border flex items-center gap-2 ${glossaryAnswer === gq.correct ? 'bg-emerald-500/15 border-emerald-500/30' : 'bg-red-500/15 border-red-500/30'}`}>
+                <ResultBadge correct={glossaryAnswer === gq.correct} />
                 <p className={`font-semibold ${glossaryAnswer === gq.correct ? 'text-emerald-300' : 'text-red-300'}`}>
-                  {glossaryAnswer === gq.correct ? '✓ Richtig!' : '✗ Leider falsch.'}
+                  {glossaryAnswer === gq.correct ? 'Richtig!' : 'Leider falsch.'}
                 </p>
               </div>
             )}
@@ -608,30 +629,30 @@ export default function ISTQBQuizApp() {
       <div className={`min-h-screen ${PAGE_BG} p-4`}>
         <div className="max-w-2xl mx-auto">
           <button onClick={() => setView('home')} className={`mb-6 ${BACK_BTN}`}>
-            ← Zurück
+            ← zurück
           </button>
 
           <div className={`${CARD} rounded-lg shadow-xl p-8`}>
-            <h2 className="text-2xl font-bold mb-8 text-white">Deine Statistik</h2>
+            <h2 className="font-display text-2xl font-bold mb-8 text-ink">Deine Statistik</h2>
 
             <div className="grid grid-cols-2 gap-4 mb-8">
               <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-6">
-                <div className="text-sm text-slate-400 mb-2">Beantwortete Fragen</div>
-                <div className="text-4xl font-bold text-indigo-400">{stats.total}</div>
+                <div className="font-mono text-xs uppercase tracking-wide text-muted mb-2">Beantwortet</div>
+                <div className="font-display text-4xl font-bold text-indigo-400">{stats.total}</div>
               </div>
               <div className="bg-emerald-500/15 border border-emerald-500/20 rounded-lg p-6">
-                <div className="text-sm text-slate-400 mb-2">Richtige Antworten</div>
-                <div className="text-4xl font-bold text-emerald-400">
+                <div className="font-mono text-xs uppercase tracking-wide text-muted mb-2">Richtig</div>
+                <div className="font-display text-4xl font-bold text-emerald-400">
                   {stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0}%
                 </div>
               </div>
               <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-6">
-                <div className="text-sm text-slate-400 mb-2">Punkte</div>
-                <div className="text-4xl font-bold text-blue-400">{stats.points}</div>
+                <div className="font-mono text-xs uppercase tracking-wide text-muted mb-2">Punkte</div>
+                <div className="font-display text-4xl font-bold text-blue-400">{stats.points}</div>
               </div>
               <div className={`${passPercentage >= passingScore ? 'bg-emerald-500/15 border-emerald-500/20' : 'bg-amber-500/10 border-amber-500/20'} border rounded-lg p-6`}>
-                <div className="text-sm text-slate-400 mb-2">Erfolgsquote</div>
-                <div className={`text-4xl font-bold ${passPercentage >= passingScore ? 'text-emerald-400' : 'text-amber-400'}`}>
+                <div className="font-mono text-xs uppercase tracking-wide text-muted mb-2">Erfolgsquote</div>
+                <div className={`font-display text-4xl font-bold ${passPercentage >= passingScore ? 'text-emerald-400' : 'text-amber-400'}`}>
                   {passPercentage}%
                 </div>
               </div>
@@ -639,18 +660,19 @@ export default function ISTQBQuizApp() {
 
             {stats.maxPoints > 0 && (
               <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-6">
-                <div className="flex justify-between mb-2">
+                <div className="flex justify-between items-center mb-3">
                   <span className="font-semibold text-slate-300">Bestandene Prüfung</span>
-                  <span className={passPercentage >= passingScore ? 'text-emerald-400 font-bold' : 'text-amber-400 font-bold'}>
-                    {passPercentage >= passingScore ? '✓ JA' : `${passingScore - passPercentage}% fehlen`}
-                  </span>
+                  {passPercentage >= passingScore ? (
+                    <ResultBadge correct={true} />
+                  ) : (
+                    <span className="font-mono text-xs text-amber-400 font-bold">{passingScore - passPercentage}% FEHLEN</span>
+                  )}
                 </div>
-                <div className="w-full bg-slate-700 rounded-full h-3">
-                  <div
-                    className={`h-3 rounded-full transition-all ${passPercentage >= passingScore ? 'bg-emerald-500' : 'bg-amber-500'}`}
-                    style={{ width: `${Math.min(passPercentage, 100)}%` }}
-                  />
-                </div>
+                <TickBar
+                  percent={Math.min(passPercentage, 100)}
+                  width={36}
+                  filledClass={passPercentage >= passingScore ? 'text-emerald-400' : 'text-amber-400'}
+                />
                 <p className="text-xs text-slate-400 mt-2">Mindestens {passingScore}% erforderlich</p>
               </div>
             )}
