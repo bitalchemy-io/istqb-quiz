@@ -81,6 +81,33 @@ const CARD = 'bg-surface border border-line backdrop-blur-sm';
 const CARD_HOVER = 'hover:border-indigo-500/50';
 const BACK_BTN = 'px-4 py-2 bg-surface border border-line rounded-lg shadow hover:border-indigo-500/40 text-muted font-mono text-sm transition';
 
+const FONT_SCALES = [100, 112, 125, 140, 155];
+const FONT_SCALE_KEY = 'istqb_font_scale';
+
+function FontSizeControl({ scaleIdx, onChange }) {
+  return (
+    <div className="fixed bottom-4 right-4 z-50 flex items-center gap-1 bg-surface border border-line rounded-lg shadow-xl p-1 font-mono">
+      <button
+        onClick={() => onChange(Math.max(0, scaleIdx - 1))}
+        disabled={scaleIdx === 0}
+        aria-label="Schrift verkleinern"
+        className="w-9 h-9 flex items-center justify-center rounded-md text-muted hover:text-ink hover:bg-line disabled:opacity-30 disabled:hover:bg-transparent transition text-sm"
+      >
+        A−
+      </button>
+      <span className="px-1 text-xs text-muted tabular-nums w-9 text-center">{FONT_SCALES[scaleIdx]}%</span>
+      <button
+        onClick={() => onChange(Math.min(FONT_SCALES.length - 1, scaleIdx + 1))}
+        disabled={scaleIdx === FONT_SCALES.length - 1}
+        aria-label="Schrift vergrößern"
+        className="w-9 h-9 flex items-center justify-center rounded-md text-muted hover:text-ink hover:bg-line disabled:opacity-30 disabled:hover:bg-transparent transition text-base"
+      >
+        A+
+      </button>
+    </div>
+  );
+}
+
 export default function ISTQBQuizApp() {
   const [view, setView] = useState('home');
   const [currentChapter, setCurrentChapter] = useState(null);
@@ -94,6 +121,17 @@ export default function ISTQBQuizApp() {
   const [glossaryAnswer, setGlossaryAnswer] = useState(null);
   const [glossarySubmitted, setGlossarySubmitted] = useState(false);
   const [glossaryScore, setGlossaryScore] = useState({ correct: 0, total: 0 });
+  const [fontScaleIdx, setFontScaleIdx] = useState(() => {
+    const saved = parseInt(localStorage.getItem(FONT_SCALE_KEY), 10);
+    const idx = FONT_SCALES.indexOf(saved);
+    return idx !== -1 ? idx : 0;
+  });
+
+  // Schriftgröße anwenden und speichern
+  useEffect(() => {
+    document.documentElement.style.fontSize = `${FONT_SCALES[fontScaleIdx]}%`;
+    localStorage.setItem(FONT_SCALE_KEY, String(FONT_SCALES[fontScaleIdx]));
+  }, [fontScaleIdx]);
 
   // Daten aus localStorage laden
   useEffect(() => {
@@ -226,6 +264,7 @@ export default function ISTQBQuizApp() {
   const currentQuestion = chapQuestions[currentQuestionIdx];
   const isPremium = !QUIZ_DATA.chapters[currentChapter]?.free;
 
+  function renderView() {
   // HOME VIEW
   if (view === 'home') {
     return (
@@ -695,5 +734,13 @@ export default function ISTQBQuizApp() {
         </button>
       </div>
     </div>
+  );
+  }
+
+  return (
+    <>
+      {renderView()}
+      <FontSizeControl scaleIdx={fontScaleIdx} onChange={setFontScaleIdx} />
+    </>
   );
 }
