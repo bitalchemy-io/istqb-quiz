@@ -1373,6 +1373,20 @@
       ],
       "correct": 2,
       "explanation": ""
+    },
+    {
+      "id": 95,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welche der folgenden KI-Technologien verwendet neuronale Netze, um Merkmale automatisch aus Daten zu lernen?",
+      "options": [
+        "Symbolische KI",
+        "Klassisches maschinelles Lernen",
+        "Deep Learning",
+        "Generative KI"
+      ],
+      "correct": 2,
+      "explanation": "Diese Technologie verwendet neuronale Netze, um Merkmale automatisch aus Daten zu lernen."
     }
   ],
   "glossary": [
