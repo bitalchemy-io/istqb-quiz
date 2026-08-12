@@ -65,15 +65,13 @@ def generiere_fragen(
 
     rohtext = _ollama_generate(prompt)
     start = rohtext.find("[")
-    end = rohtext.rfind("]")
-    if start == -1 or end == -1 or end < start:
+    if start == -1:
         raise FragenGeneratorError(
             f"Ollama hat kein JSON-Array geliefert: {rohtext[:200]!r}"
         )
-    rohtext = rohtext[start : end + 1]
 
     try:
-        fragen = json.loads(rohtext)
+        fragen, _ = json.JSONDecoder().raw_decode(rohtext, start)
     except json.JSONDecodeError as e:
         raise FragenGeneratorError(f"Ollama hat kein gültiges JSON geliefert: {e}")
 

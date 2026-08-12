@@ -117,6 +117,34 @@ def test_generiere_fragen_strips_leading_prose(fragen_generator, monkeypatch):
     assert fragen[0]["correct"] == 3
 
 
+def test_generiere_fragen_ignores_trailing_data_after_array(
+    fragen_generator, monkeypatch
+):
+    array_json = json.dumps(
+        [
+            {
+                "question": "?",
+                "options": ["a", "b", "c", "d"],
+                "correct": 1,
+                "explanation": "...",
+            }
+        ]
+    )
+    doubled = array_json + "\n\n" + array_json
+    ollama_body = json.dumps({"response": doubled}).encode("utf-8")
+
+    monkeypatch.setattr(
+        fragen_generator.urllib.request,
+        "urlopen",
+        lambda req, timeout: FakeResponse(ollama_body),
+    )
+
+    fragen = fragen_generator.generiere_fragen(1, 1, "Text", [])
+
+    assert len(fragen) == 1
+    assert fragen[0]["correct"] == 1
+
+
 def test_generiere_fragen_raises_on_invalid_json(fragen_generator, monkeypatch):
     ollama_body = json.dumps({"response": "kein json hier"}).encode("utf-8")
 
