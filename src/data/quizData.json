@@ -1429,6 +1429,1506 @@
       ],
       "correct": 1,
       "explanation": ""
+    },
+    {
+      "id": 99,
+      "chapter": 1,
+      "points": 1,
+      "question": "Was ist die grundlegende Definition eines Large Language Models (LLM) laut Syllabus?",
+      "options": [
+        "Ein regelbasiertes System, das Wissen über Symbole und logische Regeln abbildet.",
+        "Ein Modell, das ausschließlich Bilddaten in Text umwandelt.",
+        "Ein auf riesigen Textkorpora vortrainiertes Modell, das den Kontext bestimmt und Antworten generiert.",
+        "Ein Algorithmus, der manuell ausgewählte Merkmale zur Klassifikation von Fehlern nutzt."
+      ],
+      "correct": 2,
+      "explanation": "Laut Syllabus ist ein LLM auf riesigen Textkorpora vortrainiert, bestimmt den Kontext und generiert darauf basierend Antworten; die anderen Optionen beschreiben symbolische KI, ein Bildverarbeitungsmodell bzw. klassisches maschinelles Lernen.",
+      "aiGenerated": true
+    },
+    {
+      "id": 100,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welche Architektur bildet laut Syllabus die technische Grundlage moderner LLMs?",
+      "options": [
+        "Klassisches maschinelles Lernen",
+        "Eine symbolische Regelmaschine",
+        "Ein Embedding-Netzwerk",
+        "Transformer"
+      ],
+      "correct": 3,
+      "explanation": "Der Transformer ist laut Syllabus die Architektur hinter modernen LLMs; die anderen Begriffe bezeichnen andere Konzepte (ML-Ansatz, regelbasierte KI, Vektordarstellung).",
+      "aiGenerated": true
+    },
+    {
+      "id": 101,
+      "chapter": 1,
+      "points": 1,
+      "question": "Wofür steht die Abkürzung GPT, und was beschreibt sie im Kontext von LLMs?",
+      "options": [
+        "Generalisiertes Programmier-Tool – erzeugt Code aus natürlicher Sprache.",
+        "Graph-basierter Präzisions-Tokenizer – zerlegt Text in Tokens.",
+        "Globales Prognose-Training – sagt zukünftige Testergebnisse voraus.",
+        "Generativer vortrainierter Transformer – generiert Text sequenziell."
+      ],
+      "correct": 3,
+      "explanation": "GPT steht laut Syllabus für 'Generativer vortrainierter Transformer' und generiert Text sequenziell; die anderen Optionen sind erfundene Umschreibungen ohne Bezug zum Syllabus.",
+      "aiGenerated": true
+    },
+    {
+      "id": 102,
+      "chapter": 1,
+      "points": 1,
+      "question": "Wie wird ein Embedding im Syllabus beschrieben?",
+      "options": [
+        "Als Zerlegung von Text in kleinste Verarbeitungseinheiten.",
+        "Als maximale Informationsmenge, die ein Modell pro Anfrage verarbeiten kann.",
+        "Als numerische Vektordarstellung von Bedeutung und Kontext, bei der semantisch ähnliche Tokens räumlich nah beieinanderliegen.",
+        "Als Architektur, die Text sequenziell generiert."
+      ],
+      "correct": 2,
+      "explanation": "Embeddings sind laut Syllabus numerische Vektordarstellungen von Bedeutung/Kontext, wobei semantisch ähnliche Tokens räumlich nah liegen; die anderen Optionen beschreiben Tokenisierung, das Kontextfenster bzw. GPT/Transformer.",
+      "aiGenerated": true
+    },
+    {
+      "id": 103,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welches Merkmal kennzeichnet klassisches maschinelles Lernen laut Syllabus?",
+      "options": [
+        "Es lernt Merkmale automatisch aus komplexen Daten wie Bildern oder Audio.",
+        "Es erzeugt neue Inhalte auf Basis gelernter Trainingsmuster.",
+        "Es ist datengetrieben und erfordert in der Regel eine manuelle Merkmalauswahl, z. B. bei der Fehlerkategorisierung.",
+        "Es bildet Wissen ausschließlich über Symbole und logische Regeln ab."
+      ],
+      "correct": 2,
+      "explanation": "Klassisches ML ist laut Syllabus datengetrieben, benötigt aber typischerweise eine manuelle Feature-Auswahl (Beispiel: Fehlerkategorisierung); die anderen Optionen beschreiben Deep Learning, generative KI bzw. symbolische KI.",
+      "aiGenerated": true
+    },
+    {
+      "id": 104,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welche Aussage beschreibt symbolische KI laut Syllabus korrekt?",
+      "options": [
+        "Sie nutzt neuronale Netze zur automatischen Merkmalserkennung.",
+        "Sie erzeugt neue Inhalte wie Text, Code oder Bilder.",
+        "Sie kombiniert mehrere Datentypen wie Text, Bild und Audio gleichzeitig.",
+        "Sie ist regelbasiert, bildet Wissen über Symbole und logische Regeln ab und ahmt menschliche Entscheidungen nach."
+      ],
+      "correct": 3,
+      "explanation": "Symbolische KI ist laut Syllabus regelbasiert und bildet Wissen über Symbole und logische Regeln ab, um menschliche Entscheidungen nachzuahmen; die übrigen Optionen beschreiben Deep Learning, generative KI bzw. multimodale Modelle.",
+      "aiGenerated": true
+    },
+    {
+      "id": 105,
+      "chapter": 1,
+      "points": 1,
+      "question": "Was versteht der Syllabus unter einem multimodalen Modell?",
+      "options": [
+        "Ein Modell, das ausschließlich auf Text-Tokenisierung spezialisiert ist.",
+        "Ein Modell, das nur auf logisches Schließen trainiert ist.",
+        "Ein Modell, das Wissen ausschließlich über Symbole abbildet.",
+        "Ein Modell, das mehrere Datentypen gleichzeitig verarbeitet, z. B. Text, Bild und Audio."
+      ],
+      "correct": 3,
+      "explanation": "Ein multimodales Modell verarbeitet laut Syllabus mehrere Datentypen gleichzeitig (Text, Bild, Audio); die anderen Optionen beschreiben Tokenisierung, Reasoning-LLMs bzw. symbolische KI.",
+      "aiGenerated": true
+    },
+    {
+      "id": 106,
+      "chapter": 1,
+      "points": 1,
+      "question": "Warum kann sich ein LLM nicht dauerhaft an Informationen aus früheren, abgeschlossenen Sitzungen erinnern, obwohl es innerhalb einer Anfrage viele Details verarbeiten kann?",
+      "options": [
+        "Weil das Kontextfenster nur die maximale Informationsmenge pro Anfrage begrenzt und keinen dauerhaften Speicher darstellt.",
+        "Weil Embeddings nach jeder Sitzung automatisch gelöscht werden.",
+        "Weil die Tokenisierung bei jeder neuen Sitzung unterschiedliche Regeln verwendet.",
+        "Weil der Transformer nur für kurze Texte ausgelegt ist."
+      ],
+      "correct": 0,
+      "explanation": "Das Kontextfenster definiert laut Syllabus lediglich die maximale Informationsmenge pro Anfrage, gemessen in Tokens, und stellt keinen dauerhaften Speicher dar – Informationen aus vergangenen, abgeschlossenen Sitzungen sind daher nicht automatisch verfügbar.",
+      "aiGenerated": true
+    },
+    {
+      "id": 107,
+      "chapter": 1,
+      "points": 1,
+      "question": "Warum betont der Syllabus ausdrücklich, dass Tokenisierung, Embedding und Textgenerierung drei unterschiedliche Konzepte sind?",
+      "options": [
+        "Weil alle drei denselben Rechenschritt beschreiben und nur zur Verwirrung unterschiedlich benannt wurden.",
+        "Weil Tokenisierung nur bei multimodalen Modellen vorkommt, Embedding nur bei Foundation-LLMs.",
+        "Weil jedes Konzept eine eigene, klar abgegrenzte Funktion im Verarbeitungsprozess hat: Zerlegung in Einheiten, Bedeutungsrepräsentation als Vektor und Erzeugung von Antworten.",
+        "Weil Textgenerierung ausschließlich bei symbolischer KI stattfindet."
+      ],
+      "correct": 2,
+      "explanation": "Die drei Konzepte erfüllen unterschiedliche Funktionen (Zerlegung in Tokens, Vektordarstellung von Bedeutung, tatsächliche Erzeugung von Text) und dürfen laut Syllabus nicht gleichgesetzt werden.",
+      "aiGenerated": true
+    },
+    {
+      "id": 108,
+      "chapter": 1,
+      "points": 1,
+      "question": "Worin unterscheidet sich das Trainingsziel eines Foundation-LLMs am deutlichsten von dem eines Reasoning-LLMs?",
+      "options": [
+        "Ein Foundation-LLM ist breit vortrainiert und benötigt weitere Anpassung, während ein Reasoning-LLM speziell auf logisches Schließen und Chain-of-Thought für mehrstufige Aufgaben trainiert ist.",
+        "Ein Foundation-LLM ist ausschließlich auf Bilddaten trainiert, ein Reasoning-LLM ausschließlich auf Audiodaten.",
+        "Beide werden identisch trainiert und unterscheiden sich nur im Namen.",
+        "Ein Foundation-LLM benötigt keine Anpassung, ein Reasoning-LLM hingegen schon."
+      ],
+      "correct": 0,
+      "explanation": "Foundation-LLMs sind laut Syllabus breit vortrainiert und flexibel, benötigen aber weitere Anpassung; Reasoning-LLMs sind gezielt auf logisches Schließen (Chain-of-Thought) für mehrstufige Aufgaben wie Testplanung und Aufwandsschätzung trainiert.",
+      "aiGenerated": true
+    },
+    {
+      "id": 109,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welche Konsequenz ergibt sich aus der Eigenschaft von Embeddings, dass semantisch ähnliche Tokens räumlich nah beieinanderliegen?",
+      "options": [
+        "Tokens mit ähnlicher Bedeutung lassen sich über die Nähe ihrer Vektordarstellungen im Vektorraum erkennen.",
+        "Die maximale Tokenanzahl pro Anfrage steigt automatisch an.",
+        "Die Tokenisierung wird dadurch überflüssig.",
+        "Der Transformer benötigt dadurch kein Training mehr."
+      ],
+      "correct": 0,
+      "explanation": "Da Embeddings semantische Nähe über räumliche Nähe im Vektorraum abbilden, lässt sich Bedeutungsähnlichkeit zwischen Tokens anhand der Vektordistanz erkennen; die anderen Optionen stehen in keinem Zusammenhang mit dieser Eigenschaft.",
+      "aiGenerated": true
+    },
+    {
+      "id": 110,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welche Aussage beschreibt das Verhältnis zwischen Deep Learning und generativer KI laut Syllabus korrekt?",
+      "options": [
+        "Generative KI und Deep Learning sind identisch und immer austauschbar.",
+        "Generative KI nutzt Deep Learning, um neue Inhalte zu erzeugen; nicht jede Deep-Learning-Anwendung erzeugt jedoch zwangsläufig neue Inhalte.",
+        "Deep Learning ist ein Teilbereich der generativen KI.",
+        "Generative KI verzichtet vollständig auf neuronale Netze."
+      ],
+      "correct": 1,
+      "explanation": "Generative KI nutzt laut Syllabus Deep-Learning-Techniken zur Erzeugung neuer Inhalte; Deep Learning selbst wird aber auch für nicht-generative Aufgaben eingesetzt (z. B. automatisches Merkmalslernen), ist also der übergeordnete Ansatz.",
+      "aiGenerated": true
+    },
+    {
+      "id": 111,
+      "chapter": 1,
+      "points": 1,
+      "question": "Wie verhält sich der Anwendungsbereich eines Vision-Language-Modells zu dem eines allgemeinen multimodalen Modells?",
+      "options": [
+        "Beide Begriffe sind gleichbedeutend und beschreiben denselben Anwendungsbereich.",
+        "Ein multimodales Modell ist ein Untertyp des Vision-Language-Modells.",
+        "Vision-Language-Modelle verarbeiten ausschließlich Audiodaten.",
+        "Ein Vision-Language-Modell ist ein Untertyp, der speziell Bild und Text kombiniert, während ein multimodales Modell allgemein beliebige Datentypen (z. B. auch Audio) verarbeiten kann."
+      ],
+      "correct": 3,
+      "explanation": "Laut Syllabus ist das Vision-Language-Modell ein Untertyp multimodaler Modelle, der speziell Bild und Text kombiniert, während multimodale Modelle allgemein mehrere Datentypen wie Text, Bild und Audio gleichzeitig verarbeiten können.",
+      "aiGenerated": true
+    },
+    {
+      "id": 112,
+      "chapter": 1,
+      "points": 1,
+      "question": "Welcher Unterschied ist dafür ausschlaggebend, dass Deep Learning gezielt für komplexe Daten wie Bilder und Audio eingesetzt wird, während klassisches maschinelles Lernen dort typischerweise an Grenzen stößt?",
+      "options": [
+        "Deep Learning lernt Merkmale automatisch aus den Daten, während klassisches ML in der Regel eine manuelle Merkmalauswahl erfordert.",
+        "Klassisches ML wurde ausschließlich für Textdaten entwickelt.",
+        "Deep Learning verwendet keine neuronalen Netze und ist dadurch schneller.",
+        "Bilder und Audio können grundsätzlich nicht tokenisiert werden."
+      ],
+      "correct": 0,
+      "explanation": "Deep Learning lernt laut Syllabus Merkmale automatisch aus komplexen Daten wie Bildern und Audio, während klassisches ML in der Regel eine manuelle Feature-Auswahl erfordert; die übrigen Optionen sind im Syllabus nicht belegt.",
+      "aiGenerated": true
+    },
+    {
+      "id": 113,
+      "chapter": 1,
+      "points": 1,
+      "question": "Ein Testteam benötigt ein LLM zur Unterstützung einer mehrstufigen Testplanung inklusive Aufwandsschätzung, bei dem die einzelnen Schlussfolgerungsschritte für das Team nachvollziehbar sein sollen. Welcher LLM-Typ ist dafür laut Syllabus am besten geeignet?",
+      "options": [
+        "Foundation-LLM, da es am breitesten vortrainiert ist.",
+        "Reasoning-LLM, da es auf logisches Schließen und Chain-of-Thought für mehrstufige Aufgaben wie Testplanung und Aufwandsschätzung trainiert ist.",
+        "Instruction-Tuned LLM, da es primär für die Ausführung realer Testanwendungen feinabgestimmt ist.",
+        "Vision-Language-Modell, da es Bild- und Textdaten kombiniert."
+      ],
+      "correct": 1,
+      "explanation": "Reasoning-LLMs sind laut Syllabus speziell für mehrstufige, komplexe Aufgaben wie Testplanung und Aufwandsschätzung mittels Chain-of-Thought-Schließen ausgelegt; die anderen Typen decken diesen Anwendungsfall nicht ab.",
+      "aiGenerated": true
+    },
+    {
+      "id": 114,
+      "chapter": 1,
+      "points": 1,
+      "question": "Ein Werkzeug soll aus aufgezeichneten Nutzer-Sessions mit Tonspur (Audio) sowie einer zugehörigen textuellen Anforderungsspezifikation Testfälle ableiten. Warum reicht dafür ein Vision-Language-Modell nicht aus?",
+      "options": [
+        "Es reicht aus, da Vision-Language-Modelle laut Syllabus beliebige Datentypen inklusive Audio verarbeiten können.",
+        "Ein Vision-Language-Modell kombiniert laut Syllabus speziell nur Bild und Text; für die zusätzliche Verarbeitung von Audio wird ein allgemeines multimodales Modell benötigt.",
+        "Ein Foundation-LLM wäre hierfür ausreichend, da es am breitesten vortrainiert ist.",
+        "Ein klassisches ML-Modell mit manuell definierten Merkmalen wäre die passende Wahl."
+      ],
+      "correct": 1,
+      "explanation": "Ein Vision-Language-Modell ist laut Syllabus ein Untertyp, der speziell Bild und Text kombiniert; für die gemeinsame Verarbeitung von Audio- und Textdaten wird ein allgemeines multimodales Modell benötigt, das mehrere Datentypen gleichzeitig verarbeiten kann.",
+      "aiGenerated": true
+    },
+    {
+      "id": 115,
+      "chapter": 1,
+      "points": 1,
+      "question": "Ein Team setzt ein breit vortrainiertes LLM direkt ein, ohne weitere Anpassung vorzunehmen, und stellt fest, dass es Anweisungen für konkrete Testaufgaben nicht zuverlässig befolgt. Was beschreibt diese Situation laut Syllabus am treffendsten?",
+      "options": [
+        "Das Team nutzt ein Foundation-LLM, das laut Syllabus weitere Anpassung benötigt; für zuverlässige Anweisungsbefolgung in realen Testanwendungen wäre ein instruktionsgetuntes LLM geeigneter.",
+        "Das Team nutzt bereits ein Reasoning-LLM, das für diese Aufgabe ungeeignet ist.",
+        "Das Problem liegt an einem zu kleinen Kontextfenster.",
+        "Das Problem liegt an fehlerhafter Tokenisierung der Eingabe."
+      ],
+      "correct": 0,
+      "explanation": "Foundation-LLMs sind breit vortrainiert, benötigen laut Syllabus aber weitere Anpassung; für zuverlässige Anweisungsbefolgung in realen Testanwendungen ist laut Syllabus ein instruktionsgetuntes LLM vorgesehen, nicht das unangepasste Foundation-LLM.",
+      "aiGenerated": true
+    },
+    {
+      "id": 116,
+      "chapter": 1,
+      "points": 1,
+      "question": "Ein Testorakel trifft seine Entscheidungen ausschließlich anhand fest programmierter Wenn-Dann-Regeln, ohne dass ein Modell aus Daten trainiert wurde. Welcher Kategorie des KI-Spektrums entspricht dieses System?",
+      "options": [
+        "Klassisches maschinelles Lernen, da es datengetrieben ist.",
+        "Deep Learning, da es Merkmale automatisch lernt.",
+        "Symbolische KI, da sie regelbasiert ist und Wissen über Symbole und logische Regeln abbildet.",
+        "Generative KI, da sie neue Inhalte erzeugt."
+      ],
+      "correct": 2,
+      "explanation": "Ein System, das ausschließlich auf fest programmierten Regeln basiert und kein Training aus Daten durchläuft, entspricht laut Syllabus der symbolischen KI, die regelbasiert Wissen über Symbole und logische Regeln abbildet; die anderen Kategorien sind alle datengetrieben bzw. erzeugen neue Inhalte.",
+      "aiGenerated": true
+    },
+    {
+      "id": 117,
+      "chapter": 1,
+      "points": 1,
+      "question": "Ein System zur Priorisierung von Testfällen wird mit Merkmalen trainiert, die Testexperten vorab manuell festlegen (z. B. Umfang der Codeänderung, Fehlerhistorie). Welcher Kategorie des KI-Spektrums entspricht dieser Ansatz am ehesten?",
+      "options": [
+        "Symbolische KI, da feste Regeln verwendet werden.",
+        "Klassisches maschinelles Lernen, da es datengetrieben ist und in der Regel eine manuelle Merkmalauswahl erfordert.",
+        "Deep Learning, da Merkmale automatisch aus den Daten gelernt werden.",
+        "Generative KI, da neue Testfälle erzeugt werden."
+      ],
+      "correct": 1,
+      "explanation": "Die manuelle, vorab durch Experten festgelegte Merkmalauswahl bei gleichzeitig datengetriebenem Training ist laut Syllabus charakteristisch für klassisches maschinelles Lernen, im Gegensatz zu Deep Learning, das Merkmale automatisch lernt.",
+      "aiGenerated": true
+    },
+    {
+      "id": 118,
+      "chapter": 1,
+      "points": 1,
+      "question": "Wie verhalten sich die Begriffe Transformer und GPT laut Syllabus zueinander?",
+      "options": [
+        "Transformer und GPT sind Synonyme und beschreiben exakt dasselbe Konzept.",
+        "Transformer ist die zugrunde liegende Architektur, während GPT ein darauf basierendes, generatives, vortrainiertes Modell ist, das Text sequenziell generiert.",
+        "GPT ist die Architektur, aus der der Transformer als konkretes Modell abgeleitet wurde.",
+        "Transformer beschreibt ausschließlich die Tokenisierung, GPT ausschließlich die Embeddings."
+      ],
+      "correct": 1,
+      "explanation": "Der Transformer ist laut Syllabus die Architektur hinter modernen LLMs; GPT (Generativer vortrainierter Transformer) ist ein auf dieser Architektur basierendes Modell, das Text sequenziell generiert – die Begriffe sind also nicht gleichbedeutend.",
+      "aiGenerated": true
+    },
+    {
+      "id": 119,
+      "chapter": 2,
+      "points": 1,
+      "question": "Welche LLM-Funktion im Softwaretest bezeichnet das Identifizieren von Mehrdeutigkeiten und Inkonsistenzen in Anforderungen sowie die Generierung von Klärungsfragen?",
+      "options": [
+        "Anforderungsanalyse",
+        "Testorakel-Generierung",
+        "Testdatengenerierung",
+        "Fehlerberichterstattung"
+      ],
+      "correct": 0,
+      "explanation": "Die Anforderungsanalyse ist die LLM-Funktion, die Mehrdeutigkeiten und Inkonsistenzen in Anforderungen identifiziert und Klärungsfragen generiert. Testorakel-Generierung leitet erwartete Ergebnisse ab, Testdatengenerierung erstellt Eingabewerte, und Fehlerberichterstattung analysiert Fehlermuster.",
+      "aiGenerated": true
+    },
+    {
+      "id": 120,
+      "chapter": 2,
+      "points": 1,
+      "question": "Welche LLM-Funktion im Softwaretest umfasst das Analysieren von Fehlermustern und das Erstellen von Fehlerdokumentation?",
+      "options": [
+        "Testfallerstellung",
+        "Fehlerberichterstattung",
+        "Testdatengenerierung",
+        "Testorakel-Generierung"
+      ],
+      "correct": 1,
+      "explanation": "Fehlerberichterstattung analysiert Fehlermuster und erstellt Dokumentation. Testfallerstellung generiert Testfälle aus User Stories, Testdatengenerierung erstellt Eingabewerte, und Testorakel-Generierung leitet erwartete Ergebnisse ab.",
+      "aiGenerated": true
+    },
+    {
+      "id": 121,
+      "chapter": 2,
+      "points": 1,
+      "question": "Welcher Komponente der sechsteiligen Prompt-Struktur entspricht die Persona bzw. Perspektive, die das LLM einnehmen soll, z. B. „Agiere als Testautomatisierungs-Ingenieur“?",
+      "options": [
+        "Kontext",
+        "Anweisungen",
+        "Rolle",
+        "Einschränkungen"
+      ],
+      "correct": 2,
+      "explanation": "Die Komponente 'Rolle' legt die Persona bzw. Perspektive des LLM fest. 'Kontext' liefert Hintergrundinformationen zum Testobjekt, 'Anweisungen' beschreiben die konkrete Aufgabe, und 'Einschränkungen' legen Regeln fest.",
+      "aiGenerated": true
+    },
+    {
+      "id": 122,
+      "chapter": 2,
+      "points": 1,
+      "question": "Ein strukturierter Prompt enthält die Zeile „Generiere Testfälle für das Login-Modul“. Welcher Komponente der sechsteiligen Prompt-Struktur entspricht diese Zeile AM BESTEN?",
+      "options": [
+        "Ausgabeformat",
+        "Kontext",
+        "Eingabedaten",
+        "Anweisungen"
+      ],
+      "correct": 3,
+      "explanation": "Diese Zeile beschreibt eine konkrete Aufgabe und entspricht damit der Komponente 'Anweisungen'. 'Kontext' liefert Hintergrundinformationen, 'Eingabedaten' benennt Datenquellen, und 'Ausgabeformat' legt die Darstellung der Ergebnisse fest.",
+      "aiGenerated": true
+    },
+    {
+      "id": 123,
+      "chapter": 2,
+      "points": 1,
+      "question": "Welche Prompting-Technik verwendet keine Beispiele und eignet sich für einfache, klare Aufgaben?",
+      "options": [
+        "Zero-Shot",
+        "Few-Shot",
+        "One-Shot",
+        "Meta-Prompting"
+      ],
+      "correct": 0,
+      "explanation": "Zero-Shot-Prompting stellt die Aufgabe direkt ohne Beispiele und eignet sich für einfache, klare Aufgaben. One-Shot nutzt ein Beispiel, Few-Shot mehrere, und Meta-Prompting lässt das LLM eigene Prompts generieren.",
+      "aiGenerated": true
+    },
+    {
+      "id": 124,
+      "chapter": 2,
+      "points": 1,
+      "question": "Welche Aussage trifft laut Syllabus auf einen System-Prompt zu?",
+      "options": [
+        "Er ist dynamisch und für den Benutzer bei jeder Interaktion sichtbar",
+        "Er ist statisch und für den Benutzer versteckt",
+        "Er wird bei jeder Anfrage neu formuliert und angezeigt",
+        "Er ersetzt den Benutzer-Prompt vollständig"
+      ],
+      "correct": 1,
+      "explanation": "Der System-Prompt ist statisch und für den Benutzer versteckt; er bildet den Rahmen für die gesamte Konversation. Der Benutzer-Prompt ist dagegen dynamisch und sichtbar.",
+      "aiGenerated": true
+    },
+    {
+      "id": 125,
+      "chapter": 2,
+      "points": 1,
+      "question": "Welche Kombination von Evaluationsmetriken wird im Syllabus zur Bewertung von LLM-generierten Ausgaben im Testkontext genannt?",
+      "options": [
+        "Kreativität und Originalität",
+        "Geschwindigkeit und Kosten",
+        "Relevanz und Vollständigkeit",
+        "Genauigkeit und Latenz"
+      ],
+      "correct": 2,
+      "explanation": "Der Syllabus nennt die Relevanz der Ausgabe in Bezug auf die Aufgabe und die Vollständigkeit in Bezug auf die Testbasis als Evaluationsmetriken.",
+      "aiGenerated": true
+    },
+    {
+      "id": 126,
+      "chapter": 2,
+      "points": 1,
+      "question": "Welche der folgenden Aufgaben gehört NICHT zur LLM-Funktion 'Testdatengenerierung'?",
+      "options": [
+        "Erstellung von Grenzwerten für Eingaben",
+        "Erstellung von Kombinationen von Eingabewerten",
+        "Erstellung von Eingabewerten",
+        "Ableitung erwarteter Ergebnisse aus Anforderungen"
+      ],
+      "correct": 3,
+      "explanation": "Die Ableitung erwarteter Ergebnisse aus Anforderungen ist die Funktion 'Testorakel-Generierung', nicht 'Testdatengenerierung'. Testdatengenerierung umfasst Eingabewerte, Grenzwerte und Kombinationen.",
+      "aiGenerated": true
+    },
+    {
+      "id": 127,
+      "chapter": 2,
+      "points": 1,
+      "question": "Wie unterscheidet sich die Anwendung von LLMs in der Testanalyse von der Anwendung im Testentwurf?",
+      "options": [
+        "Testanalyse generiert Testbedingungen und priorisiert sie risikobasiert, während Testentwurf Testfälle, Testskripte und Akzeptanzkriterien erstellt",
+        "Testanalyse erstellt ausschließlich Testskripte, Testentwurf ausschließlich Testdaten",
+        "Testanalyse und Testentwurf bezeichnen im Syllabus denselben Vorgang",
+        "Testentwurf identifiziert Abdeckungslücken, Testanalyse erstellt Akzeptanzkriterien"
+      ],
+      "correct": 0,
+      "explanation": "Testanalyse mit LLM umfasst Testbedingungen generieren, risikobasiert priorisieren und Abdeckungslücken identifizieren. Testentwurf umfasst dagegen die Generierung von Testfällen, Testskripten und Akzeptanzkriterien.",
+      "aiGenerated": true
+    },
+    {
+      "id": 128,
+      "chapter": 2,
+      "points": 1,
+      "question": "Welche Aussage ordnet die Merkmale „direkte, sofortige Interaktion auf Anfrage“ und „in Testinfrastruktur integriert, automatisiert Testaufgaben“ korrekt den beiden Nutzungsformen von LLMs im Softwaretest zu?",
+      "options": [
+        "Das erste Merkmal beschreibt das LLM-gestützte Testtool, das zweite den KI-Chatbot",
+        "Das erste Merkmal beschreibt den KI-Chatbot, das zweite das LLM-gestützte Testtool",
+        "Beide Merkmale beschreiben den KI-Chatbot",
+        "Beide Merkmale beschreiben das LLM-gestützte Testtool"
+      ],
+      "correct": 1,
+      "explanation": "Der KI-Chatbot ermöglicht direkte, sofortige Interaktion auf Anfrage, während das LLM-gestützte Testtool in die Testinfrastruktur integriert ist und Testaufgaben automatisiert.",
+      "aiGenerated": true
+    },
+    {
+      "id": 129,
+      "chapter": 2,
+      "points": 1,
+      "question": "Welche drei Schritte sind laut Syllabus bei der LLM-gestützten Analyse von Regressionstestergebnissen vorgeschrieben?",
+      "options": [
+        "Testfälle automatisieren, priorisieren, dokumentieren",
+        "Testdaten generieren, Testfälle ausführen, Ergebnisse archivieren",
+        "Soll- und Ist-Ergebnisse trennen, Probleme gruppieren und priorisieren, Diskrepanzen hervorheben",
+        "Anforderungen analysieren, Testfälle erstellen, Fehler melden"
+      ],
+      "correct": 2,
+      "explanation": "Der Syllabus nennt für die Regressionstestanalyse mit LLM drei Pflichtschritte: Soll- und Ist-Ergebnisse trennen, Probleme gruppieren und priorisieren, sowie Diskrepanzen hervorheben.",
+      "aiGenerated": true
+    },
+    {
+      "id": 130,
+      "chapter": 2,
+      "points": 1,
+      "question": "Was unterscheidet Zero-Shot- von One-Shot-Prompting AM BESTEN?",
+      "options": [
+        "Zero-Shot verwendet mehrere Beispiele, One-Shot keine",
+        "Zero-Shot ist nur eine Vorstufe von Few-Shot-Prompting",
+        "Beide Techniken verwenden stets mehrere Beispiele",
+        "Zero-Shot verwendet kein Beispiel, One-Shot genau ein Beispiel zur Orientierung"
+      ],
+      "correct": 3,
+      "explanation": "Zero-Shot-Prompting kommt ohne Beispiel aus, während One-Shot-Prompting genau ein Beispiel zur Orientierung nutzt, typischerweise für einfache Formatvorgaben.",
+      "aiGenerated": true
+    },
+    {
+      "id": 131,
+      "chapter": 2,
+      "points": 1,
+      "question": "Für welche Art von Aufgabe eignet sich One-Shot-Prompting laut Syllabus besonders?",
+      "options": [
+        "Für einfache Formatvorgaben, bei denen ein Beispiel zur Orientierung ausreicht",
+        "Für mehrstufige Testplanung mit Verkettung von Prompts",
+        "Für flexible, sich dynamisch ändernde Aufgaben",
+        "Für wiederholbare Formate wie Gherkin, die mehrere Beispiele benötigen"
+      ],
+      "correct": 0,
+      "explanation": "One-Shot-Prompting nutzt genau ein Beispiel zur Orientierung und eignet sich laut Syllabus für einfache Formatvorgaben. Mehrstufige Planung ist Prompt-Verkettung, dynamische Aufgaben sind Meta-Prompting, und wiederholbare Formate mit mehreren Beispielen sind Few-Shot.",
+      "aiGenerated": true
+    },
+    {
+      "id": 132,
+      "chapter": 2,
+      "points": 1,
+      "question": "Welche Aussage zur iterativen Prompt-Verfeinerung trifft laut Syllabus zu?",
+      "options": [
+        "Prompts werden einmalig erstellt und danach nie mehr verändert",
+        "Prompts werden schrittweise auf Basis der Ausgabequalität optimiert",
+        "Iterative Verfeinerung ist ausschließlich bei Zero-Shot-Prompting relevant",
+        "Iterative Verfeinerung ersetzt die Notwendigkeit von Evaluationsmetriken"
+      ],
+      "correct": 1,
+      "explanation": "Iterative Prompt-Verfeinerung bedeutet, Prompts schrittweise auf Basis der Qualität der bisherigen Ausgabe zu optimieren; sie ergänzt die Evaluationsmetriken statt sie zu ersetzen.",
+      "aiGenerated": true
+    },
+    {
+      "id": 133,
+      "chapter": 2,
+      "points": 1,
+      "question": "Ein Tester ergänzt seinen strukturierten Prompt um die Zeile „Kosmetische Fehler ausschließen“. Welcher Komponente der sechsteiligen Prompt-Struktur entspricht diese Zeile, und warum?",
+      "options": [
+        "Kontext, da sie Hintergrundinformationen zum Testobjekt liefert",
+        "Ausgabeformat, da sie die Präsentation der Ergebnisse festlegt",
+        "Einschränkungen, da sie eine Regel bzw. Bedingung für die Aufgabe festlegt",
+        "Anweisungen, da sie die konkrete Aufgabe beschreibt"
+      ],
+      "correct": 2,
+      "explanation": "„Kosmetische Fehler ausschließen“ ist eine Regel bzw. Bedingung, die den Umfang der Aufgabe einschränkt, und entspricht damit exakt der Komponente 'Einschränkungen' laut Syllabus-Beispiel.",
+      "aiGenerated": true
+    },
+    {
+      "id": 134,
+      "chapter": 2,
+      "points": 1,
+      "question": "Ein Tester bittet ein LLM, für ein Modul (1) die aus den Anforderungen abgeleiteten erwarteten Ergebnisse zu erstellen und (2) eine Reihe von Grenzwerten und Kombinationen für die Eingabewerte zu generieren. Wie sind diese beiden Aufgaben den LLM-Funktionen im Test korrekt zuzuordnen?",
+      "options": [
+        "(1) ist Testdatengenerierung, (2) ist Testorakel-Generierung",
+        "Beide Aufgaben sind Anforderungsanalyse",
+        "Beide Aufgaben sind Testfallerstellung",
+        "(1) ist Testorakel-Generierung, (2) ist Testdatengenerierung"
+      ],
+      "correct": 3,
+      "explanation": "Testorakel-Generierung leitet erwartete Ergebnisse aus Anforderungen ab (Aufgabe 1), während Testdatengenerierung Eingabewerte, Grenzwerte und Kombinationen erstellt (Aufgabe 2). Diese Abgrenzung ist eine prüfungsrelevante Kernaussage des Syllabus.",
+      "aiGenerated": true
+    },
+    {
+      "id": 135,
+      "chapter": 2,
+      "points": 1,
+      "question": "Eine Organisation möchte, dass jede Konversation mit ihrem LLM-gestützten Testtool stets denselben übergeordneten Regeln folgt, unabhängig vom jeweiligen Tester, während einzelne Tester in jeder Sitzung unterschiedliche konkrete Aufgaben stellen können. Welche Kombination von Prompt-Typen entspricht diesem Bedarf, und warum?",
+      "options": [
+        "Ein statischer, versteckter System-Prompt als Rahmen für die gesamte Konversation und ein dynamischer, sichtbarer Benutzer-Prompt für die spezifische Aufgabe pro Interaktion",
+        "Ein dynamischer, sichtbarer System-Prompt für die übergeordneten Regeln und ein statischer, versteckter Benutzer-Prompt für die konkreten Aufgaben",
+        "Ausschließlich ein Benutzer-Prompt, da System-Prompts keine Regeln durchsetzen können",
+        "Ausschließlich ein System-Prompt, da Benutzer-Prompts überflüssig sind"
+      ],
+      "correct": 0,
+      "explanation": "Der System-Prompt ist statisch, versteckt und bildet den Rahmen für die gesamte Konversation – ideal für übergeordnete Regeln. Der Benutzer-Prompt ist dynamisch, sichtbar und für die spezifische Aufgabe pro Interaktion gedacht.",
+      "aiGenerated": true
+    },
+    {
+      "id": 136,
+      "chapter": 2,
+      "points": 1,
+      "question": "Ein Tester benötigt eine Technik, bei der das LLM selbst eigene Prompts für eine sich häufig ändernde, flexible Testaufgabe generiert und verfeinert – im Gegensatz zu einer Technik mit einer festen Anzahl vordefinierter Beispiele für wiederholbare Formate. Welche Technik beschreibt dies, und wie unterscheidet sie sich von der Technik mit den vordefinierten Beispielen?",
+      "options": [
+        "Few-Shot-Prompting, da es keine Beispiele benötigt",
+        "Meta-Prompting, da das LLM eigene Prompts für flexible, dynamische Aufgaben generiert/verfeinert; Few-Shot-Prompting nutzt dagegen mehrere feste Beispiele für wiederholbare Formate",
+        "Zero-Shot-Prompting, da es für dynamische Aufgaben ungeeignet ist",
+        "Prompt-Verkettung, da sie feste Beispiele für wiederholbare Formate liefert"
+      ],
+      "correct": 1,
+      "explanation": "Meta-Prompting lässt das LLM eigene Prompts für flexible, dynamische Aufgaben generieren/verfeinern. Few-Shot-Prompting hingegen nutzt mehrere Beispiele zur Anleitung, geeignet für wiederholbare Formate wie Gherkin.",
+      "aiGenerated": true
+    },
+    {
+      "id": 137,
+      "chapter": 2,
+      "points": 1,
+      "question": "Ein strukturierter Prompt enthält die Zeile „Die Anwendung ist ein Online-Banking-System mit Fokus auf Zahlungsabwicklung, das täglich von 50.000 Nutzern verwendet wird.“ Welcher Komponente der sechsteiligen Prompt-Struktur entspricht diese Zeile AM BESTEN?",
+      "options": [
+        "Anweisungen, da eine konkrete Aufgabe beschrieben wird",
+        "Ausgabeformat, da die Nutzerzahl eine Formatangabe darstellt",
+        "Kontext, da Hintergrundinformationen zum Testobjekt geliefert werden, ohne eine konkrete Aufgabe zu benennen",
+        "Eingabedaten, da es sich um eine spezifische Datenquelle handelt"
+      ],
+      "correct": 2,
+      "explanation": "Die Zeile beschreibt Hintergrundinformationen zum Testobjekt (Banking-App, Nutzerzahl) ohne eine konkrete Aufgabe zu formulieren – das entspricht der Komponente 'Kontext'. 'Anweisungen' würde stattdessen eine Aufgabe wie 'Generiere Testfälle' enthalten.",
+      "aiGenerated": true
+    },
+    {
+      "id": 138,
+      "chapter": 2,
+      "points": 1,
+      "question": "Ein Team hat mit einem LLM Testfälle generiert, die zwar inhaltlich korrekt und passend zur gestellten Aufgabe sind, jedoch nur einen Teil der Anforderungen der Testbasis abdecken. Welche Evaluationsmetrik ist hier beeinträchtigt, und warum?",
+      "options": [
+        "Relevanz, da die generierten Testfälle nicht zur Aufgabe passen",
+        "Keine der beiden Metriken ist in diesem Szenario anwendbar",
+        "Beide Metriken sind hier nicht unterscheidbar und gleichermaßen betroffen",
+        "Vollständigkeit, da die Ausgabe nicht die gesamte Testbasis abdeckt, obwohl die einzelnen Testfälle relevant sind"
+      ],
+      "correct": 3,
+      "explanation": "Relevanz bewertet, ob die Ausgabe zur gestellten Aufgabe passt – das ist hier gegeben. Vollständigkeit bewertet die Abdeckung der Testbasis, die hier nur teilweise erreicht wird, weshalb genau diese Metrik beeinträchtigt ist.",
+      "aiGenerated": true
+    },
+    {
+      "id": 139,
+      "chapter": 3,
+      "points": 1,
+      "question": "Was versteht man laut Syllabus unter einem Denkfehler (Reasoning-Fehler) eines LLM?",
+      "options": [
+        "Eine sachlich falsche, aber plausibel klingende Ausgabe des LLM.",
+        "Eine fehlerhafte logische Schlussfolgerung des LLM, zum Beispiel bei einer Testaufwandsschätzung.",
+        "Ein systematischer Fehler durch unausgewogene Trainingsdaten.",
+        "Eine Abweichung der Ausgabe durch die Senkung des Temperatur-Parameters."
+      ],
+      "correct": 1,
+      "explanation": "Ein Denkfehler ist laut Syllabus eine fehlerhafte logische Schlussfolgerung, z. B. eine falsche Testaufwandsschätzung; Option a) beschreibt eine Halluzination, c) eine Verzerrung (Bias) und d) hat keinen Bezug zu Denkfehlern.",
+      "aiGenerated": true
+    },
+    {
+      "id": 140,
+      "chapter": 3,
+      "points": 1,
+      "question": "Wodurch entsteht laut Syllabus eine Verzerrung (Bias) in LLM-Ausgaben?",
+      "options": [
+        "Durch nicht-deterministisches Verhalten des Modells während der Inferenz.",
+        "Durch einen systematischen Fehler infolge unausgewogener Trainingsdaten.",
+        "Durch eine absichtliche, bösartige Manipulation der Trainingsdaten durch einen Angreifer.",
+        "Durch eine fehlerhafte logische Schlussfolgerung des Modells."
+      ],
+      "correct": 1,
+      "explanation": "Verzerrung (Bias) entsteht laut Syllabus durch einen systematischen Fehler aufgrund unausgewogener Trainingsdaten; Option a) beschreibt Nichtdeterminismus, c) Data Poisoning und d) einen Denkfehler.",
+      "aiGenerated": true
+    },
+    {
+      "id": 141,
+      "chapter": 3,
+      "points": 1,
+      "question": "Welches der folgenden Beispiele veranschaulicht laut Syllabus eine Verzerrung (Bias) in KI-generierten Testfällen?",
+      "options": [
+        "Ein LLM erfindet einen nicht existierenden API-Endpunkt.",
+        "Ein LLM unterschätzt systematisch den Testaufwand für ein Projekt.",
+        "Ein LLM generiert bei ausdrücklich angeforderten funktionalen und nicht-funktionalen Tests überproportional wenige nicht-funktionale Testfälle.",
+        "Ein LLM liefert bei identischem Prompt in zwei unterschiedlichen Sitzungen abweichende Ergebnisse."
+      ],
+      "correct": 2,
+      "explanation": "Laut Syllabus ist die Unterrepräsentation nicht-funktionaler Tests das Beispiel für Verzerrung (Bias); a) ist eine Halluzination, b) ein Denkfehler und d) nicht-deterministisches Verhalten.",
+      "aiGenerated": true
+    },
+    {
+      "id": 142,
+      "chapter": 3,
+      "points": 1,
+      "question": "Was bedeutet es, dass ein LLM 'nicht-deterministisch' ist?",
+      "options": [
+        "Das LLM kann grundsätzlich keine korrekten Ausgaben liefern.",
+        "Ein identischer Prompt kann bei wiederholter Eingabe unterschiedliche Ausgaben liefern.",
+        "Das LLM aktualisiert nach jeder Konversation automatisch seine Modellgewichtungen.",
+        "Das LLM benötigt vor jeder neuen Anfrage ein erneutes Training."
+      ],
+      "correct": 1,
+      "explanation": "Nicht-deterministisches Verhalten bedeutet laut Syllabus, dass ein identischer Prompt variierende Ausgaben liefern kann; c) und d) beschreiben fälschlich Training, das laut Syllabus getrennt von der Inferenz erfolgt und nicht bei jeder Anfrage stattfindet.",
+      "aiGenerated": true
+    },
+    {
+      "id": 143,
+      "chapter": 3,
+      "points": 1,
+      "question": "Welche Aussage zur DSGVO (Datenschutz-Grundverordnung) trifft laut Syllabus zu?",
+      "options": [
+        "Sie reguliert KI-Systeme nach Risikoklassen.",
+        "Sie schränkt die Erhebung, Verarbeitung und Speicherung von Daten ein.",
+        "Sie definiert Anforderungen an ein KI-Managementsystem.",
+        "Sie ist ein US-amerikanisches Risikomanagement-Framework für KI."
+      ],
+      "correct": 1,
+      "explanation": "Laut Syllabus schränkt die DSGVO die Erhebung, Verarbeitung und Speicherung von Daten ein; a) beschreibt den EU AI Act, c) ISO/IEC 42001 und d) das NIST AI RMF.",
+      "aiGenerated": true
+    },
+    {
+      "id": 144,
+      "chapter": 3,
+      "points": 1,
+      "question": "Wofür steht die Norm ISO/IEC 42001 im Kontext generativer KI?",
+      "options": [
+        "Für ein KI-Managementsystem.",
+        "Für ein US-amerikanisches Risikomanagement-Framework für KI.",
+        "Für eine EU-Verordnung zur Risikoklassifizierung von KI-Systemen.",
+        "Für eine Verordnung zum Schutz personenbezogener Daten."
+      ],
+      "correct": 0,
+      "explanation": "ISO/IEC 42001 definiert laut Syllabus ein KI-Managementsystem; b) beschreibt das NIST AI RMF, c) den EU AI Act und d) die DSGVO.",
+      "aiGenerated": true
+    },
+    {
+      "id": 145,
+      "chapter": 3,
+      "points": 1,
+      "question": "Was ist das NIST AI RMF laut Syllabus?",
+      "options": [
+        "Ein europäisches Gesetz zur Risikoklassifizierung von KI-Systemen.",
+        "Ein US-amerikanisches Framework für das Risikomanagement von KI.",
+        "Ein internationaler Standard für KI-Managementsysteme.",
+        "Eine Verordnung zum Schutz personenbezogener Daten in der EU."
+      ],
+      "correct": 1,
+      "explanation": "Das NIST AI RMF ist laut Syllabus ein US-amerikanisches KI-Risikomanagement-Framework; a) beschreibt den EU AI Act, c) ISO/IEC 42001 und d) die DSGVO.",
+      "aiGenerated": true
+    },
+    {
+      "id": 146,
+      "chapter": 3,
+      "points": 1,
+      "question": "Was unterscheidet laut Syllabus 'Training' von 'Inferenz' bei einem LLM?",
+      "options": [
+        "Training generiert bei jeder Konversation eine Ausgabe, Inferenz aktualisiert einmalig die Modellgewichtungen.",
+        "Training aktualisiert die Modellgewichtungen (einmalig oder periodisch), Inferenz generiert eine Ausgabe, ohne das Modell zu verändern.",
+        "Training und Inferenz bezeichnen denselben Prozess der Ausgabengenerierung.",
+        "Training findet bei jeder Nutzeranfrage statt, Inferenz nur periodisch."
+      ],
+      "correct": 1,
+      "explanation": "Laut Merksatz im Syllabus gilt: Training aktualisiert die Modellgewichtungen (einmalig/periodisch), während die Inferenz bei jeder Konversation eine Ausgabe generiert, ohne das Modell zu verändern.",
+      "aiGenerated": true
+    },
+    {
+      "id": 147,
+      "chapter": 3,
+      "points": 1,
+      "question": "Ein Tester korrigiert eine Halluzination eines LLM erfolgreich innerhalb einer Sitzung. In der nächsten Sitzung tritt exakt dieselbe Halluzination erneut auf. Was ist laut Syllabus die wahrscheinlichste Ursache?",
+      "options": [
+        "Das LLM hat die Korrektur gelernt, wendet sie aber inkonsequent an.",
+        "Das LLM lernt nicht aus Korrekturen einzelner Sitzungen, da Training und Inferenz getrennte Prozesse sind.",
+        "Der Temperatur-Parameter wurde zwischen den Sitzungen erhöht.",
+        "Die Trainingsdaten wurden durch Data Poisoning erneut manipuliert."
+      ],
+      "correct": 1,
+      "explanation": "Da Training und Inferenz getrennte Prozesse sind, lernt das LLM nicht aus Korrekturen innerhalb einzelner Sitzungen; die Modellgewichtungen bleiben unverändert, weshalb dieselbe Halluzination erneut auftreten kann.",
+      "aiGenerated": true
+    },
+    {
+      "id": 148,
+      "chapter": 3,
+      "points": 1,
+      "question": "Welchen Zweck erfüllen strukturierte, präzise Prompts mit relevantem Kontext als Mitigationstechnik laut Syllabus?",
+      "options": [
+        "Sie verhindern dauerhaft, dass ein LLM jemals halluziniert.",
+        "Sie tragen dazu bei, das Risiko von Halluzinationen, Denkfehlern und Verzerrungen zu verringern.",
+        "Sie ersetzen die Notwendigkeit einer menschlichen Überprüfung der Ausgaben.",
+        "Sie senken automatisch den Energieverbrauch des Modells."
+      ],
+      "correct": 1,
+      "explanation": "Strukturierte, präzise Prompts mit relevantem Kontext sind laut Syllabus eine Mitigationstechnik, um das Risiko von Halluzinationen, Denkfehlern und Verzerrungen zu reduzieren; eine vollständige Fehlerfreiheit wird dadurch nicht garantiert, und die menschliche Überprüfung bleibt eine eigenständige, zusätzliche Technik.",
+      "aiGenerated": true
+    },
+    {
+      "id": 149,
+      "chapter": 3,
+      "points": 1,
+      "question": "Warum ist die menschliche Überprüfung von LLM-Ausgaben laut Syllabus eine wichtige Mitigationstechnik?",
+      "options": [
+        "Weil sie das einzige Mittel ist, um den Energieverbrauch von LLMs zu senken.",
+        "Weil sie hilft, Halluzinationen, Denkfehler und Verzerrungen zu erkennen, bevor sie sich auf das Testen auswirken.",
+        "Weil sie das nicht-deterministische Verhalten von LLMs vollständig beseitigt.",
+        "Weil sie die Trainingsdaten eines LLM direkt korrigiert."
+      ],
+      "correct": 1,
+      "explanation": "Die menschliche Überprüfung der LLM-Ausgaben ist laut Syllabus eine Mitigationstechnik, mit der Halluzinationen, Denkfehler und Verzerrungen erkannt werden können, bevor sie in den Testprozess einfließen.",
+      "aiGenerated": true
+    },
+    {
+      "id": 150,
+      "chapter": 3,
+      "points": 1,
+      "question": "Was beschreibt der Angriffsvektor 'Generierung von bösartigem Code' laut Syllabus AM BESTEN?",
+      "options": [
+        "Ein Angreifer manipuliert dauerhaft die Trainingsdaten eines LLM.",
+        "Ein Angreifer provoziert durch gezielte Prompts die Preisgabe vertraulicher Trainingsdaten.",
+        "Ein LLM wird so manipuliert, dass es Backdoors oder Aufrufe externer Befehle generiert.",
+        "Ein Angreifer stört die LLM-Ausgabe temporär durch bösartige Laufzeit-Eingaben."
+      ],
+      "correct": 2,
+      "explanation": "Laut Syllabus bezeichnet 'Generierung von bösartigem Code' die Manipulation des LLM, sodass es Backdoors oder Aufrufe externer Befehle erzeugt; a) beschreibt Data Poisoning, b) Datenexfiltration und d) Manipulation von Anfragen.",
+      "aiGenerated": true
+    },
+    {
+      "id": 151,
+      "chapter": 3,
+      "points": 1,
+      "question": "Welche Rolle spielt laut Syllabus die Einbindung von CISO, CTO und Rechtsberatern im Zusammenhang mit generativer KI?",
+      "options": [
+        "Sie ist ausschließlich für die Reduzierung des Energieverbrauchs generativer KI verantwortlich.",
+        "Sie ist eine der genannten Mitigationsstrategien für Datenschutz- und Sicherheitsrisiken.",
+        "Sie ersetzt die Notwendigkeit robuster Zugriffskontrollen.",
+        "Sie ist ausschließlich bei Verstößen gegen die DSGVO relevant."
+      ],
+      "correct": 1,
+      "explanation": "Laut Syllabus zählt die Einbindung von CISO, CTO und Rechtsberatern neben sicheren Datenverarbeitungspraktiken und robusten Zugriffskontrollen zu den Mitigationsstrategien für Datenschutz- und Sicherheitsrisiken.",
+      "aiGenerated": true
+    },
+    {
+      "id": 152,
+      "chapter": 3,
+      "points": 1,
+      "question": "Welche zwei Faktoren beeinflussen laut Syllabus den Energieverbrauch bei der Nutzung generativer KI direkt?",
+      "options": [
+        "Aufgabenkomplexität und Modellgröße.",
+        "Anzahl der Tester und Projektbudget.",
+        "Sprache des Prompts und Tageszeit der Nutzung.",
+        "Trainingsdatenmenge und Anzahl der Sitzungen."
+      ],
+      "correct": 0,
+      "explanation": "Laut Syllabus beeinflussen Aufgabenkomplexität und Modellgröße den Energieverbrauch direkt.",
+      "aiGenerated": true
+    },
+    {
+      "id": 153,
+      "chapter": 3,
+      "points": 1,
+      "question": "Ein Chatbot zur Testfallgenerierung liefert aufgrund einer bösartig formulierten Laufzeit-Eingabe für eine einzelne Anfrage fehlerhafte Testschritte. Nach einem Neustart mit einem normalen Prompt funktioniert er wieder korrekt, und die zugrunde liegenden Trainingsdaten sind unverändert. Um welchen Angriffsvektor handelt es sich AM EHESTEN?",
+      "options": [
+        "Data Poisoning, da das Modell dauerhaft verändert wurde.",
+        "Manipulation von Anfragen, da die Störung nur temporär war und die Trainingsdaten nicht betraf.",
+        "Datenexfiltration, da vertrauliche Trainingsdaten offengelegt wurden.",
+        "Generierung von bösartigem Code, da eine Backdoor erzeugt wurde."
+      ],
+      "correct": 1,
+      "explanation": "Laut Syllabus betrifft Manipulation von Anfragen bösartige Laufzeit-Eingaben, die die LLM-Ausgabe nur temporär stören, ohne die Trainingsdaten dauerhaft zu verändern; im Gegensatz dazu wäre Data Poisoning eine dauerhafte Manipulation der Trainingsdaten selbst.",
+      "aiGenerated": true
+    },
+    {
+      "id": 154,
+      "chapter": 3,
+      "points": 1,
+      "question": "Ein LLM soll für eine Anwendung sowohl funktionale als auch nicht-funktionale Testfälle generieren, wobei beide Testarten in der Anforderung ausdrücklich verlangt wurden. Über mehrere Durchläufe hinweg liefert es systematisch deutlich mehr funktionale als nicht-funktionale Testvorschläge. Um welches Problem handelt es sich AM EHESTEN?",
+      "options": [
+        "Eine Halluzination, da nicht angeforderte Inhalte erzeugt wurden.",
+        "Einen Denkfehler, da eine fehlerhafte logische Schlussfolgerung vorliegt.",
+        "Eine Verzerrung (Bias), da eine unausgewogene Trainingsdatengrundlage zu einer systematischen Unterrepräsentation führt.",
+        "Nicht-deterministisches Verhalten, da das Ergebnis über mehrere Sitzungen variiert."
+      ],
+      "correct": 2,
+      "explanation": "Die systematische Unterrepräsentation nicht-funktionaler Tests trotz ausdrücklicher Anforderung entspricht laut Syllabus dem Beispiel für Verzerrung (Bias); es wurden keine erfundenen Inhalte erzeugt (keine Halluzination), keine fehlerhafte Schlussfolgerung beschrieben (kein Denkfehler) und das Muster ist konsistent statt zufällig variierend (kein reiner Nichtdeterminismus).",
+      "aiGenerated": true
+    },
+    {
+      "id": 155,
+      "chapter": 3,
+      "points": 1,
+      "question": "Warum stellt der Energieverbrauch generativer KI laut Syllabus auch dann ein relevantes Risiko dar, wenn eine einzelne Anfrage nur wenig Energie verbraucht?",
+      "options": [
+        "Weil einzelne Anfragen unabhängig von Aufgabenkomplexität und Modellgröße stets denselben Energieverbrauch verursachen.",
+        "Weil sich der Verbrauch über Millionen Nutzer kumuliert und dadurch zu signifikanten CO₂-Emissionen führt.",
+        "Weil jede einzelne Anfrage automatisch ein erneutes Training des Modells auslöst.",
+        "Weil Bildgenerierung inzwischen weniger Energie verbraucht als Textgenerierung."
+      ],
+      "correct": 1,
+      "explanation": "Laut Syllabus führt die kumulative Wirkung über Millionen Nutzer zu signifikanten CO₂-Emissionen, auch wenn der Energieverbrauch einzelner Anfragen gering erscheint.",
+      "aiGenerated": true
+    },
+    {
+      "id": 156,
+      "chapter": 3,
+      "points": 1,
+      "question": "Ein Unternehmen nutzt generative KI, um aus echten Kundendaten Testdaten abzuleiten, und möchte sicherstellen, dass die Erhebung und Verarbeitung dieser personenbezogenen Daten rechtmäßig erfolgt. Im Gegensatz zum EU AI Act, der KI-Systeme nach Risikoklassen reguliert, ist hierfür AM EHESTEN folgende Vorschrift maßgeblich:",
+      "options": [
+        "ISO/IEC 42001",
+        "NIST AI RMF",
+        "DSGVO",
+        "EU AI Act"
+      ],
+      "correct": 2,
+      "explanation": "Die DSGVO schränkt laut Syllabus die Erhebung, Verarbeitung und Speicherung personenbezogener Daten ein und ist damit für den rechtmäßigen Umgang mit Kundendaten maßgeblich; der EU AI Act reguliert dagegen KI-Systeme nach Risikoklassen, ISO/IEC 42001 ist ein Managementsystem-Standard und das NIST AI RMF ein US-amerikanisches Risikomanagement-Framework.",
+      "aiGenerated": true
+    },
+    {
+      "id": 157,
+      "chapter": 3,
+      "points": 1,
+      "question": "Ein Team senkt den Temperatur-Parameter eines LLM, um die Variabilität bei der Testfallgenerierung zu reduzieren. Bei identischen Prompts erhält es dennoch in seltenen Fällen leicht unterschiedliche Ergebnisse. Wie ist das laut Syllabus AM BESTEN zu erklären?",
+      "options": [
+        "Die Senkung des Temperatur-Parameters war wirkungslos, da sie ausschließlich den Energieverbrauch beeinflusst.",
+        "Ein niedrigerer Temperatur-Parameter reduziert nicht-deterministisches Verhalten, beseitigt es aber nicht vollständig.",
+        "Die verbleibende Variabilität zeigt, dass zwischen den Anfragen ein erneutes Training stattgefunden hat.",
+        "Die verbleibende Variabilität ist ein Zeichen für Data Poisoning der Trainingsdaten."
+      ],
+      "correct": 1,
+      "explanation": "Laut Syllabus reduziert die Senkung des Temperatur-Parameters nicht-deterministisches Verhalten, beseitigt es aber nicht vollständig; der Energieverbrauch wird stattdessen von Aufgabenkomplexität und Modellgröße beeinflusst, und weder Training noch Data Poisoning finden zwischen einzelnen Inferenz-Anfragen statt.",
+      "aiGenerated": true
+    },
+    {
+      "id": 158,
+      "chapter": 3,
+      "points": 1,
+      "question": "Welche der folgenden Zuordnungen von Angriffsvektor und Merkmal ist FALSCH?",
+      "options": [
+        "Data Poisoning – dauerhafte Manipulation der Trainingsdaten.",
+        "Manipulation von Anfragen – temporäre Störung durch bösartige Laufzeit-Eingaben.",
+        "Datenexfiltration – Preisgabe vertraulicher Trainingsdaten durch gezielte Prompts.",
+        "Generierung von bösartigem Code – dauerhafte Veränderung der Trainingsdaten, um Backdoors zu erzeugen."
+      ],
+      "correct": 3,
+      "explanation": "Generierung von bösartigem Code bezeichnet laut Syllabus die Manipulation des LLM zur Erzeugung von Backdoors oder externen Befehlsaufrufen in der Ausgabe, nicht eine dauerhafte Veränderung der Trainingsdaten – das wäre Data Poisoning. Die Zuordnungen a), b) und c) entsprechen dagegen korrekt den Definitionen im Syllabus.",
+      "aiGenerated": true
+    },
+    {
+      "id": 159,
+      "chapter": 4,
+      "points": 1,
+      "question": "Welche Aufgabe hat die Frontend-Komponente in einer LLM-gestützten Testinfrastruktur?",
+      "options": [
+        "Sie stellt die Benutzeroberfläche für die Ein- und Ausgabe des Testers bereit.",
+        "Sie orchestriert Authentifizierung, Datenabruf und Prompt-Vorbereitung.",
+        "Sie verfeinert die Ausgabe des LLM, bevor diese angezeigt wird.",
+        "Sie speichert Embeddings für den semantischen Ähnlichkeitsabruf."
+      ],
+      "correct": 0,
+      "explanation": "Das Frontend ist die Benutzeroberfläche, über die der Tester Eingaben macht und Ausgaben erhält; Orchestrierung übernimmt das Backend, Verfeinerung das Post-Processing und Embeddings die Vektordatenbank.",
+      "aiGenerated": true
+    },
+    {
+      "id": 160,
+      "chapter": 4,
+      "points": 1,
+      "question": "Welche Komponente einer LLM-gestützten Testinfrastruktur stellt den sicheren Zugriff auf das System sicher?",
+      "options": [
+        "Relationale Datenbank",
+        "Vektordatenbank",
+        "Authentifizierungskomponente",
+        "Post-Processing-Komponente"
+      ],
+      "correct": 2,
+      "explanation": "Die Authentifizierungskomponente ist explizit für den sicheren Systemzugriff verantwortlich, während die Datenbanken Daten speichern und Post-Processing die LLM-Ausgabe verfeinert.",
+      "aiGenerated": true
+    },
+    {
+      "id": 161,
+      "chapter": 4,
+      "points": 1,
+      "question": "Wofür ist die Post-Processing-Komponente in einer LLM-gestützten Testinfrastruktur zuständig?",
+      "options": [
+        "Sie authentifiziert den Zugriff der Tester auf das System.",
+        "Sie verfeinert die Ausgabe des LLM, bevor sie an das Frontend weitergegeben wird.",
+        "Sie ruft historische Testfälle aus der relationalen Datenbank ab.",
+        "Sie bereitet den Prompt für das LLM anhand der Benutzereingabe vor."
+      ],
+      "correct": 1,
+      "explanation": "Post-Processing verfeinert die rohe LLM-Ausgabe, bevor sie dem Tester im Frontend präsentiert wird; Prompt-Vorbereitung und Datenabruf sind Aufgaben des Backends.",
+      "aiGenerated": true
+    },
+    {
+      "id": 162,
+      "chapter": 4,
+      "points": 1,
+      "question": "Welche Art von Daten wird typischerweise in einer relationalen Datenbank innerhalb einer LLM-gestützten Testinfrastruktur gespeichert?",
+      "options": [
+        "Unstrukturierte Embeddings für semantische Suche",
+        "Rohe Benutzereingaben aus dem Frontend",
+        "Trainingsdaten für das Fine-Tuning des LLM",
+        "Strukturierte, tabellenbasierte Daten wie historische Testfälle"
+      ],
+      "correct": 3,
+      "explanation": "Relationale Datenbanken speichern strukturierte, tabellenbasierte Daten, z. B. historische Testfälle, während Embeddings in der Vektordatenbank abgelegt werden.",
+      "aiGenerated": true
+    },
+    {
+      "id": 163,
+      "chapter": 4,
+      "points": 1,
+      "question": "Wofür wird eine Vektordatenbank in einer LLM-gestützten Testinfrastruktur hauptsächlich genutzt?",
+      "options": [
+        "Für die Speicherung von Embeddings zum semantischen Ähnlichkeitsabruf, z. B. von API-Spezifikationen",
+        "Für die tabellenbasierte Speicherung historischer Testergebnisse",
+        "Für die Verwaltung von Benutzerauthentifizierung und Zugriffsrechten",
+        "Für die Formatierung der finalen LLM-Ausgabe vor der Anzeige"
+      ],
+      "correct": 0,
+      "explanation": "Die Vektordatenbank speichert Embeddings und ermöglicht den semantischen Ähnlichkeitsabruf, etwa von API-Spezifikationen oder Anforderungen – im Gegensatz zur tabellenbasierten relationalen Datenbank.",
+      "aiGenerated": true
+    },
+    {
+      "id": 164,
+      "chapter": 4,
+      "points": 1,
+      "question": "Welches der drei RAG-Kernmerkmale beschreibt, dass zwischen Retrieval und Generierung kein manuelles Prüfen der abgerufenen Daten erfolgt?",
+      "options": [
+        "Aktuell",
+        "Spezifisch",
+        "Automatisch",
+        "Iterativ"
+      ],
+      "correct": 2,
+      "explanation": "Automatisch bedeutet, dass RAG ohne manuelle Zwischenprüfung zwischen Retrieval und Generierung abläuft; die weiteren Kernmerkmale sind spezifisch und aktuell.",
+      "aiGenerated": true
+    },
+    {
+      "id": 165,
+      "chapter": 4,
+      "points": 1,
+      "question": "LLMOps ist am ehesten vergleichbar mit welchem Konzept, jedoch speziell auf LLMs zugeschnitten?",
+      "options": [
+        "Retrieval-Augmented Generation",
+        "DevOps bzw. MLOps",
+        "Multi-Agenten-Orchestrierung",
+        "Fine-Tuning von SLMs"
+      ],
+      "correct": 1,
+      "explanation": "Laut Syllabus ist LLMOps analog zu DevOps/MLOps, aber spezifisch auf die Anforderungen von LLMs (Deployment, Monitoring, Versionierung, Performance) zugeschnitten.",
+      "aiGenerated": true
+    },
+    {
+      "id": 166,
+      "chapter": 4,
+      "points": 1,
+      "question": "Warum gilt RAG als 'spezifisch', wenn ein Tester Testfälle für eine bestimmte Funktion generieren lässt?",
+      "options": [
+        "Weil RAG grundsätzlich alle in der Vektordatenbank gespeicherten Daten gleichzeitig abruft.",
+        "Weil RAG ausschließlich mit relationalen Datenbanken arbeitet.",
+        "Weil RAG das LLM vollständig durch abgerufene Daten ersetzt, statt eigenes Wissen einzubeziehen.",
+        "Weil RAG gezielte Abfragen zu einem bestimmten Sachverhalt stellt, statt alle verfügbaren Daten auf einmal abzurufen."
+      ],
+      "correct": 3,
+      "explanation": "Spezifisch bedeutet, dass RAG gezielte, fokussierte Abfragen durchführt statt pauschal alle Daten abzurufen; die Generierung kombiniert dabei weiterhin abgerufene Daten mit dem eigenen Wissen des LLM.",
+      "aiGenerated": true
+    },
+    {
+      "id": 167,
+      "chapter": 4,
+      "points": 1,
+      "question": "Welche der folgenden Aussagen zum Vergleich zwischen RAG und Fine-Tuning ist korrekt?",
+      "options": [
+        "RAG wirkt zur Laufzeit und erfordert kein Nachtraining, während Fine-Tuning einmalig beim Training erfolgt und dieses voraussetzt.",
+        "RAG erfordert Nachtraining des Modells, Fine-Tuning hingegen nicht.",
+        "Fine-Tuning eignet sich besser für sich häufig ändernde Spezifikationen als RAG.",
+        "Beide Ansätze erfordern ein wiederholtes Nachtraining bei jeder neuen Anfrage."
+      ],
+      "correct": 0,
+      "explanation": "RAG reichert die Antwort zur Laufzeit mit abgerufenen Daten an und benötigt kein Nachtraining, während Fine-Tuning das Modell einmalig im Training weitertrainiert und dabei Nachtraining voraussetzt.",
+      "aiGenerated": true
+    },
+    {
+      "id": 168,
+      "chapter": 4,
+      "points": 1,
+      "question": "Was unterscheidet einen LLM-gestützten Agenten grundlegend von einem LLM, das lediglich auf Anfragen antwortet?",
+      "options": [
+        "Ein LLM-Agent kann ausschließlich auf relationale Datenbanken zugreifen.",
+        "Ein LLM-Agent benötigt kein Fine-Tuning und kein RAG.",
+        "Ein LLM-Agent verarbeitet Aufgaben halbautonom oder autonom und handelt, anstatt nur zu antworten.",
+        "Ein LLM-Agent ersetzt die Notwendigkeit einer Authentifizierungskomponente."
+      ],
+      "correct": 2,
+      "explanation": "Der LLM-Agent verarbeitet Aufgaben halbautonom oder autonom und handelt aktiv, während ein reines LLM lediglich auf eine Eingabe hin antwortet.",
+      "aiGenerated": true
+    },
+    {
+      "id": 169,
+      "chapter": 4,
+      "points": 1,
+      "question": "Was kennzeichnet eine Multi-Agenten-Architektur im Kontext LLM-gestützter Testinfrastrukturen?",
+      "options": [
+        "Ein einzelner Agent übernimmt sämtliche Testaufgaben ohne Koordination.",
+        "Mehrere spezialisierte Agenten arbeiten koordiniert zusammen, um Aufgaben zu bewältigen.",
+        "Ausschließlich autonome Agenten dürfen in einer solchen Architektur eingesetzt werden.",
+        "Jeder Agent greift auf eine eigene, isolierte Vektordatenbank ohne Datenaustausch zu."
+      ],
+      "correct": 1,
+      "explanation": "In einer Multi-Agenten-Architektur kommunizieren mehrere spezialisierte Agenten koordiniert miteinander – dies erfordert Orchestrierung und schließt weder Isolation noch ausschließlich autonome Agenten ein.",
+      "aiGenerated": true
+    },
+    {
+      "id": 170,
+      "chapter": 4,
+      "points": 1,
+      "question": "Welches Kriterium unterscheidet einen semiautonomen von einem autonomen LLM-gestützten Agenten?",
+      "options": [
+        "Die Anzahl der eingesetzten Vektordatenbanken.",
+        "Die Fähigkeit, überhaupt mit einem LLM zu interagieren.",
+        "Die Verwendung von Fine-Tuning anstelle von RAG.",
+        "Der Grad der menschlichen Aufsicht bei kritischen Schritten des Prozesses."
+      ],
+      "correct": 3,
+      "explanation": "Ein semiautonomer Agent sieht menschliche Aufsicht bei kritischen Schritten zur Qualitätssicherung vor, während ein autonomer Agent mit minimalem menschlichen Eingriff auf maximale Effizienz ausgelegt ist.",
+      "aiGenerated": true
+    },
+    {
+      "id": 171,
+      "chapter": 4,
+      "points": 1,
+      "question": "Welche Aspekte umfasst LLMOps gemäß Syllabus bei der Bereitstellung und Verwaltung von LLMs?",
+      "options": [
+        "Deployment, Monitoring, Versionierung und Performance-Überwachung sowie Datenschutz, Sicherheit und Kosten.",
+        "Ausschließlich das initiale Training des Modells vor dem ersten Einsatz.",
+        "Nur die Erstellung neuer Prompts für unterschiedliche Testaufgaben.",
+        "Ausschließlich die manuelle Prüfung jeder einzelnen LLM-Antwort vor der Auslieferung."
+      ],
+      "correct": 0,
+      "explanation": "LLMOps umfasst laut Syllabus Deployment, Monitoring, Versionierung und Performance-Überwachung und berücksichtigt zusätzlich Datenschutz, Sicherheit und Kosten – nicht nur das initiale Training oder manuelle Einzelprüfungen.",
+      "aiGenerated": true
+    },
+    {
+      "id": 172,
+      "chapter": 4,
+      "points": 1,
+      "question": "Welche Aussage zur Anwendung von Fine-Tuning im Zusammenhang mit Small Language Models (SLMs) trifft laut Syllabus zu?",
+      "options": [
+        "Fine-Tuning ist ausschließlich großen LLMs vorbehalten und auf SLMs nicht anwendbar.",
+        "SLMs können nur mittels RAG angepasst werden, nicht mittels Fine-Tuning.",
+        "Fine-Tuning ist auch auf SLMs anwendbar und dabei ressourceneffizienter.",
+        "Fine-Tuning ersetzt bei SLMs vollständig das allgemeine Vorwissen des Modells."
+      ],
+      "correct": 2,
+      "explanation": "Der Syllabus nennt explizit, dass Fine-Tuning auch auf SLMs anwendbar ist und dort ressourceneffizienter erfolgen kann; es ersetzt zudem nie das allgemeine Wissen, sondern ergänzt es.",
+      "aiGenerated": true
+    },
+    {
+      "id": 173,
+      "chapter": 4,
+      "points": 1,
+      "question": "Ein Team testet eine Anwendung, deren fachliche Terminologie und Ausgabeformat sich seit Jahren nicht verändert haben, während ein zweites Team eine Anwendung testet, deren API-Spezifikationen wöchentlich aktualisiert werden.\n\nWelche Zuordnung von Ansätzen ist gemäß Syllabus AM BESTEN geeignet?",
+      "options": [
+        "Für beide Teams eignet sich RAG am besten, da es grundsätzlich flexibler ist als Fine-Tuning.",
+        "Team 1 (festes Vokabular/Format) profitiert eher von Fine-Tuning, Team 2 (wöchentlich wechselnde Specs) profitiert eher von RAG.",
+        "Team 1 sollte RAG einsetzen, Team 2 sollte Fine-Tuning einsetzen, da Fine-Tuning schneller auf Änderungen reagiert.",
+        "Beide Teams sollten ausschließlich Fine-Tuning einsetzen, da RAG nur für Chatbots geeignet ist."
+      ],
+      "correct": 1,
+      "explanation": "Fine-Tuning eignet sich für ein festes Vokabular/Format, da es das Modell einmalig weitertrainiert; RAG eignet sich für sich häufig ändernde Spezifikationen, da es zur Laufzeit aktuelle Daten abruft, ohne Nachtraining zu benötigen.",
+      "aiGenerated": true
+    },
+    {
+      "id": 174,
+      "chapter": 4,
+      "points": 1,
+      "question": "Ein Testteam plant, einen LLM-gestützten Agenten für die automatisierte Freigabeprüfung sicherheitskritischer Transaktionsfunktionen einer Bank-Anwendung einzusetzen, bei der Fehlentscheidungen zu direkten finanziellen Schäden führen können.\n\nWelcher Agententyp ist gemäß Syllabus für diese Aufgabe AM BESTEN geeignet, und warum?",
+      "options": [
+        "Ein autonomer Agent, da er die höchste Effizienz bei minimalem menschlichem Eingriff bietet.",
+        "Eine Multi-Agenten-Architektur ohne menschliche Aufsicht, da mehrere Agenten Fehler gegenseitig ausgleichen.",
+        "Ein autonomer Agent in Kombination mit Fine-Tuning, da dadurch Halluzinationen vollständig ausgeschlossen werden.",
+        "Ein semiautonomer Agent, da LLM-Agenten unter denselben Problemen wie LLMs (z. B. Halluzinationen, Denkfehler) leiden und bei kritischen Aufgaben menschliche Aufsicht zur Qualitätssicherung notwendig ist."
+      ],
+      "correct": 3,
+      "explanation": "Laut Syllabus leiden LLM-Agenten unter denselben Schwächen wie LLMs (Halluzinationen, Denkfehler); bei kritischen Aufgaben wie sicherheitsrelevanten Finanztransaktionen ist daher immer ein semiautonomer Agent mit menschlicher Aufsicht vorzusehen. Fine-Tuning schließt Halluzinationen nicht aus.",
+      "aiGenerated": true
+    },
+    {
+      "id": 175,
+      "chapter": 4,
+      "points": 1,
+      "question": "Ein Testteam führt jede Nacht tausende unkritische Regressionstests automatisiert aus; ein Mensch überprüft die Ergebnisse erst am nächsten Morgen zusammenfassend. Gleichzeitig soll ein zweiter Agent die endgültige Freigabe eines sicherheitskritischen Moduls unterstützen.\n\nWelche Zuordnung der Agententypen ist AM BESTEN geeignet?",
+      "options": [
+        "Für die nächtliche Regressionstestausführung ein autonomer Agent (maximale Effizienz, minimaler Eingriff), für die sicherheitskritische Freigabe ein semiautonomer Agent (menschliche Aufsicht zur Qualitätssicherung).",
+        "Für beide Aufgaben ein autonomer Agent, da Effizienz in beiden Fällen oberste Priorität hat.",
+        "Für beide Aufgaben ein semiautonomer Agent, da jede LLM-gestützte Aufgabe menschliche Aufsicht erfordert.",
+        "Für die nächtliche Regressionstestausführung ein semiautonomer Agent, für die sicherheitskritische Freigabe ein autonomer Agent."
+      ],
+      "correct": 0,
+      "explanation": "Autonome Agenten sind für unkritische, hochvolumige Aufgaben mit Fokus auf Effizienz geeignet; für sicherheitskritische Entscheidungen ist wegen der Risiken von Halluzinationen ein semiautonomer Agent mit menschlicher Aufsicht vorzuziehen.",
+      "aiGenerated": true
+    },
+    {
+      "id": 176,
+      "chapter": 4,
+      "points": 1,
+      "question": "Ein Tester lässt ein LLM ohne RAG-Anbindung direkt Testfälle für eine erst vor drei Tagen veröffentlichte neue API-Version generieren. Das LLM wurde vor sechs Monaten trainiert.\n\nWelches Risiko besteht AM WAHRSCHEINLICHSTEN, und wie adressiert RAG dieses Risiko?",
+      "options": [
+        "Das LLM generiert grundsätzlich keine Testfälle ohne RAG; RAG ist dafür in jedem Fall zwingend erforderlich.",
+        "Das Risiko besteht nur bei SLMs, nicht bei großen LLMs, da SLMs kein Trainingswissen besitzen.",
+        "Das LLM kennt die neue API-Version möglicherweise nicht, da sein Trainingswissen veraltet sein kann; RAG behebt dies, indem es zur Laufzeit aktuelle externe Daten abruft.",
+        "RAG behebt dieses Risiko durch einmaliges Nachtraining des Modells auf die neue API-Version."
+      ],
+      "correct": 2,
+      "explanation": "Das LLM verfügt nur über Wissen bis zu seinem Trainingsstand und kennt eine drei Tage alte API-Version womöglich nicht. Das RAG-Merkmal 'aktuell' behebt dies durch Echtzeit-Zugriff auf externe, aktuelle Daten – ganz ohne erneutes Training.",
+      "aiGenerated": true
+    },
+    {
+      "id": 177,
+      "chapter": 4,
+      "points": 1,
+      "question": "Ein Testteam setzt mehrere spezialisierte LLM-gestützte Agenten ein: einen für Testfallgenerierung, einen für die Testausführung und einen für die Ergebnisauswertung. Die Agenten arbeiten jedoch unabhängig voneinander, ohne ihre Aktionen abzustimmen.\n\nWas fehlt gemäß Syllabus, damit hier von einer echten Multi-Agenten-Architektur gesprochen werden kann?",
+      "options": [
+        "Nichts, das bloße Vorhandensein mehrerer spezialisierter Agenten reicht bereits aus.",
+        "Die koordinierte Kommunikation der Agenten untereinander (Orchestrierung).",
+        "Der Einsatz von ausschließlich autonomen statt semiautonomen Agenten.",
+        "Der vollständige Verzicht auf jegliche menschliche Aufsicht."
+      ],
+      "correct": 1,
+      "explanation": "Eine Multi-Agenten-Architektur setzt voraus, dass mehrere spezialisierte Agenten koordiniert kommunizieren (Orchestrierung); unabhängig und unkoordiniert arbeitende Agenten erfüllen dieses Kriterium nicht.",
+      "aiGenerated": true
+    },
+    {
+      "id": 178,
+      "chapter": 4,
+      "points": 1,
+      "question": "Ein Tester stellt fest: Die vom LLM vorgeschlagenen Testfälle berücksichtigen nicht die neuesten, in der Vektordatenbank gespeicherten Sicherheitsanforderungen, und zusätzlich sind die im Frontend angezeigten Testfälle uneinheitlich formatiert.\n\nWelche zwei Komponenten sollten AM ERSTEN überprüft werden?",
+      "options": [
+        "Authentifizierung (fehlender Datenabruf) und Frontend (Formatierung)",
+        "Relationale Datenbank (fehlende Sicherheitsanforderungen) und Authentifizierung (Formatierung)",
+        "Vektordatenbank (Formatierung) und Frontend (Datenabruf)",
+        "Backend/Datenabruf (Einbindung der Vektordatenbank in die Prompt-Vorbereitung) und Post-Processing (Formatierung der Ausgabe)"
+      ],
+      "correct": 3,
+      "explanation": "Das Backend ist für den Datenabruf aus der Vektordatenbank und die Prompt-Vorbereitung verantwortlich; fehlen aktuelle Anforderungen im Ergebnis, liegt die Ursache dort. Uneinheitliche Formatierung der Ausgabe ist Aufgabe des Post-Processing, das die LLM-Ausgabe vor der Anzeige verfeinert.",
+      "aiGenerated": true
+    },
+    {
+      "id": 179,
+      "chapter": 5,
+      "points": 1,
+      "question": "Wie ist Schatten-KI (Shadow AI) laut Syllabus definiert?",
+      "options": [
+        "Ein Trainingsprogramm zur Vermittlung von Prompt-Engineering-Fähigkeiten.",
+        "Der offiziell freigegebene Einsatz von GenAI-Tools nach Prüfung durch die IT-Abteilung.",
+        "Eine Kennzahl zur Messung der Testproduktivität.",
+        "Die Nutzung von GenAI-Tools ohne formelle Genehmigung der Organisation."
+      ],
+      "correct": 3,
+      "explanation": "Schatten-KI bezeichnet die Nutzung von GenAI-Tools ohne formelle Genehmigung der Organisation, was Risiken bezüglich Informationssicherheit, Compliance und geistigem Eigentum mit sich bringt.",
+      "aiGenerated": true
+    },
+    {
+      "id": 180,
+      "chapter": 5,
+      "points": 1,
+      "question": "Welches der drei mit Schatten-KI verbundenen Risiken bezieht sich auf unklare Lizenzvereinbarungen bei genutzten KI-Tools?",
+      "options": [
+        "Informationssicherheit & Datenschutz.",
+        "Vages geistiges Eigentum.",
+        "Compliance & regulatorische Probleme.",
+        "Energieverbrauch."
+      ],
+      "correct": 1,
+      "explanation": "Unklare Lizenzvereinbarungen bei nicht genehmigten KI-Tools führen zu vagem geistigem Eigentum und potenziellen IP-Streitigkeiten – eines der drei im Syllabus genannten Risiken von Schatten-KI.",
+      "aiGenerated": true
+    },
+    {
+      "id": 181,
+      "chapter": 5,
+      "points": 1,
+      "question": "Welcher Grundsatz gilt laut Syllabus für die Eingabedaten in einer GenAI-Teststrategie?",
+      "options": [
+        "Eingabedaten müssen ausschließlich von Testmanagern bereitgestellt werden.",
+        "Nur strukturierte Daten dürfen verwendet werden.",
+        "Die Qualität der Eingabedaten ist wichtiger als deren Quantität.",
+        "Die Menge der Eingabedaten ist wichtiger als deren Qualität."
+      ],
+      "correct": 2,
+      "explanation": "Der Syllabus betont, dass hochwertige, relevante Eingabedaten wichtiger sind als die reine Menge an Daten (Qualität vor Quantität).",
+      "aiGenerated": true
+    },
+    {
+      "id": 182,
+      "chapter": 5,
+      "points": 1,
+      "question": "Welche Aussage über Schulungsprogramme im Rahmen einer GenAI-Strategie ist laut Syllabus RICHTIG?",
+      "options": [
+        "Sie sollten sowohl technische als auch ethische Fähigkeiten vermitteln.",
+        "Sie sollten primär auf den Erwerb offizieller LLM-Zertifikate ausgerichtet sein.",
+        "Sie sind nur für Testmanager relevant, nicht für Tester.",
+        "Sie sollten ausschließlich Standard-ML-Metriken behandeln."
+      ],
+      "correct": 0,
+      "explanation": "Schulungsprogramme sollen technische und ethische Fähigkeiten vermitteln; LLM-Zertifikate für bestimmte Modelle sind laut Syllabus explizit kein Bestandteil.",
+      "aiGenerated": true
+    },
+    {
+      "id": 183,
+      "chapter": 5,
+      "points": 1,
+      "question": "Welche der folgenden Fähigkeiten gehört laut Syllabus zu den Schlüsselkompetenzen, die Tester für die Arbeit mit GenAI benötigen?",
+      "options": [
+        "Standardisierte Metriken aus dem überwachten maschinellen Lernen zur Bewertung jeder Ausgabe berechnen.",
+        "LLM-Ausgaben bewerten und verifizieren, bevor sie im Testprozess verwendet werden.",
+        "Zertifikate für alle im Unternehmen eingesetzten LLMs erwerben.",
+        "Sich vollständig auf die erste generierte Ausgabe des LLM verlassen, ohne weitere Prüfung."
+      ],
+      "correct": 1,
+      "explanation": "Der Syllabus nennt die Bewertung und Verifikation von LLM-Ausgaben explizit als Schlüsselkompetenz für Tester; blindes Vertrauen auf Ausgaben, Standard-ML-Metriken und LLM-Zertifikate sind hingegen keine geeigneten bzw. genannten Anforderungen.",
+      "aiGenerated": true
+    },
+    {
+      "id": 184,
+      "chapter": 5,
+      "points": 1,
+      "question": "Was sind laut Syllabus 'Communities of Practice' im Kontext des Fähigkeitsaufbaus in Testteams?",
+      "options": [
+        "Formelle Zertifizierungsprüfungen für LLM-Nutzung.",
+        "Foren für regelmäßigen Wissensaustausch und die Diskussion von Best Practices und Herausforderungen.",
+        "Gremien, die GenAI-Tools für das Unternehmen freigeben.",
+        "Automatisierte Skripte zur Bewertung von LLM-Ausgaben."
+      ],
+      "correct": 1,
+      "explanation": "Communities of Practice ermöglichen laut Syllabus einen regelmäßigen Wissensaustausch sowie die Diskussion von Best Practices und Herausforderungen im Team.",
+      "aiGenerated": true
+    },
+    {
+      "id": 185,
+      "chapter": 5,
+      "points": 1,
+      "question": "Welche neue Aufgabe kommt laut Syllabus zur Rolle des Testers hinzu, wenn GenAI in den Testprozess eingeführt wird?",
+      "options": [
+        "Vollständige Übernahme der Testautomatisierung durch das LLM ohne menschliche Kontrolle.",
+        "Ausschließliche Zuständigkeit für die Auswahl der Unternehmens-IT-Infrastruktur.",
+        "Ersetzung des Testmanagers in der Teamführung.",
+        "Pflege von Prompt-Bibliotheken und Verfeinerung von Prompts."
+      ],
+      "correct": 3,
+      "explanation": "Tester werden zu KI-gestützten Testspezialisten, die u. a. LLM-Ausgaben verifizieren, Prompts verfeinern und Prompt-Bibliotheken pflegen – sie werden dabei nicht ersetzt.",
+      "aiGenerated": true
+    },
+    {
+      "id": 186,
+      "chapter": 5,
+      "points": 1,
+      "question": "Warum unterläuft Schatten-KI Unternehmensrichtlinien, anstatt sie durchzusetzen?",
+      "options": [
+        "Weil sie ausschließlich in stark regulierten Branchen vorkommt.",
+        "Weil sie zwingend mit Compliance-Vorgaben abgestimmt wird.",
+        "Weil die Nutzung ohne formelle Genehmigung und damit außerhalb festgelegter Kontrollmechanismen erfolgt.",
+        "Weil sie von der Geschäftsleitung offiziell genehmigt wird."
+      ],
+      "correct": 2,
+      "explanation": "Da Schatten-KI ohne formelle Genehmigung genutzt wird, entzieht sie sich den Kontrollmechanismen der Organisation und unterläuft dadurch bestehende Richtlinien, statt sie zu unterstützen.",
+      "aiGenerated": true
+    },
+    {
+      "id": 187,
+      "chapter": 5,
+      "points": 1,
+      "question": "Welche Metriken sollten laut Syllabus zur Bewertung von GenAI-gestützten Testaktivitäten verwendet werden?",
+      "options": [
+        "Allgemeine Branchenbenchmarks unabhängig vom Testkontext.",
+        "Standardisierte Metriken aus dem überwachten maschinellen Lernen.",
+        "Aufgabenspezifische Metriken, die auf die jeweiligen Testziele abgestimmt sind.",
+        "Ausschließlich Metriken zur Messung der Modellgröße."
+      ],
+      "correct": 2,
+      "explanation": "Der Syllabus fordert aufgabenspezifische Metriken statt allgemeiner Standard-ML-Metriken, da diese die tatsächliche Wirkung von GenAI im jeweiligen Testkontext besser widerspiegeln.",
+      "aiGenerated": true
+    },
+    {
+      "id": 188,
+      "chapter": 5,
+      "points": 1,
+      "question": "Was regeln Prozessrichtlinien im Rahmen einer GenAI-Strategie laut Syllabus?",
+      "options": [
+        "Regeln für den Umgang mit sensiblen Daten, Transparenzpflichten und Quality Gates.",
+        "Die Anzahl der einzustellenden Praktikanten.",
+        "Die Auswahl der Programmiersprache für die Testautomatisierung.",
+        "Ausschließlich die technische Konfiguration des LLM."
+      ],
+      "correct": 0,
+      "explanation": "Prozessrichtlinien legen laut Syllabus u. a. Regeln für sensible Daten, Transparenzpflichten und Quality Gates fest und sind damit ein zentraler Bestandteil einer GenAI-Strategie.",
+      "aiGenerated": true
+    },
+    {
+      "id": 189,
+      "chapter": 5,
+      "points": 1,
+      "question": "Warum ist Energiebewusstsein laut Syllabus eine relevante Kompetenz für Tester im Umgang mit GenAI?",
+      "options": [
+        "Weil GenAI-Tools ohne Energieverbrauch arbeiten und dies zu prüfen ist.",
+        "Weil Tester Modellgröße und Nutzungsmuster im Hinblick auf den Energieverbrauch optimieren sollen.",
+        "Weil Energiebewusstsein ausschließlich für Testmanager relevant ist.",
+        "Weil Tester dadurch die Stromkosten der gesamten Organisation verwalten müssen."
+      ],
+      "correct": 1,
+      "explanation": "Der Syllabus nennt Energiebewusstsein als Kompetenz, bei der Tester Modellgröße und Nutzungsmuster optimieren sollen, um den Energieverbrauch zu reduzieren.",
+      "aiGenerated": true
+    },
+    {
+      "id": 190,
+      "chapter": 5,
+      "points": 1,
+      "question": "Wie verändert sich laut Syllabus die Rolle des Testmanagers durch die Einführung von GenAI im Testen?",
+      "options": [
+        "Er wird ausschließlich für die technische Wartung der LLM-Infrastruktur zuständig.",
+        "Er ist nur noch für die Erstellung von Prompt-Bibliotheken verantwortlich.",
+        "Er übernimmt zusätzlich zur traditionellen Führung die KI-Strategie, das KI-Risikomanagement und die Koordination von Mensch und GenAI-Agent.",
+        "Seine Führungsverantwortung entfällt vollständig, da GenAI die Teamsteuerung übernimmt."
+      ],
+      "correct": 2,
+      "explanation": "Der Testmanager übernimmt im Rollenwandel ein hybrides Teammanagement, das KI-Strategie, KI-Risikomanagement und die Koordination zwischen Mensch und GenAI-Agent umfasst – zusätzlich zur traditionellen Führungsrolle.",
+      "aiGenerated": true
+    },
+    {
+      "id": 191,
+      "chapter": 5,
+      "points": 1,
+      "question": "Welchen Zusammenhang beschreibt der Syllabus zwischen Prompt-Musterbibliotheken und der Konsistenz von LLM-Ausgaben?",
+      "options": [
+        "Prompt-Musterbibliotheken sind identisch mit Communities of Practice.",
+        "Prompt-Musterbibliotheken sind wiederverwendbare Vorlagen, die zu konsistenteren Ausgaben beitragen.",
+        "Prompt-Musterbibliotheken dienen ausschließlich der Dokumentation abgeschlossener Testfälle.",
+        "Prompt-Musterbibliotheken ersetzen die Notwendigkeit, LLM-Ausgaben zu verifizieren."
+      ],
+      "correct": 1,
+      "explanation": "Prompt-Musterbibliotheken bestehen aus wiederverwendbaren Vorlagen, die konsistentere LLM-Ausgaben fördern – sie ersetzen jedoch nicht die weiterhin erforderliche Verifikation der Ausgaben.",
+      "aiGenerated": true
+    },
+    {
+      "id": 192,
+      "chapter": 5,
+      "points": 1,
+      "question": "Welche Kompetenz kombiniert laut Syllabus vorhandenes Testwissen mit neuen KI-Fähigkeiten?",
+      "options": [
+        "Die Trennung von Domänenwissen und KI-Nutzung in getrennten Teams.",
+        "Der vollständige Ersatz der Testexpertise durch KI-Fähigkeiten.",
+        "Die Delegation der Testexpertise an das LLM.",
+        "Die Kombination von Domänen- und Testexpertise mit KI-Fähigkeiten."
+      ],
+      "correct": 3,
+      "explanation": "Der Syllabus nennt als Schlüsselkompetenz die Kombination von Domänen- und Testexpertise mit KI-Fähigkeiten – bestehendes Wissen bleibt wichtig und wird durch KI-Kompetenz ergänzt.",
+      "aiGenerated": true
+    },
+    {
+      "id": 193,
+      "chapter": 5,
+      "points": 1,
+      "question": "Ein Testteam nutzt ein kostenloses, öffentlich zugängliches GenAI-Tool zur Erstellung von Testfällen, ohne dass dieses Tool von der IT-Abteilung oder dem Datenschutzbeauftragten geprüft und freigegeben wurde. Welches Risiko besteht dabei laut Syllabus AM WAHRSCHEINLICHSTEN, wenn vertrauliche Anforderungsdokumente in das Tool eingegeben werden?",
+      "options": [
+        "Eine Reduktion der wiederkehrenden Kosten für Rechenressourcen.",
+        "Verbesserung der Testproduktivität durch Skaleneffekte.",
+        "Unbefugter Zugriff auf sensible Informationen bzw. eine Datenpanne.",
+        "Automatische Einhaltung aller regulatorischen Vorgaben."
+      ],
+      "correct": 2,
+      "explanation": "Da das Tool nicht geprüft und freigegeben wurde, handelt es sich um Schatten-KI; die Eingabe vertraulicher Daten in ein ungesichertes Tool birgt insbesondere das Risiko von Datenpannen bzw. unbefugtem Zugriff auf sensible Informationen.",
+      "aiGenerated": true
+    },
+    {
+      "id": 194,
+      "chapter": 5,
+      "points": 1,
+      "question": "Ein Unternehmen führt einen Proof of Concept (PoC) durch, um ein LLM für Testaufgaben zu bewerten, und berücksichtigt dabei nur die einmaligen Kosten der PoC-Durchführung. Welchen Fehler macht das Unternehmen laut Syllabus bei der LLM-Auswahl?",
+      "options": [
+        "Es vernachlässigt die Bewertung der wiederkehrenden Kosten wie Token- und Rechenressourcenverbrauch im laufenden Betrieb.",
+        "Es berücksichtigt fälschlicherweise gar keine Kosten.",
+        "Es bewertet die Skalierbarkeitsanforderungen zu ausführlich.",
+        "Es verstößt gegen Datenschutzanforderungen."
+      ],
+      "correct": 0,
+      "explanation": "Der Syllabus unterscheidet explizit zwischen einmaligen PoC-Kosten und wiederkehrenden Kosten (z. B. Token, Rechenressourcen) im laufenden Betrieb; nur Letztere sind das relevante, oft vernachlässigte Auswahlkriterium für den produktiven Einsatz.",
+      "aiGenerated": true
+    },
+    {
+      "id": 195,
+      "chapter": 5,
+      "points": 1,
+      "question": "Ein Tester setzt ein GenAI-Tool zur Testfallgenerierung ein und gibt dabei Kundendaten unverändert in Prompts ein, um möglichst realistische Testfälle zu erhalten. Welche im Syllabus genannte Kompetenz wendet der Tester dabei NICHT korrekt an?",
+      "options": [
+        "Prompt Engineering allgemein.",
+        "Energiebewusstsein bei der Modellauswahl.",
+        "Kombination von Domänenwissen mit KI-Fähigkeiten.",
+        "Datenschutz durch Datenbereinigung und datenschutzfreundliches Prompt Engineering."
+      ],
+      "correct": 3,
+      "explanation": "Der Syllabus verlangt von Testern, Daten vor der Verwendung in Prompts zu bereinigen und datenschutzfreundliches Prompt Engineering anzuwenden; die unveränderte Eingabe von Kundendaten verstößt gegen diese Kompetenzanforderung.",
+      "aiGenerated": true
+    },
+    {
+      "id": 196,
+      "chapter": 5,
+      "points": 1,
+      "question": "Welche der folgenden Zielgrößen zählt laut Syllabus zu den messbaren Testzielen, die bei der Definition einer GenAI-Strategie festgelegt werden sollten?",
+      "options": [
+        "Verkürzung des Testzyklus.",
+        "Größe des verwendeten Sprachmodells in Milliarden Parametern.",
+        "Anzahl der von Mitarbeitenden erworbenen LLM-Zertifikate.",
+        "Anzahl der im Unternehmen genutzten Schatten-KI-Tools."
+      ],
+      "correct": 0,
+      "explanation": "Der Syllabus nennt messbare Testziele wie Testproduktivität, Verkürzung des Testzyklus und Qualitätsverbesserung als Schlüsselaspekt einer GenAI-Strategie; die übrigen Optionen sind keine im Syllabus genannten Testziele.",
+      "aiGenerated": true
+    },
+    {
+      "id": 197,
+      "chapter": 5,
+      "points": 1,
+      "question": "Ein Testmanager plant, dass sein Team künftig ausschließlich mit GenAI-Tools arbeitet und klassische Testdesign-Techniken komplett aus dem Schulungsprogramm entfernt. Warum widerspricht dieser Plan laut Syllabus dem beschriebenen Rollenwandel?",
+      "options": [
+        "Weil Tester nicht ersetzt, sondern zu KI-gestützten Testspezialisten mit erweiterter Verantwortung werden, wofür weiterhin Testexpertise mit KI-Fähigkeiten kombiniert werden muss.",
+        "Weil klassische Testdesign-Techniken laut Syllabus gesetzlich vorgeschrieben bleiben müssen.",
+        "Weil Tester durch GenAI vollständig ersetzt werden sollen und Schulungen daher überflüssig sind.",
+        "Weil GenAI-Tools laut Syllabus nur für Testmanager, nicht für Tester vorgesehen sind."
+      ],
+      "correct": 0,
+      "explanation": "Der Syllabus stellt klar, dass Tester nicht ersetzt werden, sondern zu KI-gestützten Testspezialisten werden, die Domänen- und Testexpertise mit KI-Fähigkeiten kombinieren sollen – ein vollständiger Verzicht auf klassische Testkompetenzen widerspricht diesem Prinzip.",
+      "aiGenerated": true
+    },
+    {
+      "id": 198,
+      "chapter": 5,
+      "points": 1,
+      "question": "Zwei Testteams bewerten ein LLM: Team A prüft ausschließlich, ob das Modell mit der vorhandenen Testinfrastruktur kompatibel ist. Team B bewertet zusätzlich Datenschutz- und Sicherheitsanforderungen sowie die wiederkehrenden Kosten. Welches Team wendet die im Syllabus genannten LLM-Auswahlkriterien VOLLSTÄNDIGER an?",
+      "options": [
+        "Beide Teams wenden die Kriterien gleich vollständig an, da Kompatibilität ausreicht.",
+        "Keines der beiden Teams, da beiden Bewertungen die Betrachtung der Skalierbarkeit fehlt.",
+        "Team A, da Kompatibilität das einzige relevante Kriterium ist.",
+        "Team B, da es mehrere der im Syllabus genannten Kriterien (Kompatibilität, Datenschutz/Sicherheit, wiederkehrende Kosten) gemeinsam berücksichtigt."
+      ],
+      "correct": 3,
+      "explanation": "Der Syllabus nennt mehrere gleichrangige LLM-Auswahlkriterien (u. a. Kompatibilität, Skalierbarkeit, wiederkehrende Kosten, Datenschutz/Sicherheit); Team B berücksichtigt davon mehr Kriterien als Team A und wendet die Vorgaben damit vollständiger an.",
+      "aiGenerated": true
     }
   ],
   "glossary": [
