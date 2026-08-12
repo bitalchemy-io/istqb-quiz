@@ -20,7 +20,12 @@ class FragenGeneratorError(Exception):
 
 
 def _ollama_generate(prompt: str) -> str:
-    payload = {"model": OLLAMA_MODEL, "prompt": prompt, "stream": False}
+    payload = {
+        "model": OLLAMA_MODEL,
+        "prompt": prompt,
+        "stream": False,
+        "options": {"num_ctx": 8192},
+    }
 
     req = urllib.request.Request(
         f"{OLLAMA_URL}/api/generate",
