@@ -164,6 +164,17 @@ def test_accept_questions_rejects_invalid_options_length():
     assert response.status_code == 422
 
 
+def test_accept_questions_rejects_empty_fragen_list():
+    """Test that POST /api/accept-questions rejects an empty fragen list
+    instead of reaching git and failing with an opaque 502 (nothing to commit)."""
+    response = client.post(
+        "/api/accept-questions",
+        json={"kapitel": 1, "fragen": []},
+    )
+
+    assert response.status_code == 422
+
+
 def test_accept_questions_rejects_invalid_correct_index():
     """Test that POST /api/accept-questions rejects correct index out of range."""
     response = client.post(

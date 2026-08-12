@@ -4,7 +4,6 @@ import json
 import os
 import subprocess
 import urllib.request
-import urllib.error
 
 REPO_ROOT = os.environ.get(
     "REPO_ROOT", os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -33,7 +32,7 @@ def _ollama_generate(prompt: str) -> str:
     try:
         with urllib.request.urlopen(req, timeout=120) as resp:
             data = json.loads(resp.read().decode("utf-8"))
-    except urllib.error.URLError as e:
+    except OSError as e:
         raise FragenGeneratorError(f"Ollama nicht erreichbar unter {OLLAMA_URL} ({e})")
     except json.JSONDecodeError as e:
         raise FragenGeneratorError(f"Ollama hat eine ungültige Antwort geliefert: {e}")
@@ -139,7 +138,7 @@ def uebernehme_fragen(kapitel: int, akzeptierte_fragen: list[dict]) -> str:
     )
 
     _run_git(["add", "src/data/quizData.json"])
-    _run_git(["commit", "-m", commit_message])
+    _run_git(["commit", "-m", commit_message, "--", "src/data/quizData.json"])
 
     try:
         _run_git(["push"])

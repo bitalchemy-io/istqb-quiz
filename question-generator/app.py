@@ -27,7 +27,7 @@ class Frage(BaseModel):
 
 class AcceptRequest(BaseModel):
     kapitel: int
-    fragen: list[Frage]
+    fragen: list[Frage] = Field(min_length=1)
 
 
 @app.exception_handler(fg.FragenGeneratorError)

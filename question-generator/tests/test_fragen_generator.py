@@ -51,6 +51,16 @@ def test_generiere_fragen_parses_json_array(fragen_generator, monkeypatch):
     ]
 
 
+def test_generiere_fragen_raises_on_read_timeout(fragen_generator, monkeypatch):
+    def fake_urlopen(req, timeout):
+        raise TimeoutError("timed out")
+
+    monkeypatch.setattr(fragen_generator.urllib.request, "urlopen", fake_urlopen)
+
+    with pytest.raises(fragen_generator.FragenGeneratorError):
+        fragen_generator.generiere_fragen(1, 1, "Text", [])
+
+
 def test_generiere_fragen_strips_markdown_fence(fragen_generator, monkeypatch):
     fenced = (
         "```json\n"

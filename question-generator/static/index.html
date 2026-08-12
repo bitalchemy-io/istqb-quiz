@@ -142,6 +142,12 @@
           renderFragen()
         } catch (err) {
           statusEl.innerHTML = `<p class="fehler">${err.message}</p>`
+          // The commit lands locally even if the push fails (backend design),
+          // so resubmitting the same batch would only create duplicates.
+          generierteFragen = []
+          aktuellesKapitel = null
+          akzeptiert.clear()
+          renderFragen()
         } finally {
           uebernehmenBtn.disabled = false
         }

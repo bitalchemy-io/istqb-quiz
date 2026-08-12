@@ -26,7 +26,7 @@ cd question-generator
 docker build -t istqb-question-generator .
 docker run -d \
   --name istqb-question-generator \
-  -p 8010:8010 \
+  -p 100.73.147.87:8010:8010 \
   -v /absolute/path/to/istqb-quiz:/repo-checkout \
   -v ~/.gitconfig:/root/.gitconfig:ro \
   -v ~/.config/gh:/root/.config/gh:ro \
@@ -52,5 +52,5 @@ variable and no volume mount:
 ```bash
 cd question-generator
 pip install -r requirements.txt
-python3 -m uvicorn app:app --host 0.0.0.0 --port 8010
+python3 -m uvicorn app:app --host 100.73.147.87 --port 8010
 ```

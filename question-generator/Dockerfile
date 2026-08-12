@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends git curl && \
     apt-get update && apt-get install -y gh && \
     rm -rf /var/lib/apt/lists/*
 
+RUN git config --system --add safe.directory '*'
+
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
