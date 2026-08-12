@@ -64,9 +64,13 @@ def generiere_fragen(
     )
 
     rohtext = _ollama_generate(prompt)
-    rohtext = (
-        rohtext.removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-    )
+    start = rohtext.find("[")
+    end = rohtext.rfind("]")
+    if start == -1 or end == -1 or end < start:
+        raise FragenGeneratorError(
+            f"Ollama hat kein JSON-Array geliefert: {rohtext[:200]!r}"
+        )
+    rohtext = rohtext[start : end + 1]
 
     try:
         fragen = json.loads(rohtext)

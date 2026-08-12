@@ -89,6 +89,34 @@ def test_generiere_fragen_strips_markdown_fence(fragen_generator, monkeypatch):
     assert fragen[0]["correct"] == 2
 
 
+def test_generiere_fragen_strips_leading_prose(fragen_generator, monkeypatch):
+    prefixed = (
+        "Hier ist das Array mit den Fragen:\n\n"
+        + json.dumps(
+            [
+                {
+                    "question": "?",
+                    "options": ["a", "b", "c", "d"],
+                    "correct": 3,
+                    "explanation": "...",
+                }
+            ]
+        )
+        + "\n\nIch hoffe, das hilft!"
+    )
+    ollama_body = json.dumps({"response": prefixed}).encode("utf-8")
+
+    monkeypatch.setattr(
+        fragen_generator.urllib.request,
+        "urlopen",
+        lambda req, timeout: FakeResponse(ollama_body),
+    )
+
+    fragen = fragen_generator.generiere_fragen(1, 1, "Text", [])
+
+    assert fragen[0]["correct"] == 3
+
+
 def test_generiere_fragen_raises_on_invalid_json(fragen_generator, monkeypatch):
     ollama_body = json.dumps({"response": "kein json hier"}).encode("utf-8")
 
