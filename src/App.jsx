@@ -146,6 +146,7 @@ export default function ISTQBQuizApp() {
   const [view, setView] = useState('home');
   const [currentChapter, setCurrentChapter] = useState(null);
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
+  const [retryQuestionIds, setRetryQuestionIds] = useState(null);
   const [answers, setAnswers] = useState(() => loadSavedProgress()?.answers || {});
   const [submittedIds, setSubmittedIds] = useState(() => loadSavedProgress()?.submittedIds || {});
   const [searchGlossary, setSearchGlossary] = useState('');
@@ -203,6 +204,7 @@ export default function ISTQBQuizApp() {
       setView('home');
       setCurrentChapter(null);
       setCurrentQuestionIdx(0);
+      setRetryQuestionIds(null);
     }
   };
 
@@ -243,6 +245,28 @@ export default function ISTQBQuizApp() {
   };
 
   const handleStartChapter = (chapId) => {
+    setCurrentChapter(chapId);
+    setCurrentQuestionIdx(0);
+    setRetryQuestionIds(null);
+    setView('quiz');
+  };
+
+  const handleRetryWrongAnswers = (chapId) => {
+    const wrongIds = QUIZ_DATA.questions
+      .filter(q => q.chapter === chapId && submittedIds[q.id] && !isAnswerCorrect(q, answers[q.id]))
+      .map(q => q.id);
+    if (wrongIds.length === 0) return;
+    setAnswers(prev => {
+      const next = { ...prev };
+      wrongIds.forEach(id => delete next[id]);
+      return next;
+    });
+    setSubmittedIds(prev => {
+      const next = { ...prev };
+      wrongIds.forEach(id => delete next[id]);
+      return next;
+    });
+    setRetryQuestionIds(wrongIds);
     setCurrentChapter(chapId);
     setCurrentQuestionIdx(0);
     setView('quiz');
@@ -288,7 +312,9 @@ export default function ISTQBQuizApp() {
     item.definition.toLowerCase().includes(searchGlossary.toLowerCase())
   );
 
-  const chapQuestions = QUIZ_DATA.questions.filter(q => q.chapter === currentChapter);
+  const chapQuestions = retryQuestionIds
+    ? QUIZ_DATA.questions.filter(q => retryQuestionIds.includes(q.id))
+    : QUIZ_DATA.questions.filter(q => q.chapter === currentChapter);
   const currentQuestion = chapQuestions[currentQuestionIdx];
   const isPremium = !QUIZ_DATA.chapters[currentChapter]?.free;
 
@@ -358,6 +384,9 @@ export default function ISTQBQuizApp() {
                 const chapQuiz = QUIZ_DATA.questions.filter(q => q.chapter === chap.id);
                 const chapAnswered = chapQuiz.filter(q => answers[q.id] !== undefined).length;
                 const progress = chapQuiz.length > 0 ? Math.round((chapAnswered / chapQuiz.length) * 100) : 0;
+                const chapSubmittedCount = chapQuiz.filter(q => submittedIds[q.id]).length;
+                const chapComplete = chapQuiz.length > 0 && chapSubmittedCount === chapQuiz.length;
+                const chapWrongCount = chapQuiz.filter(q => submittedIds[q.id] && !isAnswerCorrect(q, answers[q.id])).length;
 
                 return (
                   <div key={chap.id} className={`${CARD} rounded-lg p-6 hover:border-slate-600 transition`}>
@@ -408,6 +437,14 @@ export default function ISTQBQuizApp() {
                         </button>
                       )}
                     </div>
+                    {chapComplete && chapWrongCount > 0 && (
+                      <button
+                        onClick={() => handleRetryWrongAnswers(chap.id)}
+                        className="w-full mt-2 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition bg-amber-500/10 text-amber-300 border border-amber-500/30 hover:bg-amber-500/20"
+                      >
+                        {chapWrongCount} falsche Frage{chapWrongCount === 1 ? '' : 'n'} wiederholen
+                      </button>
+                    )}
                   </div>
                 );
               })}
@@ -437,7 +474,7 @@ export default function ISTQBQuizApp() {
       <div className={`min-h-screen ${PAGE_BG} p-4`}>
         <div className="max-w-2xl mx-auto">
           <div className="mb-6 flex items-center justify-between">
-            <button onClick={() => setView('home')} className={BACK_BTN}>
+            <button onClick={() => { setView('home'); setRetryQuestionIds(null); }} className={BACK_BTN}>
               ← zurück
             </button>
             <div className="font-mono text-sm text-muted">
@@ -447,6 +484,9 @@ export default function ISTQBQuizApp() {
 
           <div className={`${CARD} rounded-lg shadow-xl p-8`}>
             <div className="mb-6">
+              {retryQuestionIds && (
+                <p className="font-mono text-xs text-amber-400 mb-2">Wiederholung falsch beantworteter Fragen</p>
+              )}
               <div className="mb-4">
                 <TickBar percent={((currentQuestionIdx + 1) / chapQuestions.length) * 100} width={32} />
               </div>
