@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BookOpen, BarChart3, Search, ChevronRight, RotateCcw, Lock, Star, FileText, Trash2 } from 'lucide-react';
 import { marked } from 'marked';
 import QUIZ_DATA from './data/quizData.json';
+import THEORY_0_MD from './data/theory-0.md?raw';
 import THEORY_1_MD from './data/theory-1.md?raw';
 import THEORY_2_MD from './data/theory-2.md?raw';
 import THEORY_3_MD from './data/theory-3.md?raw';
@@ -9,6 +10,7 @@ import THEORY_4_MD from './data/theory-4.md?raw';
 import THEORY_5_MD from './data/theory-5.md?raw';
 
 const THEORY_HTML = {
+  0: marked.parse(THEORY_0_MD),
   1: marked.parse(THEORY_1_MD),
   2: marked.parse(THEORY_2_MD),
   3: marked.parse(THEORY_3_MD),
@@ -425,17 +427,21 @@ export default function ISTQBQuizApp() {
                       <div className="flex-1">
                         <div className="font-mono text-xs text-muted mb-1">§{String(chap.id).padStart(2, '0')}</div>
                         <h3 className="font-display text-lg font-bold text-ink">{chap.title}</h3>
-                        <p className="text-sm text-muted">{chapQuiz.length} Fragen · {chap.duration}</p>
+                        <p className="text-sm text-muted">
+                          {chapQuiz.length > 0 ? `${chapQuiz.length} Fragen · ${chap.duration}` : `Lesezeit ${chap.duration}`}
+                        </p>
                       </div>
                       {chap.free ? <Star className="w-5 h-5 text-amber-400 fill-amber-400" /> : <Lock className="w-5 h-5 text-slate-500" />}
                     </div>
 
-                    <div className="mb-4">
-                      <div className="flex justify-between items-center text-xs font-mono text-muted mb-2">
-                        <span>{chapAnswered}/{chapQuiz.length}</span>
-                        <TickBar percent={progress} />
+                    {chapQuiz.length > 0 && (
+                      <div className="mb-4">
+                        <div className="flex justify-between items-center text-xs font-mono text-muted mb-2">
+                          <span>{chapAnswered}/{chapQuiz.length}</span>
+                          <TickBar percent={progress} />
+                        </div>
                       </div>
-                    </div>
+                    )}
 
                     <div className="flex gap-2">
                       {THEORY_HTML[chap.id] && (
@@ -446,17 +452,19 @@ export default function ISTQBQuizApp() {
                           <FileText className="w-4 h-4" /> Theorie
                         </button>
                       )}
-                      <button
-                        onClick={() => handleStartChapter(chap.id)}
-                        disabled={(isPremium && !chap.free) || chapQuiz.length === 0}
-                        className={`flex-1 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition ${
-                          (isPremium && !chap.free) || chapQuiz.length === 0
-                            ? 'bg-slate-700 text-slate-500 cursor-not-allowed'
-                            : 'bg-indigo-500 text-white hover:bg-indigo-400'
-                        }`}
-                      >
-                        Quiz starten <ChevronRight className="w-4 h-4" />
-                      </button>
+                      {chapQuiz.length > 0 && (
+                        <button
+                          onClick={() => handleStartChapter(chap.id)}
+                          disabled={isPremium && !chap.free}
+                          className={`flex-1 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition ${
+                            isPremium && !chap.free
+                              ? 'bg-slate-700 text-slate-500 cursor-not-allowed'
+                              : 'bg-indigo-500 text-white hover:bg-indigo-400'
+                          }`}
+                        >
+                          Quiz starten <ChevronRight className="w-4 h-4" />
+                        </button>
+                      )}
                       {chapAnswered > 0 && (
                         <button
                           onClick={() => handleDeleteChapterResults(chap.id)}
