@@ -435,7 +435,7 @@ export default function ISTQBQuizApp() {
                   }`}
                 >
                   <div className="font-semibold text-white">
-                    {currentQuestion.multiSelect ? '☐' : ''} {String.fromCharCode(97 + idx)})
+                    {currentQuestion.multiSelect ? (isSelected(idx) ? '☑' : '☐') : ''} {String.fromCharCode(97 + idx)})
                   </div>
                   <div className="text-slate-300 mt-1">{option}</div>
                 </button>
