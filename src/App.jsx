@@ -112,6 +112,17 @@ function computeStats(answers, submittedIds, shuffledOptions) {
   return { total, correct, points, maxPoints };
 }
 
+const EXAM_LENGTH = 40;
+const EXAM_DURATION_SEC = 60 * 60;
+const EXAM_PASS_PERCENT = 65;
+
+function buildExamQuestions() {
+  const hard = QUIZ_DATA.questions.filter(q => q.points === 2);
+  const rest = shuffle(QUIZ_DATA.questions.filter(q => q.points !== 2));
+  const fillCount = Math.max(0, EXAM_LENGTH - hard.length);
+  return shuffle([...hard, ...rest.slice(0, fillCount)]);
+}
+
 function buildGlossaryQuiz() {
   const terms = shuffle(QUIZ_DATA.glossary).slice(0, Math.min(GLOSSARY_QUIZ_LENGTH, QUIZ_DATA.glossary.length));
   return terms.map((item) => {
@@ -174,6 +185,11 @@ export default function ISTQBQuizApp() {
   const [glossaryAnswer, setGlossaryAnswer] = useState(null);
   const [glossarySubmitted, setGlossarySubmitted] = useState(false);
   const [glossaryScore, setGlossaryScore] = useState({ correct: 0, total: 0 });
+  const [examTimerEnabled, setExamTimerEnabled] = useState(false);
+  const [examQuestions, setExamQuestions] = useState([]);
+  const [examIdx, setExamIdx] = useState(0);
+  const [examAnswers, setExamAnswers] = useState({});
+  const [examTimeLeft, setExamTimeLeft] = useState(null);
   const [fontScaleIdx, setFontScaleIdx] = useState(() => {
     const saved = parseInt(localStorage.getItem(FONT_SCALE_KEY), 10);
     const idx = FONT_SCALES.indexOf(saved);
@@ -338,6 +354,48 @@ export default function ISTQBQuizApp() {
     setGlossarySubmitted(false);
   };
 
+  const startExam = () => {
+    const questions = buildExamQuestions();
+    setExamQuestions(questions);
+    setExamIdx(0);
+    setExamAnswers({});
+    setExamTimeLeft(examTimerEnabled ? EXAM_DURATION_SEC : null);
+    setView('exam');
+  };
+
+  const handleExamAnswer = (question, optionIndex) => {
+    if (question.multiSelect) {
+      setExamAnswers(prev => {
+        const current = prev[question.id] || [];
+        const next = current.includes(optionIndex)
+          ? current.filter(i => i !== optionIndex)
+          : [...current, optionIndex];
+        return { ...prev, [question.id]: next };
+      });
+    } else {
+      setExamAnswers(prev => ({ ...prev, [question.id]: optionIndex }));
+    }
+  };
+
+  const handleExamNext = () => {
+    setExamIdx(prev => Math.min(prev + 1, examQuestions.length));
+  };
+
+  const handleCancelExam = () => {
+    setView('home');
+  };
+
+  // Probeprüfung: Countdown
+  useEffect(() => {
+    if (view !== 'exam' || examTimeLeft === null || examIdx >= examQuestions.length) return;
+    if (examTimeLeft <= 0) {
+      setExamIdx(examQuestions.length);
+      return;
+    }
+    const t = setTimeout(() => setExamTimeLeft(s => s - 1), 1000);
+    return () => clearTimeout(t);
+  }, [view, examTimeLeft, examIdx, examQuestions.length]);
+
   // Filter Glossar
   const filteredGlossary = QUIZ_DATA.glossary.filter(item =>
     item.term.toLowerCase().includes(searchGlossary.toLowerCase()) ||
@@ -487,6 +545,31 @@ export default function ISTQBQuizApp() {
                   </div>
                 );
               })}
+            </div>
+          </section>
+
+          <section className="mt-12">
+            <h2 className="font-display text-2xl font-bold mb-6 text-ink">Probeprüfung</h2>
+            <div className={`${CARD} rounded-lg p-6`}>
+              <p className="text-muted mb-1">
+                {Math.min(EXAM_LENGTH, QUIZ_DATA.questions.length)} Fragen · Bestehensgrenze {EXAM_PASS_PERCENT} %
+              </p>
+              <p className="text-sm text-muted mb-4">Simuliert die echte Prüfung: keine Sofort-Auswertung pro Frage, Ergebnis erst am Ende.</p>
+              <label className="flex items-center gap-2 mb-4 text-sm text-muted cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={examTimerEnabled}
+                  onChange={(e) => setExamTimerEnabled(e.target.checked)}
+                  className="w-4 h-4 accent-indigo-500"
+                />
+                Mit Zeitlimit (60 Min)
+              </label>
+              <button
+                onClick={startExam}
+                className="w-full py-3 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400 transition flex items-center justify-center gap-2"
+              >
+                Probeprüfung starten <ChevronRight className="w-4 h-4" />
+              </button>
             </div>
           </section>
         </main>
@@ -779,6 +862,155 @@ export default function ISTQBQuizApp() {
                 </button>
               )}
             </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // PROBEPRÜFUNG VIEW
+  if (view === 'exam') {
+    if (examIdx >= examQuestions.length) {
+      const examCorrect = examQuestions.filter(q => isAnswerCorrect(q, examAnswers[q.id])).length;
+      const examTotal = examQuestions.length;
+      const examPercent = examTotal > 0 ? Math.round((examCorrect / examTotal) * 100) : 0;
+      const examPassed = examPercent >= EXAM_PASS_PERCENT;
+      const wrongQuestions = examQuestions.filter(q => !isAnswerCorrect(q, examAnswers[q.id]));
+
+      return (
+        <div className={`min-h-screen ${PAGE_BG} p-4`}>
+          <div className="max-w-2xl mx-auto">
+            <button onClick={() => setView('home')} className={`mb-6 ${BACK_BTN}`}>
+              ← zurück
+            </button>
+
+            <div className={`${CARD} rounded-lg shadow-xl p-8 mb-6`}>
+              <h2 className="font-display text-2xl font-bold mb-6 text-ink">Ergebnis Probeprüfung</h2>
+              <div className="flex items-center gap-4 mb-4">
+                <p className="font-display text-4xl font-bold text-indigo-400">{examCorrect}/{examTotal}</p>
+                <ResultBadge correct={examPassed} />
+              </div>
+              <TickBar
+                percent={examPercent}
+                width={36}
+                filledClass={examPassed ? 'text-emerald-400' : 'text-amber-400'}
+              />
+              <p className="text-sm text-muted mt-2">
+                {examPercent}% · Bestehensgrenze {EXAM_PASS_PERCENT}%
+              </p>
+            </div>
+
+            {wrongQuestions.length > 0 && (
+              <div className={`${CARD} rounded-lg shadow-xl p-8 mb-6`}>
+                <h3 className="font-display text-lg font-bold mb-4 text-ink">Falsch beantwortet</h3>
+                <div className="space-y-6">
+                  {wrongQuestions.map(q => {
+                    const userAnswer = examAnswers[q.id];
+                    const formatAnswer = (idx) => idx !== undefined
+                      ? `${String.fromCharCode(97 + idx)}) ${q.options[idx]}`
+                      : '(keine Antwort)';
+                    return (
+                      <div key={q.id} className="border-l-4 border-red-500 pl-4">
+                        <p className="font-semibold text-ink mb-2 whitespace-pre-line">{q.question}</p>
+                        <p className="text-red-300 text-sm mb-1">
+                          Deine Antwort: {q.multiSelect
+                            ? (Array.isArray(userAnswer) && userAnswer.length > 0 ? userAnswer.map(formatAnswer).join('; ') : '(keine Antwort)')
+                            : formatAnswer(userAnswer)}
+                        </p>
+                        <p className="text-emerald-300 text-sm mb-2">
+                          Richtig: {q.multiSelect ? q.correct.map(formatAnswer).join('; ') : formatAnswer(q.correct)}
+                        </p>
+                        <p className="text-slate-300 text-sm">{q.explanation}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            <div className="flex gap-3">
+              <button
+                onClick={() => setView('home')}
+                className="flex-1 py-3 bg-slate-800 border-2 border-slate-700 text-slate-300 rounded-lg font-semibold hover:border-indigo-500/50 transition"
+              >
+                Zurück
+              </button>
+              <button
+                onClick={startExam}
+                className="flex-1 py-3 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400 transition"
+              >
+                Neue Probeprüfung
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const examQuestion = examQuestions[examIdx];
+    const examUserAnswer = examAnswers[examQuestion.id];
+    const examIsSelected = (idx) => examQuestion.multiSelect
+      ? Array.isArray(examUserAnswer) && examUserAnswer.includes(idx)
+      : examUserAnswer === idx;
+    const examIsAnswered = examQuestion.multiSelect
+      ? Array.isArray(examUserAnswer) && examUserAnswer.length === examQuestion.correct.length
+      : examUserAnswer !== undefined;
+    const timeMin = examTimeLeft !== null ? String(Math.floor(examTimeLeft / 60)).padStart(2, '0') : null;
+    const timeSec = examTimeLeft !== null ? String(examTimeLeft % 60).padStart(2, '0') : null;
+
+    return (
+      <div className={`min-h-screen ${PAGE_BG} p-4`}>
+        <div className="max-w-2xl mx-auto">
+          <div className="mb-6 flex items-center justify-between">
+            <button onClick={handleCancelExam} className={BACK_BTN}>
+              Abbrechen
+            </button>
+            <div className="flex items-center gap-4 font-mono text-sm text-muted">
+              {examTimeLeft !== null && (
+                <span className={examTimeLeft < 300 ? 'text-red-400' : ''}>{timeMin}:{timeSec}</span>
+              )}
+              <span>{examIdx + 1}/{examQuestions.length}</span>
+            </div>
+          </div>
+
+          <div className={`${CARD} rounded-lg shadow-xl p-8`}>
+            <div className="mb-6">
+              <div className="mb-4">
+                <TickBar percent={((examIdx + 1) / examQuestions.length) * 100} width={32} />
+              </div>
+              <h2 className="text-lg sm:text-xl font-bold mb-4 text-ink whitespace-pre-line text-left">
+                {examQuestion.question}
+              </h2>
+              <p className="font-mono text-xs text-muted">
+                {examQuestion.points} Punkt(e)
+                {examQuestion.multiSelect && ` · Wählen Sie ${examQuestion.correct.length} Optionen!`}
+              </p>
+            </div>
+
+            <div className="space-y-3 mb-8">
+              {examQuestion.options.map((option, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleExamAnswer(examQuestion, idx)}
+                  className={`w-full p-4 text-left rounded-lg border-2 transition ${
+                    examIsSelected(idx) ? 'border-indigo-500 bg-indigo-500/10' : 'border-slate-700 hover:border-indigo-500/50'
+                  }`}
+                >
+                  <div className="font-semibold text-white">
+                    {examQuestion.multiSelect ? (examIsSelected(idx) ? '☑' : '☐') : ''} {String.fromCharCode(97 + idx)})
+                  </div>
+                  <div className="text-slate-300 mt-1">{option}</div>
+                </button>
+              ))}
+            </div>
+
+            <button
+              onClick={handleExamNext}
+              disabled={!examIsAnswered}
+              className="w-full py-3 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400 disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed transition"
+            >
+              {examIdx === examQuestions.length - 1 ? 'Prüfung abgeben' : 'Weiter'}
+            </button>
           </div>
         </div>
       </div>
