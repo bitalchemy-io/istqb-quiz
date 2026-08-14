@@ -81,13 +81,28 @@ function isAnswerCorrect(question, userAnswer) {
   return userAnswer === question.correct;
 }
 
-function computeStats(answers, submittedIds) {
+function shuffleQuestionOptions(question) {
+  const order = shuffle(question.options.map((_, i) => i));
+  return {
+    options: order.map(i => question.options[i]),
+    correct: question.multiSelect
+      ? question.correct.map(c => order.indexOf(c))
+      : order.indexOf(question.correct),
+  };
+}
+
+function applyShuffle(question, shuffledOptions) {
+  const override = shuffledOptions[question.id];
+  return override ? { ...question, ...override } : question;
+}
+
+function computeStats(answers, submittedIds, shuffledOptions) {
   let total = 0, correct = 0, points = 0, maxPoints = 0;
   for (const q of QUIZ_DATA.questions) {
     if (!submittedIds[q.id]) continue;
     total++;
     maxPoints += q.points;
-    if (isAnswerCorrect(q, answers[q.id])) {
+    if (isAnswerCorrect(applyShuffle(q, shuffledOptions), answers[q.id])) {
       correct++;
       points += q.points;
     }
@@ -149,8 +164,9 @@ export default function ISTQBQuizApp() {
   const [retryQuestionIds, setRetryQuestionIds] = useState(null);
   const [answers, setAnswers] = useState(() => loadSavedProgress()?.answers || {});
   const [submittedIds, setSubmittedIds] = useState(() => loadSavedProgress()?.submittedIds || {});
+  const [shuffledOptions, setShuffledOptions] = useState(() => loadSavedProgress()?.shuffledOptions || {});
   const [searchGlossary, setSearchGlossary] = useState('');
-  const stats = computeStats(answers, submittedIds);
+  const stats = computeStats(answers, submittedIds, shuffledOptions);
   const [glossaryQuiz, setGlossaryQuiz] = useState([]);
   const [glossaryQuizIdx, setGlossaryQuizIdx] = useState(0);
   const [glossaryAnswer, setGlossaryAnswer] = useState(null);
@@ -173,9 +189,10 @@ export default function ISTQBQuizApp() {
     localStorage.setItem('istqb_progress', JSON.stringify({
       answers,
       submittedIds,
+      shuffledOptions,
       timestamp: new Date().toISOString()
     }));
-  }, [answers, submittedIds]);
+  }, [answers, submittedIds, shuffledOptions]);
 
   const handleAnswer = (question, optionIndex) => {
     if (submittedIds[question.id]) return;
@@ -209,6 +226,7 @@ export default function ISTQBQuizApp() {
   };
 
   const handleRetryQuestion = (questionId) => {
+    const question = QUIZ_DATA.questions.find(q => q.id === questionId);
     setAnswers(prev => {
       const next = { ...prev };
       delete next[questionId];
@@ -219,12 +237,14 @@ export default function ISTQBQuizApp() {
       delete next[questionId];
       return next;
     });
+    setShuffledOptions(prev => ({ ...prev, [questionId]: shuffleQuestionOptions(question) }));
   };
 
   const resetProgress = () => {
     if (confirm('Fortschritt wirklich zurücksetzen?')) {
       setAnswers({});
       setSubmittedIds({});
+      setShuffledOptions({});
       localStorage.removeItem('istqb_progress');
     }
   };
@@ -242,6 +262,11 @@ export default function ISTQBQuizApp() {
       ids.forEach(id => delete next[id]);
       return next;
     });
+    setShuffledOptions(prev => {
+      const next = { ...prev };
+      ids.forEach(id => delete next[id]);
+      return next;
+    });
   };
 
   const handleStartChapter = (chapId) => {
@@ -252,10 +277,10 @@ export default function ISTQBQuizApp() {
   };
 
   const handleRetryWrongAnswers = (chapId) => {
-    const wrongIds = QUIZ_DATA.questions
-      .filter(q => q.chapter === chapId && submittedIds[q.id] && !isAnswerCorrect(q, answers[q.id]))
-      .map(q => q.id);
-    if (wrongIds.length === 0) return;
+    const wrongQuestions = QUIZ_DATA.questions
+      .filter(q => q.chapter === chapId && submittedIds[q.id] && !isAnswerCorrect(applyShuffle(q, shuffledOptions), answers[q.id]));
+    if (wrongQuestions.length === 0) return;
+    const wrongIds = wrongQuestions.map(q => q.id);
     setAnswers(prev => {
       const next = { ...prev };
       wrongIds.forEach(id => delete next[id]);
@@ -264,6 +289,11 @@ export default function ISTQBQuizApp() {
     setSubmittedIds(prev => {
       const next = { ...prev };
       wrongIds.forEach(id => delete next[id]);
+      return next;
+    });
+    setShuffledOptions(prev => {
+      const next = { ...prev };
+      wrongQuestions.forEach(q => { next[q.id] = shuffleQuestionOptions(q); });
       return next;
     });
     setRetryQuestionIds(wrongIds);
@@ -315,7 +345,8 @@ export default function ISTQBQuizApp() {
   const chapQuestions = retryQuestionIds
     ? QUIZ_DATA.questions.filter(q => retryQuestionIds.includes(q.id))
     : QUIZ_DATA.questions.filter(q => q.chapter === currentChapter);
-  const currentQuestion = chapQuestions[currentQuestionIdx];
+  const rawCurrentQuestion = chapQuestions[currentQuestionIdx];
+  const currentQuestion = rawCurrentQuestion ? applyShuffle(rawCurrentQuestion, shuffledOptions) : rawCurrentQuestion;
   const isPremium = !QUIZ_DATA.chapters[currentChapter]?.free;
 
   function renderView() {
@@ -386,7 +417,7 @@ export default function ISTQBQuizApp() {
                 const progress = chapQuiz.length > 0 ? Math.round((chapAnswered / chapQuiz.length) * 100) : 0;
                 const chapSubmittedCount = chapQuiz.filter(q => submittedIds[q.id]).length;
                 const chapComplete = chapQuiz.length > 0 && chapSubmittedCount === chapQuiz.length;
-                const chapWrongCount = chapQuiz.filter(q => submittedIds[q.id] && !isAnswerCorrect(q, answers[q.id])).length;
+                const chapWrongCount = chapQuiz.filter(q => submittedIds[q.id] && !isAnswerCorrect(applyShuffle(q, shuffledOptions), answers[q.id])).length;
 
                 return (
                   <div key={chap.id} className={`${CARD} rounded-lg p-6 hover:border-slate-600 transition`}>
