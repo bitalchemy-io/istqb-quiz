@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BookOpen, BarChart3, Search, ChevronRight, RotateCcw, Lock, Star, FileText } from 'lucide-react';
+import { BookOpen, BarChart3, Search, ChevronRight, RotateCcw, Lock, Star, FileText, Trash2 } from 'lucide-react';
 import { marked } from 'marked';
 import QUIZ_DATA from './data/quizData.json';
 import THEORY_1_MD from './data/theory-1.md?raw';
@@ -70,6 +70,31 @@ function loadSavedProgress() {
   }
 }
 
+function isAnswerCorrect(question, userAnswer) {
+  if (question.multiSelect) {
+    if (!Array.isArray(userAnswer)) return false;
+    const sortedUser = [...userAnswer].sort();
+    const sortedCorrect = [...question.correct].sort();
+    return sortedUser.length === sortedCorrect.length &&
+      sortedUser.every((v, i) => v === sortedCorrect[i]);
+  }
+  return userAnswer === question.correct;
+}
+
+function computeStats(answers, submittedIds) {
+  let total = 0, correct = 0, points = 0, maxPoints = 0;
+  for (const q of QUIZ_DATA.questions) {
+    if (!submittedIds[q.id]) continue;
+    total++;
+    maxPoints += q.points;
+    if (isAnswerCorrect(q, answers[q.id])) {
+      correct++;
+      points += q.points;
+    }
+  }
+  return { total, correct, points, maxPoints };
+}
+
 function buildGlossaryQuiz() {
   const terms = shuffle(QUIZ_DATA.glossary).slice(0, Math.min(GLOSSARY_QUIZ_LENGTH, QUIZ_DATA.glossary.length));
   return terms.map((item) => {
@@ -122,9 +147,9 @@ export default function ISTQBQuizApp() {
   const [currentChapter, setCurrentChapter] = useState(null);
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
   const [answers, setAnswers] = useState(() => loadSavedProgress()?.answers || {});
-  const [submitted, setSubmitted] = useState(false);
+  const [submittedIds, setSubmittedIds] = useState(() => loadSavedProgress()?.submittedIds || {});
   const [searchGlossary, setSearchGlossary] = useState('');
-  const [stats, setStats] = useState(() => loadSavedProgress()?.stats || { total: 0, correct: 0, points: 0, maxPoints: 0 });
+  const stats = computeStats(answers, submittedIds);
   const [glossaryQuiz, setGlossaryQuiz] = useState([]);
   const [glossaryQuizIdx, setGlossaryQuizIdx] = useState(0);
   const [glossaryAnswer, setGlossaryAnswer] = useState(null);
@@ -146,13 +171,13 @@ export default function ISTQBQuizApp() {
   useEffect(() => {
     localStorage.setItem('istqb_progress', JSON.stringify({
       answers,
-      stats,
+      submittedIds,
       timestamp: new Date().toISOString()
     }));
-  }, [answers, stats]);
+  }, [answers, submittedIds]);
 
   const handleAnswer = (question, optionIndex) => {
-    if (submitted) return;
+    if (submittedIds[question.id]) return;
     if (question.multiSelect) {
       setAnswers(prev => {
         const current = prev[question.id] || [];
@@ -166,56 +191,60 @@ export default function ISTQBQuizApp() {
     }
   };
 
-  const isAnswerCorrect = (question, userAnswer) => {
-    if (question.multiSelect) {
-      if (!Array.isArray(userAnswer)) return false;
-      const sortedUser = [...userAnswer].sort();
-      const sortedCorrect = [...question.correct].sort();
-      return sortedUser.length === sortedCorrect.length &&
-        sortedUser.every((v, i) => v === sortedCorrect[i]);
-    }
-    return userAnswer === question.correct;
-  };
-
   const handleSubmitQuestion = () => {
     const q = chapQuestions[currentQuestionIdx];
-    const userAnswer = answers[q.id];
-    const isCorrect = isAnswerCorrect(q, userAnswer);
-
-    setStats(prev => ({
-      total: prev.total + 1,
-      correct: isCorrect ? prev.correct + 1 : prev.correct,
-      points: isCorrect ? prev.points + q.points : prev.points,
-      maxPoints: prev.maxPoints + q.points
-    }));
-
-    setSubmitted(true);
+    setSubmittedIds(prev => ({ ...prev, [q.id]: true }));
   };
 
   const handleNextQuestion = () => {
     if (currentQuestionIdx < chapQuestions.length - 1) {
       setCurrentQuestionIdx(prev => prev + 1);
-      setSubmitted(false);
     } else {
       setView('home');
       setCurrentChapter(null);
       setCurrentQuestionIdx(0);
-      setSubmitted(false);
     }
+  };
+
+  const handleRetryQuestion = (questionId) => {
+    setAnswers(prev => {
+      const next = { ...prev };
+      delete next[questionId];
+      return next;
+    });
+    setSubmittedIds(prev => {
+      const next = { ...prev };
+      delete next[questionId];
+      return next;
+    });
   };
 
   const resetProgress = () => {
     if (confirm('Fortschritt wirklich zurücksetzen?')) {
       setAnswers({});
-      setStats({ total: 0, correct: 0, points: 0, maxPoints: 0 });
+      setSubmittedIds({});
       localStorage.removeItem('istqb_progress');
     }
+  };
+
+  const handleDeleteChapterResults = (chapId) => {
+    if (!confirm('Auswertung für dieses Kapitel wirklich löschen?')) return;
+    const ids = QUIZ_DATA.questions.filter(q => q.chapter === chapId).map(q => q.id);
+    setAnswers(prev => {
+      const next = { ...prev };
+      ids.forEach(id => delete next[id]);
+      return next;
+    });
+    setSubmittedIds(prev => {
+      const next = { ...prev };
+      ids.forEach(id => delete next[id]);
+      return next;
+    });
   };
 
   const handleStartChapter = (chapId) => {
     setCurrentChapter(chapId);
     setCurrentQuestionIdx(0);
-    setSubmitted(false);
     setView('quiz');
   };
 
@@ -368,6 +397,16 @@ export default function ISTQBQuizApp() {
                       >
                         Quiz starten <ChevronRight className="w-4 h-4" />
                       </button>
+                      {chapAnswered > 0 && (
+                        <button
+                          onClick={() => handleDeleteChapterResults(chap.id)}
+                          aria-label="Auswertung löschen"
+                          title="Auswertung löschen"
+                          className="px-3 py-2 rounded-lg border border-red-500/30 text-red-400 hover:bg-red-500/10 transition"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      )}
                     </div>
                   </div>
                 );
@@ -381,6 +420,7 @@ export default function ISTQBQuizApp() {
 
   // QUIZ VIEW
   if (view === 'quiz' && currentQuestion) {
+    const submitted = !!submittedIds[currentQuestion.id];
     const userAnswer = answers[currentQuestion.id];
     const isSelected = (idx) => currentQuestion.multiSelect
       ? Array.isArray(userAnswer) && userAnswer.includes(idx)
@@ -464,12 +504,20 @@ export default function ISTQBQuizApp() {
                   Antwort überprüfen
                 </button>
               ) : (
-                <button
-                  onClick={handleNextQuestion}
-                  className="flex-1 py-3 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400 transition"
-                >
-                  {currentQuestionIdx === chapQuestions.length - 1 ? 'Kapitel beenden' : 'Nächste Frage'}
-                </button>
+                <>
+                  <button
+                    onClick={() => handleRetryQuestion(currentQuestion.id)}
+                    className="flex-1 py-3 bg-slate-800 border-2 border-slate-700 text-slate-300 rounded-lg font-semibold hover:border-indigo-500/50 transition"
+                  >
+                    Frage neu lösen
+                  </button>
+                  <button
+                    onClick={handleNextQuestion}
+                    className="flex-1 py-3 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400 transition"
+                  >
+                    {currentQuestionIdx === chapQuestions.length - 1 ? 'Kapitel beenden' : 'Nächste Frage'}
+                  </button>
+                </>
               )}
             </div>
           </div>
