@@ -433,22 +433,6 @@ export default function ISTQBQuizApp() {
         </header>
 
         <main className="max-w-6xl mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-            <div className={`${CARD} rounded-lg p-6`}>
-              <div className="font-mono text-xs uppercase tracking-wide text-muted">Beantwortet</div>
-              <div className="font-display text-4xl font-bold text-indigo-400">{stats.total}</div>
-            </div>
-            <div className={`${CARD} rounded-lg p-6`}>
-              <div className="font-mono text-xs uppercase tracking-wide text-muted">Richtig</div>
-              <div className="font-display text-4xl font-bold text-emerald-400 mb-1">{stats.correct}</div>
-              <TickBar percent={stats.total > 0 ? (stats.correct / stats.total) * 100 : 0} width={16} filledClass="text-emerald-400" />
-            </div>
-            <div className={`${CARD} rounded-lg p-6`}>
-              <div className="font-mono text-xs uppercase tracking-wide text-muted">Punkte</div>
-              <div className="font-display text-4xl font-bold text-indigo-400">{stats.points}/{stats.maxPoints}</div>
-            </div>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <button
               onClick={() => setView('glossary')}
