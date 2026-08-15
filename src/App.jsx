@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BookOpen, BarChart3, Search, ChevronRight, RotateCcw, Lock, Star, FileText, Trash2 } from 'lucide-react';
+import { BookOpen, BarChart3, Search, ChevronRight, RotateCcw, Lock, Star, FileText, Trash2, Settings, Sun, Moon, Monitor } from 'lucide-react';
 import { marked } from 'marked';
 import QUIZ_DATA from './data/quizData.json';
 import THEORY_0_MD from './data/theory-0.md?raw';
@@ -140,34 +140,61 @@ function buildGlossaryQuiz() {
   });
 }
 
-const PAGE_BG = 'bg-gradient-to-br from-deep via-deep to-indigo-950';
 const CARD = 'bg-surface border border-line backdrop-blur-sm';
 const CARD_HOVER = 'hover:border-indigo-500/50';
 const BACK_BTN = 'px-4 py-2 bg-surface border border-line rounded-lg shadow hover:border-indigo-500/40 text-muted font-mono text-sm transition';
 
 const FONT_SCALES = [100, 112, 125, 140, 155];
 const FONT_SCALE_KEY = 'istqb_font_scale';
+const THEME_KEY = 'istqb_theme';
+const THEME_OPTIONS = [
+  { value: 'system', label: 'System', icon: Monitor },
+  { value: 'light', label: 'Hell', icon: Sun },
+  { value: 'dark', label: 'Dunkel', icon: Moon },
+];
 
-function FontSizeControl({ scaleIdx, onChange }) {
+function SettingsPanel({ scaleIdx, onScaleChange, themePref, onThemeChange }) {
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex items-center gap-1 bg-surface border border-line rounded-lg shadow-xl p-1 font-mono">
-      <button
-        onClick={() => onChange(Math.max(0, scaleIdx - 1))}
-        disabled={scaleIdx === 0}
-        aria-label="Schrift verkleinern"
-        className="w-9 h-9 flex items-center justify-center rounded-md text-muted hover:text-ink hover:bg-line disabled:opacity-30 disabled:hover:bg-transparent transition text-sm"
-      >
-        A−
-      </button>
-      <span className="px-1 text-xs text-muted tabular-nums w-9 text-center">{FONT_SCALES[scaleIdx]}%</span>
-      <button
-        onClick={() => onChange(Math.min(FONT_SCALES.length - 1, scaleIdx + 1))}
-        disabled={scaleIdx === FONT_SCALES.length - 1}
-        aria-label="Schrift vergrößern"
-        className="w-9 h-9 flex items-center justify-center rounded-md text-muted hover:text-ink hover:bg-line disabled:opacity-30 disabled:hover:bg-transparent transition text-base"
-      >
-        A+
-      </button>
+    <div className="absolute right-0 mt-2 w-72 bg-surface border border-line rounded-lg shadow-xl p-4 z-50 font-mono">
+      <div className="mb-4">
+        <div className="text-xs uppercase tracking-wide text-muted mb-2">Farbschema</div>
+        <div className="flex gap-1">
+          {THEME_OPTIONS.map(({ value, label, icon: Icon }) => (
+            <button
+              key={value}
+              onClick={() => onThemeChange(value)}
+              className={`flex-1 flex flex-col items-center gap-1 py-2 rounded-md text-xs transition ${
+                themePref === value ? 'bg-indigo-500/15 text-indigo-300 border border-indigo-500/40' : 'text-muted border border-transparent hover:bg-line'
+              }`}
+            >
+              <Icon className="w-4 h-4" />
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div className="text-xs uppercase tracking-wide text-muted mb-2">Schriftgröße</div>
+        <div className="flex items-center gap-1">
+          <button
+            onClick={() => onScaleChange(Math.max(0, scaleIdx - 1))}
+            disabled={scaleIdx === 0}
+            aria-label="Schrift verkleinern"
+            className="w-9 h-9 flex items-center justify-center rounded-md text-muted hover:text-ink hover:bg-line disabled:opacity-30 disabled:hover:bg-transparent transition text-sm"
+          >
+            A−
+          </button>
+          <span className="flex-1 text-xs text-muted tabular-nums text-center">{FONT_SCALES[scaleIdx]}%</span>
+          <button
+            onClick={() => onScaleChange(Math.min(FONT_SCALES.length - 1, scaleIdx + 1))}
+            disabled={scaleIdx === FONT_SCALES.length - 1}
+            aria-label="Schrift vergrößern"
+            className="w-9 h-9 flex items-center justify-center rounded-md text-muted hover:text-ink hover:bg-line disabled:opacity-30 disabled:hover:bg-transparent transition text-base"
+          >
+            A+
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
@@ -203,6 +230,32 @@ export default function ISTQBQuizApp() {
     document.documentElement.style.fontSize = `${FONT_SCALES[fontScaleIdx]}%`;
     localStorage.setItem(FONT_SCALE_KEY, String(FONT_SCALES[fontScaleIdx]));
   }, [fontScaleIdx]);
+
+  const [themePref, setThemePref] = useState(() => localStorage.getItem(THEME_KEY) || 'system');
+  const [systemPrefersLight, setSystemPrefersLight] = useState(
+    () => window.matchMedia('(prefers-color-scheme: light)').matches
+  );
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const isLight = themePref === 'light' || (themePref === 'system' && systemPrefersLight);
+
+  // Systemfarbschema live verfolgen (nur relevant wenn themePref === 'system')
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-color-scheme: light)');
+    const handler = (e) => setSystemPrefersLight(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  // Farbschema anwenden und speichern
+  useEffect(() => {
+    if (isLight) document.documentElement.setAttribute('data-theme', 'light');
+    else document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem(THEME_KEY, themePref);
+  }, [isLight, themePref]);
+
+  const PAGE_BG = isLight
+    ? 'bg-gradient-to-br from-deep via-deep to-indigo-100'
+    : 'bg-gradient-to-br from-deep via-deep to-indigo-950';
 
   const [unlockAll, setUnlockAll] = useState(() => localStorage.getItem(UNLOCK_KEY) === '1');
 
@@ -425,20 +478,42 @@ export default function ISTQBQuizApp() {
   if (view === 'home') {
     return (
       <div className={`min-h-screen ${PAGE_BG}`}>
-        <header className="bg-deep/80 backdrop-blur border-b border-line">
+        <header className="relative z-50 bg-deep/80 backdrop-blur border-b border-line">
           <div className="max-w-6xl mx-auto px-4 py-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <BookOpen className="w-8 h-8 text-indigo-400" />
                 <h1 className="font-display text-3xl font-bold text-ink tracking-tight">ISTQB CT-GenAI</h1>
               </div>
-              <button
-                onClick={() => setView('stats')}
-                className="flex items-center gap-2 px-4 py-2 bg-indigo-500/10 text-indigo-300 border border-indigo-500/30 rounded-lg hover:bg-indigo-500/20 transition"
-              >
-                <BarChart3 className="w-5 h-5" />
-                Statistik
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setView('stats')}
+                  className="flex items-center gap-2 px-4 py-2 bg-indigo-500/10 text-indigo-300 border border-indigo-500/30 rounded-lg hover:bg-indigo-500/20 transition"
+                >
+                  <BarChart3 className="w-5 h-5" />
+                  Statistik
+                </button>
+                <div className="relative">
+                  <button
+                    onClick={() => setSettingsOpen(o => !o)}
+                    aria-label="Einstellungen"
+                    className="flex items-center justify-center w-10 h-10 bg-surface border border-line rounded-lg text-muted hover:text-ink hover:border-indigo-500/40 transition"
+                  >
+                    <Settings className="w-5 h-5" />
+                  </button>
+                  {settingsOpen && (
+                    <>
+                      <div className="fixed inset-0 z-40" onClick={() => setSettingsOpen(false)} />
+                      <SettingsPanel
+                        scaleIdx={fontScaleIdx}
+                        onScaleChange={setFontScaleIdx}
+                        themePref={themePref}
+                        onThemeChange={setThemePref}
+                      />
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </header>
@@ -521,7 +596,7 @@ export default function ISTQBQuizApp() {
                           disabled={!chap.free && !unlockAll}
                           className={`flex-1 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition ${
                             !chap.free && !unlockAll
-                              ? 'bg-slate-700 text-slate-500 cursor-not-allowed'
+                              ? 'bg-line text-muted cursor-not-allowed'
                               : 'bg-indigo-500 text-white hover:bg-indigo-400'
                           }`}
                         >
@@ -1100,10 +1175,5 @@ export default function ISTQBQuizApp() {
   );
   }
 
-  return (
-    <>
-      {renderView()}
-      <FontSizeControl scaleIdx={fontScaleIdx} onChange={setFontScaleIdx} />
-    </>
-  );
+  return renderView();
 }

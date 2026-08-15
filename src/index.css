@@ -11,6 +11,14 @@
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
+:root[data-theme="light"] {
+  --color-deep: #eef0f9;
+  --color-surface: #ffffff;
+  --color-line: #d8dcee;
+  --color-ink: #161a2e;
+  --color-muted: #5b6178;
+}
+
 body {
   margin: 0;
   background: var(--color-deep);
