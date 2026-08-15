@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { BookOpen, BarChart3, Search, ChevronRight, RotateCcw, Lock, Star, FileText, Trash2, Settings, Sun, Moon, Monitor } from 'lucide-react';
 import { marked } from 'marked';
 import QUIZ_DATA from './data/quizData.json';
@@ -236,7 +236,20 @@ export default function ISTQBQuizApp() {
     () => window.matchMedia('(prefers-color-scheme: light)').matches
   );
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const settingsRef = useRef(null);
   const isLight = themePref === 'light' || (themePref === 'system' && systemPrefersLight);
+
+  // Settings-Panel schließen bei Klick außerhalb
+  useEffect(() => {
+    if (!settingsOpen) return;
+    function handleClickOutside(e) {
+      if (settingsRef.current && !settingsRef.current.contains(e.target)) {
+        setSettingsOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [settingsOpen]);
 
   // Systemfarbschema live verfolgen (nur relevant wenn themePref === 'system')
   useEffect(() => {
@@ -493,7 +506,7 @@ export default function ISTQBQuizApp() {
                   <BarChart3 className="w-5 h-5" />
                   Statistik
                 </button>
-                <div className="relative">
+                <div className="relative" ref={settingsRef}>
                   <button
                     onClick={() => setSettingsOpen(o => !o)}
                     aria-label="Einstellungen"
@@ -502,15 +515,12 @@ export default function ISTQBQuizApp() {
                     <Settings className="w-5 h-5" />
                   </button>
                   {settingsOpen && (
-                    <>
-                      <div className="fixed inset-0 z-40" onClick={() => setSettingsOpen(false)} />
-                      <SettingsPanel
-                        scaleIdx={fontScaleIdx}
-                        onScaleChange={setFontScaleIdx}
-                        themePref={themePref}
-                        onThemeChange={setThemePref}
-                      />
-                    </>
+                    <SettingsPanel
+                      scaleIdx={fontScaleIdx}
+                      onScaleChange={setFontScaleIdx}
+                      themePref={themePref}
+                      onThemeChange={setThemePref}
+                    />
                   )}
                 </div>
               </div>
