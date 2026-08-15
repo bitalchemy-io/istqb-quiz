@@ -434,14 +434,6 @@ export default function ISTQBQuizApp() {
 
         <main className="max-w-6xl mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <button
-              onClick={() => setView('glossary')}
-              className={`${CARD} ${CARD_HOVER} rounded-lg p-8 transition text-left`}
-            >
-              <BookOpen className="w-8 h-8 text-indigo-400 mb-3" />
-              <h3 className="font-display text-xl font-bold mb-2 text-ink">Glossar</h3>
-              <p className="text-muted">{QUIZ_DATA.glossary.length} Begriffe durchsuchen</p>
-            </button>
             <a
               href="https://www.gtb.de/wp-content/uploads/2026/06/ISTQB-CT-GenAI-Syllabus-v1.1-DE.pdf"
               target="_blank"
@@ -452,6 +444,14 @@ export default function ISTQBQuizApp() {
               <h3 className="font-display text-xl font-bold mb-2 text-ink">Syllabus (PDF)</h3>
               <p className="text-muted">Offizielles ISTQB CT-GenAI Skript zum Nachschlagen</p>
             </a>
+            <button
+              onClick={() => setView('glossary')}
+              className={`${CARD} ${CARD_HOVER} rounded-lg p-8 transition text-left`}
+            >
+              <BookOpen className="w-8 h-8 text-indigo-400 mb-3" />
+              <h3 className="font-display text-xl font-bold mb-2 text-ink">Glossar</h3>
+              <p className="text-muted">{QUIZ_DATA.glossary.length} Begriffe durchsuchen</p>
+            </button>
             <button
               onClick={resetProgress}
               className={`${CARD} ${CARD_HOVER} rounded-lg p-8 transition text-left`}
