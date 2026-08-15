@@ -639,7 +639,10 @@ export default function ISTQBQuizApp() {
           </section>
 
           <section className="mt-12">
-            <h2 className="font-display text-2xl font-bold mb-6 text-ink">Probeprüfung</h2>
+            <h2 className="font-display text-2xl font-bold mb-6 text-ink flex items-center gap-2">
+              Probeprüfung
+              {!unlockAll && <Lock className="w-5 h-5 text-slate-500" />}
+            </h2>
             <div className={`${CARD} rounded-lg p-6`}>
               <p className="text-muted mb-1">
                 {Math.min(EXAM_LENGTH, QUIZ_DATA.questions.length)} Fragen · Bestehensgrenze {EXAM_PASS_PERCENT} %
@@ -650,13 +653,19 @@ export default function ISTQBQuizApp() {
                   type="checkbox"
                   checked={examTimerEnabled}
                   onChange={(e) => setExamTimerEnabled(e.target.checked)}
+                  disabled={!unlockAll}
                   className="w-4 h-4 accent-indigo-500"
                 />
                 Mit Zeitlimit (60 Min)
               </label>
               <button
                 onClick={startExam}
-                className="w-full py-3 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-400 transition flex items-center justify-center gap-2"
+                disabled={!unlockAll}
+                className={`w-full py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2 ${
+                  unlockAll
+                    ? 'bg-indigo-500 text-white hover:bg-indigo-400'
+                    : 'bg-line text-muted cursor-not-allowed'
+                }`}
               >
                 Probeprüfung starten <ChevronRight className="w-4 h-4" />
               </button>
