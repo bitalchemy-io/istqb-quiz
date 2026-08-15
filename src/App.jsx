@@ -19,6 +19,8 @@ const THEORY_HTML = {
 };
 
 const GLOSSARY_QUIZ_LENGTH = 15;
+const UNLOCK_KEY = 'istqb_unlock_all';
+const UNLOCK_CODE = 'jelena-test';
 
 function shuffle(array) {
   const copy = [...array];
@@ -201,6 +203,16 @@ export default function ISTQBQuizApp() {
     document.documentElement.style.fontSize = `${FONT_SCALES[fontScaleIdx]}%`;
     localStorage.setItem(FONT_SCALE_KEY, String(FONT_SCALES[fontScaleIdx]));
   }, [fontScaleIdx]);
+
+  const [unlockAll, setUnlockAll] = useState(() => localStorage.getItem(UNLOCK_KEY) === '1');
+
+  // Secret-Link (?unlock=CODE) schaltet alle Kapitel dauerhaft in diesem Browser frei
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('unlock') === UNLOCK_CODE) {
+      localStorage.setItem(UNLOCK_KEY, '1');
+      setUnlockAll(true);
+    }
+  }, []);
 
   // Fortschritt speichern
   useEffect(() => {
@@ -407,7 +419,6 @@ export default function ISTQBQuizApp() {
     : QUIZ_DATA.questions.filter(q => q.chapter === currentChapter);
   const rawCurrentQuestion = chapQuestions[currentQuestionIdx];
   const currentQuestion = rawCurrentQuestion ? applyShuffle(rawCurrentQuestion, shuffledOptions) : rawCurrentQuestion;
-  const isPremium = !QUIZ_DATA.chapters[currentChapter]?.free;
 
   function renderView() {
   // HOME VIEW
@@ -483,7 +494,7 @@ export default function ISTQBQuizApp() {
                           {chapQuiz.length > 0 ? `${chapQuiz.length} Fragen · ${chap.duration}` : `Lesezeit ${chap.duration}`}
                         </p>
                       </div>
-                      {chap.free ? <Star className="w-5 h-5 text-amber-400 fill-amber-400" /> : <Lock className="w-5 h-5 text-slate-500" />}
+                      {chap.free || unlockAll ? <Star className="w-5 h-5 text-amber-400 fill-amber-400" /> : <Lock className="w-5 h-5 text-slate-500" />}
                     </div>
 
                     {chapQuiz.length > 0 && (
@@ -507,9 +518,9 @@ export default function ISTQBQuizApp() {
                       {chapQuiz.length > 0 && (
                         <button
                           onClick={() => handleStartChapter(chap.id)}
-                          disabled={isPremium && !chap.free}
+                          disabled={!chap.free && !unlockAll}
                           className={`flex-1 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition ${
-                            isPremium && !chap.free
+                            !chap.free && !unlockAll
                               ? 'bg-slate-700 text-slate-500 cursor-not-allowed'
                               : 'bg-indigo-500 text-white hover:bg-indigo-400'
                           }`}
