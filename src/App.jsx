@@ -201,8 +201,8 @@ function SettingsPanel({ scaleIdx, onScaleChange, themePref, onThemeChange }) {
 
 export default function ISTQBQuizApp() {
   const [view, setView] = useState('home');
-  const [currentChapter, setCurrentChapter] = useState(null);
-  const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
+  const [currentChapter, setCurrentChapter] = useState(() => loadSavedProgress()?.currentChapter ?? null);
+  const [currentQuestionIdx, setCurrentQuestionIdx] = useState(() => loadSavedProgress()?.currentQuestionIdx ?? 0);
   const [retryQuestionIds, setRetryQuestionIds] = useState(null);
   const [answers, setAnswers] = useState(() => loadSavedProgress()?.answers || {});
   const [submittedIds, setSubmittedIds] = useState(() => loadSavedProgress()?.submittedIds || {});
@@ -286,9 +286,11 @@ export default function ISTQBQuizApp() {
       answers,
       submittedIds,
       shuffledOptions,
+      currentChapter,
+      currentQuestionIdx,
       timestamp: new Date().toISOString()
     }));
-  }, [answers, submittedIds, shuffledOptions]);
+  }, [answers, submittedIds, shuffledOptions, currentChapter, currentQuestionIdx]);
 
   const handleAnswer = (question, optionIndex) => {
     if (submittedIds[question.id]) return;
@@ -366,8 +368,8 @@ export default function ISTQBQuizApp() {
   };
 
   const handleStartChapter = (chapId) => {
+    if (chapId !== currentChapter) setCurrentQuestionIdx(0);
     setCurrentChapter(chapId);
-    setCurrentQuestionIdx(0);
     setRetryQuestionIds(null);
     setView('quiz');
   };
