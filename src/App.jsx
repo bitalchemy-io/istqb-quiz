@@ -741,6 +741,9 @@ export default function ISTQBQuizApp() {
                     {currentQuestion.multiSelect ? (isSelected(idx) ? '☑' : '☐') : ''} {String.fromCharCode(97 + idx)})
                   </div>
                   <div className="text-slate-300 mt-1">{option}</div>
+                  {submitted && !isCorrectOption(idx) && currentQuestion.optionExplanations?.[idx] && (
+                    <div className="text-slate-400 text-sm mt-2 italic">{currentQuestion.optionExplanations[idx]}</div>
+                  )}
                 </button>
               ))}
             </div>
