@@ -612,7 +612,7 @@ export default function ISTQBQuizApp() {
                               : 'bg-indigo-500 text-white hover:bg-indigo-400'
                           }`}
                         >
-                          Quiz starten <ChevronRight className="w-4 h-4" />
+                          {currentChapter === chap.id && currentQuestionIdx > 0 ? 'Quiz fortsetzen' : 'Quiz starten'} <ChevronRight className="w-4 h-4" />
                         </button>
                       )}
                       {chapAnswered > 0 && (
