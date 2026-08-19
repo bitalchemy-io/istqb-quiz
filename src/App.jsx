@@ -280,6 +280,11 @@ export default function ISTQBQuizApp() {
     }
   }, []);
 
+  // Nach oben scrollen bei Frage-/Kapitel-/Seitenwechsel
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [view, currentChapter, currentQuestionIdx, examIdx, glossaryQuizIdx]);
+
   // Fortschritt speichern
   useEffect(() => {
     localStorage.setItem('istqb_progress', JSON.stringify({
@@ -700,8 +705,9 @@ export default function ISTQBQuizApp() {
             <button onClick={() => { setView('home'); setRetryQuestionIds(null); }} className={BACK_BTN}>
               ← zurück
             </button>
-            <div className="font-mono text-sm text-muted">
-              {currentQuestionIdx + 1}/{chapQuestions.length}
+            <div className="flex items-center gap-3 font-mono text-sm text-muted">
+              <TickBar percent={((currentQuestionIdx + 1) / chapQuestions.length) * 100} width={20} />
+              <span>{currentQuestionIdx + 1}/{chapQuestions.length}</span>
             </div>
           </div>
 
@@ -710,9 +716,6 @@ export default function ISTQBQuizApp() {
               {retryQuestionIds && (
                 <p className="font-mono text-xs text-amber-400 mb-2">Wiederholung falsch beantworteter Fragen</p>
               )}
-              <div className="mb-4">
-                <TickBar percent={((currentQuestionIdx + 1) / chapQuestions.length) * 100} width={32} />
-              </div>
               <h2 className="text-lg sm:text-xl font-bold mb-4 text-ink whitespace-pre-line text-left">
                 {currentQuestion.question}
                 {currentQuestion.aiGenerated && (
@@ -1069,19 +1072,17 @@ export default function ISTQBQuizApp() {
             <button onClick={handleCancelExam} className={BACK_BTN}>
               Abbrechen
             </button>
-            <div className="flex items-center gap-4 font-mono text-sm text-muted">
+            <div className="flex items-center gap-3 font-mono text-sm text-muted">
               {examTimeLeft !== null && (
                 <span className={examTimeLeft < 300 ? 'text-red-400' : ''}>{timeMin}:{timeSec}</span>
               )}
+              <TickBar percent={((examIdx + 1) / examQuestions.length) * 100} width={20} />
               <span>{examIdx + 1}/{examQuestions.length}</span>
             </div>
           </div>
 
           <div className={`${CARD} rounded-lg shadow-xl p-8`}>
             <div className="mb-6">
-              <div className="mb-4">
-                <TickBar percent={((examIdx + 1) / examQuestions.length) * 100} width={32} />
-              </div>
               <h2 className="text-lg sm:text-xl font-bold mb-4 text-ink whitespace-pre-line text-left">
                 {examQuestion.question}
               </h2>
