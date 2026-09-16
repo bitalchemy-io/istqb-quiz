@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { BookOpen, BarChart3, Search, ChevronRight, RotateCcw, Lock, Star, FileText, Trash2, Settings, Sun, Moon, Monitor } from 'lucide-react';
 import { marked } from 'marked';
 import QUIZ_DATA from './data/quizData.json';
+import EXAM_SETS from './data/examSets.json';
 import THEORY_0_MD from './data/theory-0.md?raw';
 import THEORY_1_MD from './data/theory-1.md?raw';
 import THEORY_2_MD from './data/theory-2.md?raw';
@@ -121,15 +122,28 @@ function computeStats(answers, submittedIds, shuffledOptions) {
 function scoreExam(questions, examAnswers) {
   const total = questions.length;
   const correct = questions.filter(q => isAnswerCorrect(q, examAnswers[q.id])).length;
-  const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
-  return { total, correct, percent, passed: percent >= EXAM_PASS_PERCENT };
+  const maxPoints = questions.reduce((sum, q) => sum + q.points, 0);
+  const points = questions
+    .filter(q => isAnswerCorrect(q, examAnswers[q.id]))
+    .reduce((sum, q) => sum + q.points, 0);
+  const percent = maxPoints > 0 ? Math.round((points / maxPoints) * 100) : 0;
+  return { total, correct, points, maxPoints, percent, passed: percent >= EXAM_PASS_PERCENT };
 }
 
 const EXAM_LENGTH = 40;
 const EXAM_DURATION_SEC = 60 * 60;
 const EXAM_PASS_PERCENT = 65;
+const EXAM_MODES = {
+  random: { label: 'Zufällig (40 gemischt)' },
+  setA: { label: 'SET A (GTB)' },
+  astqb: { label: 'ASTQB' },
+};
 
-function buildExamQuestions() {
+function buildExamQuestions(mode) {
+  if (mode === 'setA' || mode === 'astqb') {
+    const byId = new Map(QUIZ_DATA.questions.map(q => [q.id, q]));
+    return EXAM_SETS[mode].map(id => byId.get(id));
+  }
   const hard = QUIZ_DATA.questions.filter(q => q.points === 2);
   const rest = shuffle(QUIZ_DATA.questions.filter(q => q.points !== 2));
   const fillCount = Math.max(0, EXAM_LENGTH - hard.length);
@@ -226,6 +240,7 @@ export default function ISTQBQuizApp() {
   const [glossarySubmitted, setGlossarySubmitted] = useState(false);
   const [glossaryScore, setGlossaryScore] = useState({ correct: 0, total: 0 });
   const [examTimerEnabled, setExamTimerEnabled] = useState(false);
+  const [examMode, setExamMode] = useState('random');
   const [examQuestions, setExamQuestions] = useState([]);
   const [examIdx, setExamIdx] = useState(0);
   const [examAnswers, setExamAnswers] = useState({});
@@ -453,7 +468,7 @@ export default function ISTQBQuizApp() {
   };
 
   const startExam = () => {
-    const questions = buildExamQuestions();
+    const questions = buildExamQuestions(examMode);
     setExamQuestions(questions);
     setExamIdx(0);
     setExamAnswers({});
@@ -477,7 +492,7 @@ export default function ISTQBQuizApp() {
 
   const recordExamResult = () => {
     const result = scoreExam(examQuestions, examAnswers);
-    setExamHistory(prev => [...prev, { ...result, timestamp: new Date().toISOString() }]);
+    setExamHistory(prev => [...prev, { ...result, mode: examMode, timestamp: new Date().toISOString() }]);
   };
 
   const handleExamNext = () => {
@@ -676,6 +691,23 @@ export default function ISTQBQuizApp() {
                 {Math.min(EXAM_LENGTH, QUIZ_DATA.questions.length)} Fragen · Bestehensgrenze {EXAM_PASS_PERCENT} %
               </p>
               <p className="text-sm text-muted mb-4">Simuliert die echte Prüfung: keine Sofort-Auswertung pro Frage, Ergebnis erst am Ende.</p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {Object.entries(EXAM_MODES).map(([mode, { label }]) => (
+                  <button
+                    key={mode}
+                    type="button"
+                    onClick={() => setExamMode(mode)}
+                    disabled={!unlockAll}
+                    className={`px-3 py-1.5 rounded-lg text-sm font-semibold border transition ${
+                      examMode === mode
+                        ? 'bg-indigo-500 text-white border-indigo-500'
+                        : 'bg-transparent text-muted border-line hover:border-indigo-500/50'
+                    } ${!unlockAll ? 'cursor-not-allowed opacity-60' : ''}`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
               <label className="flex items-center gap-2 mb-4 text-sm text-muted cursor-pointer">
                 <input
                   type="checkbox"
@@ -1195,7 +1227,7 @@ export default function ISTQBQuizApp() {
                       <>
                         <div className="flex justify-between items-center mb-3 mt-3">
                           <span className="text-sm text-muted">
-                            Letzter Versuch: {lastExam.correct}/{lastExam.total} ({lastExam.percent}%)
+                            Letzter Versuch{EXAM_MODES[lastExam.mode] ? ` (${EXAM_MODES[lastExam.mode].label})` : ''}: {lastExam.correct}/{lastExam.total} ({lastExam.percent}%)
                           </span>
                           <ResultBadge correct={lastExam.passed} />
                         </div>
