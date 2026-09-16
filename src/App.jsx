@@ -87,12 +87,16 @@ function isAnswerCorrect(question, userAnswer) {
 
 function shuffleQuestionOptions(question) {
   const order = shuffle(question.options.map((_, i) => i));
-  return {
+  const override = {
     options: order.map(i => question.options[i]),
     correct: question.multiSelect
       ? question.correct.map(c => order.indexOf(c))
       : order.indexOf(question.correct),
   };
+  if (question.optionExplanations) {
+    override.optionExplanations = order.map(i => question.optionExplanations[i]);
+  }
+  return override;
 }
 
 function applyShuffle(question, shuffledOptions) {
@@ -112,6 +116,13 @@ function computeStats(answers, submittedIds, shuffledOptions) {
     }
   }
   return { total, correct, points, maxPoints };
+}
+
+function scoreExam(questions, examAnswers) {
+  const total = questions.length;
+  const correct = questions.filter(q => isAnswerCorrect(q, examAnswers[q.id])).length;
+  const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
+  return { total, correct, percent, passed: percent >= EXAM_PASS_PERCENT };
 }
 
 const EXAM_LENGTH = 40;
@@ -219,6 +230,7 @@ export default function ISTQBQuizApp() {
   const [examIdx, setExamIdx] = useState(0);
   const [examAnswers, setExamAnswers] = useState({});
   const [examTimeLeft, setExamTimeLeft] = useState(null);
+  const [examHistory, setExamHistory] = useState(() => loadSavedProgress()?.examHistory || []);
   const [fontScaleIdx, setFontScaleIdx] = useState(() => {
     const saved = parseInt(localStorage.getItem(FONT_SCALE_KEY), 10);
     const idx = FONT_SCALES.indexOf(saved);
@@ -293,9 +305,10 @@ export default function ISTQBQuizApp() {
       shuffledOptions,
       currentChapter,
       currentQuestionIdx,
+      examHistory,
       timestamp: new Date().toISOString()
     }));
-  }, [answers, submittedIds, shuffledOptions, currentChapter, currentQuestionIdx]);
+  }, [answers, submittedIds, shuffledOptions, currentChapter, currentQuestionIdx, examHistory]);
 
   const handleAnswer = (question, optionIndex) => {
     if (submittedIds[question.id]) return;
@@ -462,8 +475,15 @@ export default function ISTQBQuizApp() {
     }
   };
 
+  const recordExamResult = () => {
+    const result = scoreExam(examQuestions, examAnswers);
+    setExamHistory(prev => [...prev, { ...result, timestamp: new Date().toISOString() }]);
+  };
+
   const handleExamNext = () => {
-    setExamIdx(prev => Math.min(prev + 1, examQuestions.length));
+    const nextIdx = examIdx + 1;
+    if (nextIdx >= examQuestions.length) recordExamResult();
+    setExamIdx(Math.min(nextIdx, examQuestions.length));
   };
 
   const handleCancelExam = () => {
@@ -474,6 +494,7 @@ export default function ISTQBQuizApp() {
   useEffect(() => {
     if (view !== 'exam' || examTimeLeft === null || examIdx >= examQuestions.length) return;
     if (examTimeLeft <= 0) {
+      recordExamResult();
       setExamIdx(examQuestions.length);
       return;
     }
@@ -1160,24 +1181,38 @@ export default function ISTQBQuizApp() {
               </div>
             </div>
 
-            {stats.maxPoints > 0 && (
-              <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-6">
-                <div className="flex justify-between items-center mb-3">
-                  <span className="font-semibold text-slate-300">Bestandene Prüfung</span>
-                  {passPercentage >= passingScore ? (
-                    <ResultBadge correct={true} />
-                  ) : (
-                    <span className="font-mono text-xs text-amber-400 font-bold">{passingScore - passPercentage}% FEHLEN</span>
-                  )}
-                </div>
-                <TickBar
-                  percent={Math.min(passPercentage, 100)}
-                  width={36}
-                  filledClass={passPercentage >= passingScore ? 'text-emerald-400' : 'text-amber-400'}
-                />
-                <p className="text-xs text-slate-400 mt-2">Mindestens {passingScore}% erforderlich</p>
-              </div>
-            )}
+            <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-6">
+              <span className="font-semibold text-slate-300">Probeprüfung</span>
+              {examHistory.length === 0 ? (
+                <p className="text-sm text-muted mt-3">Noch keine Probeprüfung absolviert.</p>
+              ) : (
+                <>
+                  {(() => {
+                    const lastExam = examHistory[examHistory.length - 1];
+                    const passedCount = examHistory.filter(e => e.passed).length;
+                    const bestPercent = Math.max(...examHistory.map(e => e.percent));
+                    return (
+                      <>
+                        <div className="flex justify-between items-center mb-3 mt-3">
+                          <span className="text-sm text-muted">
+                            Letzter Versuch: {lastExam.correct}/{lastExam.total} ({lastExam.percent}%)
+                          </span>
+                          <ResultBadge correct={lastExam.passed} />
+                        </div>
+                        <TickBar
+                          percent={Math.min(lastExam.percent, 100)}
+                          width={36}
+                          filledClass={lastExam.passed ? 'text-emerald-400' : 'text-amber-400'}
+                        />
+                        <p className="text-xs text-slate-400 mt-2">
+                          {examHistory.length} Versuch{examHistory.length === 1 ? '' : 'e'} · {passedCount}× bestanden · beste {bestPercent}%
+                        </p>
+                      </>
+                    );
+                  })()}
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
