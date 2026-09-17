@@ -139,6 +139,11 @@ const EXAM_MODES = {
   astqb: { label: 'ASTQB' },
 };
 
+function examModeLabel(mode) {
+  if (mode === 'retry') return 'Wiederholung falscher Antworten';
+  return EXAM_MODES[mode]?.label;
+}
+
 function buildExamQuestions(mode) {
   if (mode === 'setA' || mode === 'astqb') {
     const byId = new Map(QUIZ_DATA.questions.map(q => [q.id, q]));
@@ -241,6 +246,7 @@ export default function ISTQBQuizApp() {
   const [glossaryScore, setGlossaryScore] = useState({ correct: 0, total: 0 });
   const [examTimerEnabled, setExamTimerEnabled] = useState(false);
   const [examMode, setExamMode] = useState('random');
+  const [examAttemptMode, setExamAttemptMode] = useState('random');
   const [examQuestions, setExamQuestions] = useState([]);
   const [examIdx, setExamIdx] = useState(0);
   const [examAnswers, setExamAnswers] = useState({});
@@ -473,6 +479,7 @@ export default function ISTQBQuizApp() {
     setExamIdx(0);
     setExamAnswers({});
     setExamTimeLeft(examTimerEnabled ? EXAM_DURATION_SEC : null);
+    setExamAttemptMode(examMode);
     setView('exam');
   };
 
@@ -492,7 +499,7 @@ export default function ISTQBQuizApp() {
 
   const recordExamResult = () => {
     const result = scoreExam(examQuestions, examAnswers);
-    setExamHistory(prev => [...prev, { ...result, mode: examMode, timestamp: new Date().toISOString() }]);
+    setExamHistory(prev => [...prev, { ...result, mode: examAttemptMode, timestamp: new Date().toISOString() }]);
   };
 
   const handleExamNext = () => {
@@ -503,6 +510,19 @@ export default function ISTQBQuizApp() {
 
   const handleCancelExam = () => {
     setView('home');
+  };
+
+  const handleRetryExamWrong = (wrongQuestions) => {
+    setExamQuestions(wrongQuestions);
+    setExamIdx(0);
+    setExamAnswers({});
+    setExamTimeLeft(null);
+    setExamAttemptMode('retry');
+    setView('exam');
+  };
+
+  const handleDeleteExamAttempt = () => {
+    setExamHistory(prev => prev.slice(0, -1));
   };
 
   // Probeprüfung: Countdown
@@ -1060,33 +1080,45 @@ export default function ISTQBQuizApp() {
               </p>
             </div>
 
-            {wrongQuestions.length > 0 && (
-              <div className={`${CARD} rounded-lg shadow-xl p-8 mb-6`}>
-                <h3 className="font-display text-lg font-bold mb-4 text-ink">Falsch beantwortet</h3>
-                <div className="space-y-6">
-                  {wrongQuestions.map(q => {
-                    const userAnswer = examAnswers[q.id];
-                    const formatAnswer = (idx) => idx !== undefined
-                      ? `${String.fromCharCode(97 + idx)}) ${q.options[idx]}`
-                      : '(keine Antwort)';
-                    return (
-                      <div key={q.id} className="border-l-4 border-red-500 pl-4">
-                        <p className="font-semibold text-ink mb-2 whitespace-pre-line">{q.question}</p>
-                        <p className="text-red-300 text-sm mb-1">
-                          Deine Antwort: {q.multiSelect
-                            ? (Array.isArray(userAnswer) && userAnswer.length > 0 ? userAnswer.map(formatAnswer).join('; ') : '(keine Antwort)')
-                            : formatAnswer(userAnswer)}
-                        </p>
-                        <p className="text-emerald-300 text-sm mb-2">
-                          Richtig: {q.multiSelect ? q.correct.map(formatAnswer).join('; ') : formatAnswer(q.correct)}
-                        </p>
-                        <p className="text-slate-300 text-sm">{q.explanation}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
+            <h3 className="font-display text-lg font-bold mb-4 text-ink">Auswertung</h3>
+            <div className="space-y-4 mb-6">
+              {examQuestions.map((q, qIdx) => {
+                const userAnswer = examAnswers[q.id];
+                const questionCorrect = isAnswerCorrect(q, userAnswer);
+                const isSelected = (idx) => q.multiSelect
+                  ? Array.isArray(userAnswer) && userAnswer.includes(idx)
+                  : userAnswer === idx;
+                const isCorrectOption = (idx) => q.multiSelect
+                  ? q.correct.includes(idx)
+                  : idx === q.correct;
+                return (
+                  <div key={q.id} className={`${CARD} rounded-lg shadow-xl p-6`}>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="font-mono text-xs text-muted">Frage {qIdx + 1}/{examQuestions.length}</span>
+                      <ResultBadge correct={questionCorrect} />
+                    </div>
+                    <p className="font-semibold text-ink mb-4 whitespace-pre-line">{q.question}</p>
+                    <div className="space-y-3">
+                      {q.options.map((option, idx) => (
+                        <div
+                          key={idx}
+                          className={`w-full p-3 rounded-lg border-2 ${optionStateClasses(isSelected(idx), true, isCorrectOption(idx))}`}
+                        >
+                          <div className="font-semibold text-white text-sm">
+                            {q.multiSelect ? (isSelected(idx) ? '☑' : '☐') : ''} {String.fromCharCode(97 + idx)})
+                          </div>
+                          <div className="text-slate-300 text-sm mt-1">{option}</div>
+                          {!isCorrectOption(idx) && q.optionExplanations?.[idx] && (
+                            <div className="text-slate-400 text-xs mt-2 italic">{q.optionExplanations[idx]}</div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-slate-300 text-sm mt-4">{q.explanation}</p>
+                  </div>
+                );
+              })}
+            </div>
 
             <div className="flex gap-3">
               <button
@@ -1102,6 +1134,20 @@ export default function ISTQBQuizApp() {
                 Neue Probeprüfung
               </button>
             </div>
+            {wrongQuestions.length > 0 && (
+              <button
+                onClick={() => handleRetryExamWrong(wrongQuestions)}
+                className="w-full mt-3 py-2 bg-amber-500/10 text-amber-300 border border-amber-500/30 rounded-lg font-semibold hover:bg-amber-500/20 transition"
+              >
+                {wrongQuestions.length} falsche Frage{wrongQuestions.length === 1 ? '' : 'n'} wiederholen
+              </button>
+            )}
+            <button
+              onClick={handleDeleteExamAttempt}
+              className="w-full mt-3 py-2 text-sm rounded-lg border border-red-500/30 text-red-400 hover:bg-red-500/10 transition"
+            >
+              Diese Prüfung aus der Statistik löschen
+            </button>
           </div>
         </div>
       );
@@ -1227,7 +1273,7 @@ export default function ISTQBQuizApp() {
                       <>
                         <div className="flex justify-between items-center mb-3 mt-3">
                           <span className="text-sm text-muted">
-                            Letzter Versuch{EXAM_MODES[lastExam.mode] ? ` (${EXAM_MODES[lastExam.mode].label})` : ''}: {lastExam.correct}/{lastExam.total} ({lastExam.percent}%)
+                            Letzter Versuch{examModeLabel(lastExam.mode) ? ` (${examModeLabel(lastExam.mode)})` : ''}: {lastExam.correct}/{lastExam.total} ({lastExam.percent}%)
                           </span>
                           <ResultBadge correct={lastExam.passed} />
                         </div>
