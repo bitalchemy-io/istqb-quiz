@@ -252,6 +252,7 @@ export default function ISTQBQuizApp() {
   const [examAnswers, setExamAnswers] = useState({});
   const [examTimeLeft, setExamTimeLeft] = useState(null);
   const [examHistory, setExamHistory] = useState(() => loadSavedProgress()?.examHistory || []);
+  const [examLastResult, setExamLastResult] = useState(() => loadSavedProgress()?.examLastResult || null);
   const [fontScaleIdx, setFontScaleIdx] = useState(() => {
     const saved = parseInt(localStorage.getItem(FONT_SCALE_KEY), 10);
     const idx = FONT_SCALES.indexOf(saved);
@@ -327,9 +328,10 @@ export default function ISTQBQuizApp() {
       currentChapter,
       currentQuestionIdx,
       examHistory,
+      examLastResult,
       timestamp: new Date().toISOString()
     }));
-  }, [answers, submittedIds, shuffledOptions, currentChapter, currentQuestionIdx, examHistory]);
+  }, [answers, submittedIds, shuffledOptions, currentChapter, currentQuestionIdx, examHistory, examLastResult]);
 
   const handleAnswer = (question, optionIndex) => {
     if (submittedIds[question.id]) return;
@@ -499,7 +501,9 @@ export default function ISTQBQuizApp() {
 
   const recordExamResult = () => {
     const result = scoreExam(examQuestions, examAnswers);
-    setExamHistory(prev => [...prev, { ...result, mode: examAttemptMode, timestamp: new Date().toISOString() }]);
+    const entry = { ...result, mode: examAttemptMode, timestamp: new Date().toISOString() };
+    setExamHistory(prev => [...prev, entry]);
+    setExamLastResult({ ...entry, questions: examQuestions, answers: examAnswers });
   };
 
   const handleExamNext = () => {
@@ -523,6 +527,15 @@ export default function ISTQBQuizApp() {
 
   const handleDeleteExamAttempt = () => {
     setExamHistory(prev => prev.slice(0, -1));
+    setExamLastResult(null);
+  };
+
+  const handleViewLastExamResult = () => {
+    setExamQuestions(examLastResult.questions);
+    setExamAnswers(examLastResult.answers);
+    setExamAttemptMode(examLastResult.mode);
+    setExamIdx(examLastResult.questions.length);
+    setView('exam');
   };
 
   // Probeprüfung: Countdown
@@ -749,6 +762,28 @@ export default function ISTQBQuizApp() {
               >
                 Probeprüfung starten <ChevronRight className="w-4 h-4" />
               </button>
+
+              {examLastResult && (
+                <div className="mt-4 pt-4 border-t border-line flex items-center justify-between gap-3 flex-wrap">
+                  <span className="text-sm text-muted">
+                    Letztes Ergebnis: {examLastResult.correct}/{examLastResult.total} ({examLastResult.percent}%)
+                  </span>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={handleViewLastExamResult}
+                      className="px-3 py-1.5 rounded-lg text-sm font-semibold border border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/10 transition"
+                    >
+                      Ansehen
+                    </button>
+                    <button
+                      onClick={handleDeleteExamAttempt}
+                      className="px-3 py-1.5 rounded-lg text-sm font-semibold border border-red-500/30 text-red-400 hover:bg-red-500/10 transition"
+                    >
+                      Löschen
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </section>
         </main>
@@ -1273,7 +1308,7 @@ export default function ISTQBQuizApp() {
                       <>
                         <div className="flex justify-between items-center mb-3 mt-3">
                           <span className="text-sm text-muted">
-                            Letzter Versuch{examModeLabel(lastExam.mode) ? ` (${examModeLabel(lastExam.mode)})` : ''}: {lastExam.correct}/{lastExam.total} ({lastExam.percent}%)
+                            Letzter Versuch{examModeLabel(lastExam.mode) ? ` · ${examModeLabel(lastExam.mode)}` : ''}: {lastExam.correct}/{lastExam.total} ({lastExam.percent}%)
                           </span>
                           <ResultBadge correct={lastExam.passed} />
                         </div>
