@@ -59,6 +59,23 @@ Erwartete Ausgabe:
 ✓ SMOKE PASSED
 ```
 
+Probeprüfung mit Zeitlimit — stellt die Uhr um eine volle Stunde vor und
+prüft, dass der Ablauf die Prüfung beendet und das Ergebnis schreibt
+(~7s, `--unlock` ist implizit):
+
+```bash
+node .claude/skills/run-istqb-quiz/driver.mjs exam
+```
+
+```
+✓ Probeprüfung gestartet, Countdown steht auf 60:00
+✓ Countdown nach 30 Min korrekt bei 30:00
+✓ Zeitablauf beendet die Prüfung und zeigt das Ergebnis
+✓ Ergebnis in examHistory persistiert (0/40)
+
+✓ EXAM PASSED
+```
+
 Einzelner Screenshot:
 
 ```bash
@@ -118,17 +135,15 @@ npm run dev
 ## Test
 
 Es gibt **keine** Testsuite — kein `npm test`, kein Vitest, kein Playwright-
-Test-Runner im Projekt. Der Smoke-Driver oben ist die einzige
-Ausführungsprüfung. Lint:
+Test-Runner im Projekt. `smoke` und `exam` oben sind die einzigen
+Ausführungsprüfungen. Lint:
 
 ```bash
 npm run lint
 ```
 
-`npm run lint` **exitet aktuell mit 1**: 2 Errors
-(`react-hooks/set-state-in-effect` in `src/App.jsx`) plus 1 Warning
-(`react-hooks/exhaustive-deps`). Das ist der Zustand auf `main`, nicht
-etwas, das du kaputt gemacht hast — relevant ist nur, ob die Zahl steigt.
+`npm run lint` ist sauber (Exit 0). Jeder neue Befund kommt also von
+deiner Änderung.
 
 ## Gotchas
 
@@ -159,6 +174,11 @@ etwas, das du kaputt gemacht hast — relevant ist nur, ob die Zahl steigt.
   farblich (rote/grüne Rahmen) plus eine Erklärung pro Option. Nicht auf
   Ergebnistext asserten — der Driver wartet stattdessen auf den Button
   „Nächste Frage".
+- **Die Fake-Clock muss in 1-Sekunden-Schritten laufen.** Der Countdown hängt
+  jeden Tick an ein frisches `setTimeout`, das erst nach dem React-Render
+  existiert. Ein einzelnes `page.clock.fastForward('60:00')` feuert deshalb nur
+  den ersten Timer und die Uhr bleibt bei 59:00 stehen. Der Driver schleift
+  stattdessen über `runFor(1000)` — ~1,9ms pro Tick, eine Stunde also ~7s.
 - **Fortschritt ist persistent.** Ein Durchlauf schreibt
   `localStorage['istqb_progress']`. Der Driver nutzt pro Lauf einen frischen
   Browser-Context, startet also immer sauber; im echten Browser muss man

@@ -304,15 +304,18 @@ export default function ISTQBQuizApp() {
     ? 'bg-gradient-to-br from-deep via-deep to-indigo-100'
     : 'bg-gradient-to-br from-deep via-deep to-indigo-950';
 
-  const [unlockAll, setUnlockAll] = useState(() => localStorage.getItem(UNLOCK_KEY) === '1');
+  // Secret-Link (?unlock=CODE) schaltet alle Kapitel dauerhaft in diesem Browser frei.
+  // Beides steht schon beim ersten Render fest und gehört damit in den Initializer,
+  // nicht in einen Effect, der den State nachträglich korrigiert.
+  const [unlockAll] = useState(() =>
+    localStorage.getItem(UNLOCK_KEY) === '1' ||
+    new URLSearchParams(window.location.search).get('unlock') === UNLOCK_CODE
+  );
 
-  // Secret-Link (?unlock=CODE) schaltet alle Kapitel dauerhaft in diesem Browser frei
+  // Freischaltung festhalten: Schreiben in ein externes System, kein State-Update.
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).get('unlock') === UNLOCK_CODE) {
-      localStorage.setItem(UNLOCK_KEY, '1');
-      setUnlockAll(true);
-    }
-  }, []);
+    if (unlockAll) localStorage.setItem(UNLOCK_KEY, '1');
+  }, [unlockAll]);
 
   // Nach oben scrollen bei Frage-/Kapitel-/Seitenwechsel
   useEffect(() => {
@@ -506,6 +509,11 @@ export default function ISTQBQuizApp() {
     setExamLastResult({ ...entry, questions: examQuestions, answers: examAnswers });
   };
 
+  // Der Countdown darf nicht von recordExamResult abhängen: die Funktion wird bei
+  // jeder Antwort neu erzeugt und würde sonst den laufenden Sekundentimer neu starten.
+  const recordExamResultRef = useRef(recordExamResult);
+  useEffect(() => { recordExamResultRef.current = recordExamResult; });
+
   const handleExamNext = () => {
     const nextIdx = examIdx + 1;
     if (nextIdx >= examQuestions.length) recordExamResult();
@@ -538,15 +546,19 @@ export default function ISTQBQuizApp() {
     setView('exam');
   };
 
-  // Probeprüfung: Countdown
+  // Probeprüfung: Countdown. Der Ablauf wird im Timer-Callback behandelt - der
+  // Effect selbst setzt keinen State, sondern hängt nur am Timer als externem System.
   useEffect(() => {
     if (view !== 'exam' || examTimeLeft === null || examIdx >= examQuestions.length) return;
-    if (examTimeLeft <= 0) {
-      recordExamResult();
-      setExamIdx(examQuestions.length);
-      return;
-    }
-    const t = setTimeout(() => setExamTimeLeft(s => s - 1), 1000);
+    const t = setTimeout(() => {
+      if (examTimeLeft <= 1) {
+        setExamTimeLeft(0);
+        recordExamResultRef.current();
+        setExamIdx(examQuestions.length);
+      } else {
+        setExamTimeLeft(s => s - 1);
+      }
+    }, 1000);
     return () => clearTimeout(t);
   }, [view, examTimeLeft, examIdx, examQuestions.length]);
 

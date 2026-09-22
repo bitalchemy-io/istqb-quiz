@@ -26,7 +26,8 @@ const flag = (name, fallback = null) => {
 const url = flag('url', DEFAULT_URL)
 const outDir = resolve(flag('out', `${SKILL_DIR}/screenshots`))
 const headed = !!flag('headed')
-const unlock = !!flag('unlock')
+// Die Probeprüfung ist Teil des gesperrten Bereichs - fuer `exam` immer entsperren.
+const unlock = !!flag('unlock') || cmd === 'exam'
 const mobile = !!flag('mobile')
 const light = !!flag('light')
 
@@ -70,7 +71,7 @@ async function ensureServer() {
   die(`Dev-Server wurde unter ${url} nicht erreichbar`)
 }
 
-async function openApp(browser) {
+async function openApp(browser, { clock = false } = {}) {
   const ctx = await browser.newContext({
     viewport: mobile ? { width: 390, height: 844 } : { width: 1280, height: 900 },
     colorScheme: light ? 'light' : 'dark',
@@ -81,6 +82,8 @@ async function openApp(browser) {
   if (unlock) await ctx.addInitScript(() => localStorage.setItem('istqb_unlock_all', '1'))
 
   const page = await ctx.newPage()
+  // Fake-Clock muss VOR dem ersten Laden stehen, sonst laufen die Timer echt.
+  if (clock) await page.clock.install()
   const errors = []
   page.on('console', m => m.type() === 'error' && errors.push(m.text()))
   page.on('pageerror', e => errors.push(String(e)))
@@ -101,7 +104,7 @@ const browser = await chromium.launch({ headless: !headed })
 let failed = false
 
 try {
-  const { page, errors } = await openApp(browser)
+  const { page, errors } = await openApp(browser, { clock: cmd === 'exam' })
 
   if (cmd === 'shot') {
     const name = argv.filter(a => !a.startsWith('-'))[1] ?? 'home'
@@ -143,8 +146,40 @@ try {
     if (errors.length) throw new Error(`Console-Errors:\n  ${errors.join('\n  ')}`)
     ok('keine Console-Errors')
     console.log('\n✓ SMOKE PASSED')
+  } else if (cmd === 'exam') {
+    // Probeprüfung mit Zeitlimit: Uhr vorstellen und prüfen, dass der
+    // Ablauf die Prüfung beendet und das Ergebnis schreibt.
+    await page.getByLabel(/Mit Zeitlimit/).check()
+    await page.getByRole('button', { name: 'Probeprüfung starten' }).click()
+    await page.getByText(/^60:00$/).waitFor({ timeout: 5000 })
+    ok('Probeprüfung gestartet, Countdown steht auf 60:00')
+
+    // Die Uhr muss in 1-Sekunden-Schritten laufen: die App hängt jeden Tick
+    // an ein neues setTimeout, das erst nach dem React-Render existiert.
+    // Ein einzelnes fastForward('60:00') feuert nur den ersten Timer.
+    const tick = async n => { for (let i = 0; i < n; i++) await page.clock.runFor(1000) }
+
+    await tick(30 * 60)
+    if (!(await page.getByText(/^30:00$/).isVisible())) {
+      throw new Error('Countdown steht nach 30 Min nicht auf 30:00')
+    }
+    ok('Countdown nach 30 Min korrekt bei 30:00')
+
+    await tick(30 * 60)
+    await page.getByRole('heading', { name: /Ergebnis Probeprüfung/ }).waitFor({ timeout: 10000 })
+    ok('Zeitablauf beendet die Prüfung und zeigt das Ergebnis')
+
+    const history = await page.evaluate(() =>
+      JSON.parse(localStorage.getItem('istqb_progress') || '{}').examHistory || [])
+    if (history.length !== 1) throw new Error(`examHistory hat ${history.length} Einträge, erwartet 1`)
+    ok(`Ergebnis in examHistory persistiert (${history[0].correct}/${history[0].total})`)
+    await shot(page, 'exam-timeout')
+
+    if (errors.length) throw new Error(`Console-Errors:\n  ${errors.join('\n  ')}`)
+    ok('keine Console-Errors')
+    console.log('\n✓ EXAM PASSED')
   } else {
-    die(`unbekanntes Kommando: ${cmd} (erwartet: smoke | shot)`)
+    die(`unbekanntes Kommando: ${cmd} (erwartet: smoke | exam | shot)`)
   }
 } catch (err) {
   failed = true
