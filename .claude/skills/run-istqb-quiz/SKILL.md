@@ -29,12 +29,16 @@ brew install node
 npm install
 ```
 
-Playwright ist **keine** Dependency des Projekts — bewusst, damit
-`npm ci` in CI schlank bleibt. Für den Driver einmalig nachinstallieren:
+Playwright kommt als `devDependency` mit `npm install`. Die Browser-Binaries
+sind darin **nicht** enthalten (das Paket hat kein Install-Script) und müssen
+einmalig pro Maschine geholt werden:
 
 ```bash
-npm install --no-save playwright && npx playwright install chromium
+npx playwright install chromium
 ```
+
+Sie landen in `~/Library/Caches/ms-playwright/` (~94 MB), also außerhalb des
+Repos — ein `npm ci` fasst sie nicht an.
 
 ## Run (agent path)
 
@@ -160,12 +164,12 @@ deiner Änderung.
   „Quiz starten"-Buttons der gesperrten Kapitel im DOM **vorhanden, aber
   `disabled`** — ein blinder `.click()` auf den falschen Index läuft ins
   Leere statt zu scheitern. Der Driver nimmt deshalb `.first()` (§01 ist frei).
-- **Der Driver muss im Projekt-Root laufen.** `playwright` wurde mit
-  `--no-save` installiert und liegt nur in `./node_modules`. Ein Skript
-  außerhalb des Repos scheitert mit `ERR_MODULE_NOT_FOUND: playwright`.
-- **`--no-save` überlebt kein `npm ci`.** Nach einem sauberen Install ist
-  Playwright weg und der Driver bricht mit einem Hinweis ab. Dann die
-  Install-Zeile aus Prerequisites erneut ausführen.
+- **Der Driver muss im Projekt-Root laufen.** `playwright` wird aus
+  `./node_modules` aufgelöst; ein Skript außerhalb des Repos scheitert mit
+  `ERR_MODULE_NOT_FOUND: playwright`.
+- **`npm ci` holt keine Browser.** Das Paket ist danach da, die Binaries
+  fehlen auf einer frischen Maschine aber weiterhin — dann meldet der Driver
+  `Executable doesn't exist`, und `npx playwright install chromium` behebt es.
 - **Kein Chrome auf dem Rechner.** Playwright bringt seine eigene
   Chromium-Headless-Shell mit (~94 MB, nach
   `~/Library/Caches/ms-playwright/`). Ein systemweites Chrome/Chromium gibt
@@ -188,7 +192,8 @@ deiner Änderung.
 
 | Symptom | Ursache / Fix |
 |---|---|
-| `Cannot find package 'playwright'` | Skript lief außerhalb des Projekt-Roots, oder `npm ci` hat die `--no-save`-Installation entfernt. Install-Zeile aus Prerequisites erneut ausführen und aus dem Root starten. |
+| `Cannot find package 'playwright'` | Skript lief außerhalb des Projekt-Roots, oder `npm install` fehlt. Aus dem Root starten. |
+| `Executable doesn't exist at …/ms-playwright/…` | Browser-Binaries fehlen auf dieser Maschine: `npx playwright install chromium`. |
 | `command not found: node` | Node fehlt komplett. `brew install node`. |
 | `Dev-Server wurde unter … nicht erreichbar` | Port 5173 belegt (`pkill -f vite`), oder `npm install` wurde nie ausgeführt. |
 | Driver hängt nach Abbruch, Port bleibt belegt | Bei hartem Kill bleibt der gespawnte Vite-Prozess stehen: `pkill -f vite`. |

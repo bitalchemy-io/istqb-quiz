@@ -36,7 +36,7 @@ try {
   ({ chromium } = await import('playwright'))
 } catch {
   die('playwright fehlt. Im Projekt-Root ausführen:\n' +
-      '  npm install --no-save playwright && npx playwright install chromium')
+      '  npm install && npx playwright install chromium')
 }
 
 function die(msg) {
