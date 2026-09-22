@@ -29,3 +29,6 @@ __pycache__/
 
 # Claude Code (lokale Dev-Server-Config)
 .claude/launch.json
+
+# Screenshots des run-Skill-Drivers
+.claude/skills/*/screenshots/
