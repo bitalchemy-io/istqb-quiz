@@ -26,3 +26,6 @@ dist-ssr
 # Python
 __pycache__/
 *.pyc
+
+# Claude Code (lokale Dev-Server-Config)
+.claude/launch.json
